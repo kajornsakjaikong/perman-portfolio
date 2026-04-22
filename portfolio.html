@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kajornsak Jaikong | Percussionman — Portfolio</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --black:#080808;--dark:#111;--card:#181818;
+      --yellow:#FFD700;--white:#fff;--gray:#888;--border:#252525;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      background:rgba(8,8,8,.97);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 60px;height:62px;
+    }
+    .nav-logo{font-size:1rem;font-weight:900;letter-spacing:3px;color:var(--yellow);text-decoration:none;text-transform:uppercase}
+    .nav-links{display:flex;gap:36px;list-style:none}
+    .nav-links a{color:var(--gray);text-decoration:none;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--yellow)}
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      padding:90px 80px 60px;position:relative;overflow:hidden;
+    }
+    #hero::after{
+      content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+      background:radial-gradient(ellipse at 75% 50%,rgba(255,215,0,.06) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;z-index:1}
+    .hero-eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
+    .hero-name{font-size:clamp(3rem,7vw,6.5rem);font-weight:900;line-height:.95;margin-bottom:20px;letter-spacing:-2px}
+    .hero-name em{color:var(--yellow);font-style:normal}
+    .hero-roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+    .rtag{border:1px solid #2e2e2e;border-radius:20px;padding:5px 16px;font-size:.75rem;color:var(--gray);letter-spacing:.5px}
+    .hero-quote{
+      font-size:.95rem;color:var(--gray);font-style:italic;
+      border-left:3px solid var(--yellow);padding-left:18px;margin-bottom:36px;line-height:1.7;
+    }
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:11px 24px;border-radius:4px;font-size:.82rem;text-decoration:none;
+      letter-spacing:.8px;font-weight:600;transition:all .2s;border:1px solid transparent;
+    }
+    .btn-primary{background:var(--yellow);color:var(--black)}
+    .btn-primary:hover{background:#fff}
+    .btn-outline{border-color:var(--border);color:var(--white)}
+    .btn-outline:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* hero photo */
+    .hero-photo-col{
+      position:relative;z-index:1;
+      display:flex;align-items:center;justify-content:flex-end;
+      height:100%;padding-left:40px;
+    }
+    .hero-photo-wrap{
+      position:relative;
+      width:min(420px,42vw);
+      flex-shrink:0;
+    }
+    .hero-photo-wrap::before{
+      content:'';position:absolute;inset:-3px;
+      border:2px solid var(--yellow);
+      clip-path:polygon(0 6%,6% 0,100% 0,100% 94%,94% 100%,0 100%);
+      z-index:2;pointer-events:none;
+      opacity:.55;
+    }
+    .hero-photo-wrap::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:35%;
+      background:linear-gradient(to top,var(--black) 0%,transparent 100%);
+      z-index:3;pointer-events:none;
+    }
+    .hero-photo-wrap img{
+      width:100%;
+      display:block;
+      filter:grayscale(100%) contrast(1.1) brightness(.92);
+      clip-path:polygon(0 6%,6% 0,100% 0,100% 94%,94% 100%,0 100%);
+    }
+    .hero-photo-badge{
+      position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+      z-index:4;
+      background:rgba(0,0,0,.78);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,215,0,.35);border-radius:8px;
+      padding:8px 20px;text-align:center;white-space:nowrap;
+    }
+    .hero-photo-badge span{font-size:.65rem;letter-spacing:2px;color:var(--yellow);text-transform:uppercase}
+
+    /* ── SECTION ── */
+    section{padding:90px 80px}
+    .sec-alt{background:var(--dark)}
+    .sec-head{margin-bottom:52px}
+    .sec-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+    .sec-title{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;letter-spacing:-1px}
+    .sec-bar{width:52px;height:3px;background:var(--yellow);margin-top:14px}
+
+    /* ── FILTER TABS ── */
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+    .tab{
+      padding:7px 20px;border:1px solid var(--border);border-radius:20px;
+      background:transparent;color:var(--gray);font-size:.75rem;cursor:pointer;
+      transition:all .2s;letter-spacing:.5px;
+    }
+    .tab:hover,.tab.on{background:var(--yellow);border-color:var(--yellow);color:var(--black);font-weight:700}
+
+    /* ── PROJECT GRID ── */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:10px;
+      overflow:hidden;transition:border-color .25s,transform .25s;
+      opacity:0;transform:translateY(18px);
+    }
+    .card.vis{opacity:1;transform:translateY(0)}
+    .card:hover{border-color:var(--yellow);transform:translateY(-4px)}
+
+    .card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+    .card:hover .card-thumb img{transform:scale(1.05)}
+    .card-thumb{
+      width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);
+      display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+      border-bottom:1px solid var(--border);
+    }
+    .card-body{padding:20px}
+    .ctags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .ctag{font-size:.68rem;color:var(--yellow);border:1px solid rgba(255,215,0,.25);border-radius:12px;padding:2px 10px}
+    .ctitle{font-size:.92rem;font-weight:700;line-height:1.45;margin-bottom:8px}
+    .cmeta{font-size:.74rem;color:var(--gray);margin-bottom:10px}
+    .croles{display:flex;gap:6px;flex-wrap:wrap}
+    .crole{font-size:.68rem;background:rgba(255,255,255,.05);border-radius:4px;padding:2px 9px;color:#777}
+
+    /* ── MOTORSPORT GALLERY ── */
+    .ms-gallery-wrap{margin-bottom:0}
+    .ms-gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      grid-template-rows:auto auto;
+      gap:14px;
+    }
+    .ms-photo-wide{grid-column:span 2;grid-row:span 2}
+    .ms-photo{
+      position:relative;overflow:hidden;border-radius:10px;
+      border:1px solid var(--border);
+      background:var(--card);
+      aspect-ratio:16/10;
+    }
+    .ms-photo-wide{aspect-ratio:auto}
+    .ms-photo img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .45s ease;filter:brightness(.92);
+    }
+    .ms-photo:hover img{transform:scale(1.04);filter:brightness(1)}
+    .ms-photo-cap{
+      position:absolute;bottom:0;left:0;right:0;
+      background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);
+      padding:32px 18px 16px;
+      transform:translateY(6px);opacity:.85;
+      transition:all .3s;
+    }
+    .ms-photo:hover .ms-photo-cap{transform:translateY(0);opacity:1}
+    .ms-photo-tag{
+      display:block;font-size:.62rem;letter-spacing:2px;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:4px;
+    }
+    .ms-photo-title{display:block;font-size:.82rem;font-weight:700;color:#fff}
+    @media(max-width:900px){
+      .ms-gallery{grid-template-columns:1fr 1fr}
+      .ms-photo-wide{grid-column:span 2;grid-row:span 1;aspect-ratio:16/9}
+    }
+    @media(max-width:600px){
+      .ms-gallery{grid-template-columns:1fr}
+      .ms-photo-wide{grid-column:span 1}
+    }
+
+    /* full motorsport grid */
+    .ms-grid-full{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:12px;
+    }
+    .ms-grid-full .ms-photo{aspect-ratio:3/2}
+
+    /* ── MOTORSPORT HERO ── */
+    .ms-hero{
+      display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;
+      background:linear-gradient(135deg,#0a0a0a 0%,#100e00 100%);
+      border:1px solid rgba(255,215,0,.18);border-radius:14px;
+      padding:52px;margin-bottom:52px;
+    }
+    .ms-quote{font-size:1.6rem;font-weight:800;line-height:1.35;margin-bottom:18px}
+    .ms-quote em{color:var(--yellow);font-style:normal}
+    .ms-desc{color:var(--gray);font-size:.88rem;margin-bottom:28px;line-height:1.8}
+    .ms-list{list-style:none}
+    .ms-list li{
+      padding:11px 0;border-bottom:1px solid var(--border);
+      font-size:.88rem;display:flex;align-items:flex-start;gap:10px;
+    }
+    .ms-list li::before{content:'▶';color:var(--yellow);font-size:.55rem;margin-top:5px;flex-shrink:0}
+    .ms-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .stat{
+      background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.12);
+      border-radius:10px;padding:24px;text-align:center;
+    }
+    .stat-v{font-size:1.5rem;font-weight:900;color:var(--yellow);letter-spacing:1px}
+    .stat-l{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+    /* ── CONTACT ── */
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .citem{
+      display:flex;align-items:center;gap:18px;
+      padding:22px 0;border-bottom:1px solid var(--border);
+    }
+    .cicon{
+      width:46px;height:46px;background:rgba(255,215,0,.08);
+      border:1px solid rgba(255,215,0,.2);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;
+    }
+    .clabel{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.2px}
+    .cvalue{font-size:.98rem;font-weight:600;margin-top:2px}
+    .cta-box{
+      background:var(--card);border:1px solid var(--border);border-radius:14px;
+      padding:44px;text-align:center;
+    }
+    .cta-title{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:12px}
+    .cta-title em{color:var(--yellow);font-style:normal}
+    .cta-sub{color:var(--gray);font-size:.88rem;margin-bottom:28px;line-height:1.8}
+
+    /* ── FOOTER ── */
+    footer{
+      background:var(--black);border-top:1px solid var(--border);
+      padding:22px 80px;display:flex;justify-content:space-between;
+      align-items:center;font-size:.75rem;color:var(--gray);
+    }
+    footer a{color:var(--gray);text-decoration:none}
+    footer a:hover{color:var(--yellow)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      nav{padding:0 24px}
+      .nav-links{gap:18px}
+      section{padding:60px 24px}
+      #hero{
+        grid-template-columns:1fr;
+        padding:90px 24px 50px;
+        gap:40px;
+      }
+      .hero-photo-col{
+        justify-content:center;
+        padding-left:0;
+        order:-1;
+      }
+      .hero-photo-wrap{width:min(300px,72vw)}
+      .grid{grid-template-columns:1fr}
+      .ms-hero{grid-template-columns:1fr;padding:28px}
+      .contact-wrap{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:6px;padding:18px 24px;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav>
+  <a href="#hero" class="nav-logo">Percussionman</a>
+  <ul class="nav-links">
+    <li><a href="#video">Video</a></li>
+    <li><a href="#photography">Photography</a></li>
+    <li><a href="#motorsport">Motorsport</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+
+  <!-- LEFT: text content -->
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Portfolio 2024</p>
+    <h1 class="hero-name">Kajornsak<br><em>Jaikong</em></h1>
+    <div class="hero-roles">
+      <span class="rtag">Photographer</span>
+      <span class="rtag">Videographer</span>
+      <span class="rtag">Video Editor</span>
+      <span class="rtag">Freelancer</span>
+      <span class="rtag">Percussionman</span>
+    </div>
+    <p class="hero-quote">
+      "I don't just take photos;<br>I capture the physics of speed."
+    </p>
+    <div class="hero-btns">
+      <a href="#video" class="btn btn-primary">🎬 Video Works</a>
+      <a href="#photography" class="btn btn-outline">📸 Photography</a>
+      <a href="#motorsport" class="btn btn-outline">🏎️ Motorsport</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: portrait photo -->
+  <div class="hero-photo-col">
+    <div class="hero-photo-wrap">
+      <img src="img/page01.jpg" alt="Kajornsak Jaikong — Percussionman" loading="eager">
+      <div class="hero-photo-badge">
+        <span>Kajornsak Jaikong · Percussionman</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════ VIDEO ════ -->
+<section id="video" class="sec-alt">
+  <div class="sec-head">
+    <p class="sec-label">Selected Works</p>
+    <h2 class="sec-title">VIDEO</h2>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="tabs" id="vtabs">
+    <button class="tab on" onclick="filter('vgrid','all',this,'vtabs')">All</button>
+    <button class="tab" onclick="filter('vgrid','MM',this,'vtabs')">MammothMusic</button>
+    <button class="tab" onclick="filter('vgrid','SB',this,'vtabs')">Space Brothers</button>
+    <button class="tab" onclick="filter('vgrid','SZ',this,'vtabs')">SongZoom</button>
+    <button class="tab" onclick="filter('vgrid','RM',this,'vtabs')">Riser Music</button>
+  </div>
+
+  <div class="grid" id="vgrid">
+
+    <div class="card" data-cat="SZ">
+      <div class="card-thumb"><img src="img/page03.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">SongZoom</span><span class="ctag">2022</span></div>
+        <h3 class="ctitle">'Pink Venom' Music Video Cover by SongZoom</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="RM">
+      <div class="card-thumb"><img src="img/page04.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">#KristLiveSession</span><span class="ctag">Riser Music</span></div>
+        <h3 class="ctitle">KRIST LIVE SESSION feat. GAWIN CASKEY [PERFORMANCE VIDEO]</h3>
+        <div class="croles"><span class="crole">Videographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page05.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">Kakao Webtoon</span></div>
+        <h3 class="ctitle">วอนใจ OST. ต้องทำไงให้พระอภัยรัก — The Trill feat. อาร์ม กรกันต์</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page06.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">The Way You Look Tonight : COVER by ปั่น ไพบูลย์เกียรติ เขียวแก้ว [MM Special Live]</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page07.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">รักยืนยง : ปั่น ไพบูลย์เกียรติ เขียวแก้ว [MM Special live]</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page08.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">เหมือนเคย : COVER by Nadech Kugimiya [MM Special Live]</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page09.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">#WarbieYama</span></div>
+        <h3 class="ctitle">The Inside World of Warbie Yama — Original Score</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page10.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">บุษบา : MM Special LIVE with POD Moderndog</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page11.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">#RiverCityBangkok</span></div>
+        <h3 class="ctitle">It's Me, Warbie! The Inside World of Warbie Yama — Soundtracks</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page12.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">#FindingTheRainbow</span></div>
+        <h3 class="ctitle">รักคุณเข้าแล้ว [Behind the Track by MM Studio]</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="SB">
+      <div class="card-thumb"><img src="img/page13.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Space Brothers</span><span class="ctag">Search Studio</span></div>
+        <h3 class="ctitle">โลกคู่ขนาน live at Search Studio</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page14.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">Kakao Webtoon</span></div>
+        <h3 class="ctitle">ผ่านกาลเวลา (Love Destiny) : Studio Live version</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page15.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">เป็นไปไม่ได้ jazz cover by Nop & the Groovetoamatix jazz band</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page16.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">DANNY BOY Cover by Jui & Modman</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page17.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">If You Love Me / Hymne à l'amour — Cover JUI & MODMAN</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page18.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span></div>
+        <h3 class="ctitle">วันใหม่ cover by Nan Sathida & Modman : Live at MM Studio Bkk</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="SB">
+      <div class="card-thumb"><img src="img/page19.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Space Brothers</span></div>
+        <h3 class="ctitle">[Live@MM Studio] Sparkle | Original by Tatsuro Yamashita</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="SB">
+      <div class="card-thumb"><img src="img/page21.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Space Brothers</span></div>
+        <h3 class="ctitle">[Live@MM Studio] เอาปากกามาวง | Original by Bell Warisara</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="MM">
+      <div class="card-thumb"><img src="img/page22.jpg" alt="video work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">MammothMusic</span><span class="ctag">#BamBam</span></div>
+        <h3 class="ctitle">แบมแบม (BamBam) 'riBBon' | Cover by Mammothmusic Special Cover Band ft. Nekonaerun</h3>
+        <div class="croles"><span class="crole">Videographer</span><span class="crole">Video Editor</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ PHOTOGRAPHY ════ -->
+<section id="photography">
+  <div class="sec-head">
+    <p class="sec-label">Selected Works</p>
+    <h2 class="sec-title">PHOTOGRAPH</h2>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="tabs" id="ptabs">
+    <button class="tab on" onclick="filter('pgrid','all',this,'ptabs')">All</button>
+    <button class="tab" onclick="filter('pgrid','Concert',this,'ptabs')">Concert / Event</button>
+    <button class="tab" onclick="filter('pgrid','Portrait',this,'ptabs')">Portrait</button>
+    <button class="tab" onclick="filter('pgrid','Candid',this,'ptabs')">Candid</button>
+    <button class="tab" onclick="filter('pgrid','PreWed',this,'ptabs')">Pre-Wedding</button>
+  </div>
+
+  <div class="grid" id="pgrid">
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page24.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">4EVE</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">4 EVE show at Areeya</h3>
+        <p class="cmeta">@ Soonthareeya Ratchadamri</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page25.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Lady Prang</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">Lady Pang show at Areeya</h3>
+        <p class="cmeta">@ Soonthareeya Ratchadamri</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page26.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">ปั่น ไพบูลย์เกียรติ เขียวแก้ว</h3>
+        <p class="cmeta">@ Soonthareeya Ratchadamri</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page27.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Moderndog</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">Pod Moderndog</h3>
+        <p class="cmeta">@ Soonthareeya Ratchadamri</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page28.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Nadech Kugimiya</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">Nadech Kugimiya</h3>
+        <p class="cmeta">@ Soonthareeya Ratchadamri</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page32.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Space Brothers</span><span class="ctag">Search Studio</span></div>
+        <h3 class="ctitle">Concert Nop X SpaceBrothers live in Search Studio</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page33.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Boy Peacemaker</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">Boy Peacemaker</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page45.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">BTS</span><span class="ctag">Soul After Six</span></div>
+        <h3 class="ctitle">Soul After Six ความทรงจำของก้อนหิน</h3>
+        <p class="cmeta">@ Royal Paragon Hall</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page43.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Party</span><span class="ctag">Klear</span><span class="ctag">Akira band</span></div>
+        <h3 class="ctitle">jkcamper2020</h3>
+        <p class="cmeta">@ Hua Hin</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Concert">
+      <div class="card-thumb"><img src="img/page40.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">First Anuwat</span><span class="ctag">Concert</span></div>
+        <h3 class="ctitle">First Anuwat</h3>
+        <p class="cmeta">@ U-BAR</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Portrait">
+      <div class="card-thumb"><img src="img/page29.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Portrait</span><span class="ctag">Sony A7iii + Sigma 85 1.4</span></div>
+        <h3 class="ctitle">Portrait — Studio Sessions</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Portrait">
+      <div class="card-thumb"><img src="img/page31.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Portrait</span><span class="ctag">Motorsport</span></div>
+        <h3 class="ctitle">Portrait — Chang International Circuit by BRIC.</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Portrait">
+      <div class="card-thumb"><img src="img/page36.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Portrait</span><span class="ctag">Advertisement</span></div>
+        <h3 class="ctitle">Arisa Maya — E-Board Advertisement Project</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Portrait">
+      <div class="card-thumb"><img src="img/page37.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Portrait</span></div>
+        <h3 class="ctitle">Chayanee Beam — Portrait</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page34.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Candid</span><span class="ctag">SixUp Band</span></div>
+        <h3 class="ctitle">SixUp Band</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page35.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Candid</span><span class="ctag">MM Studio</span></div>
+        <h3 class="ctitle">Neko @ MM Studio</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page38.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Candid</span><span class="ctag">Akira Band</span></div>
+        <h3 class="ctitle">Akira Band — Pradhana Vanalai & Private Party</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page41.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Candid</span><span class="ctag">ฟังดี Channel</span></div>
+        <h3 class="ctitle">BTS MV Cover — เอก สุระเชน ft. Bulldog Team</h3>
+        <p class="cmeta">@ ฟังดี Channel</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page44.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Candid</span><span class="ctag">The Westin</span></div>
+        <h3 class="ctitle">Arunrot Youamarin</h3>
+        <p class="cmeta">@ The Westin Grande Sukhumvit, Bangkok</p>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="Candid">
+      <div class="card-thumb"><img src="img/page46.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Party</span><span class="ctag">Candid</span></div>
+        <h3 class="ctitle">Plearnwan Panich Staff Party 2020</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="PreWed">
+      <div class="card-thumb"><img src="img/page47.jpg" alt="photo work" loading="lazy"></div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Pre-Wedding</span><span class="ctag">Vintage</span></div>
+        <h3 class="ctitle">Pre-Wedding — Vintage Countryside Theme</h3>
+        <div class="croles"><span class="crole">Photographer</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ MOTORSPORT ════ -->
+<section id="motorsport" class="sec-alt">
+  <div class="sec-head">
+    <p class="sec-label">Specialty</p>
+    <h2 class="sec-title">MOTORSPORT</h2>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="ms-hero">
+    <div>
+      <h3 class="ms-quote">"I don't just take photos;<br>I capture the <em>physics of speed.</em>"</h3>
+      <p class="ms-desc">
+        ช่างภาพมอเตอร์สปอร์ตที่เข้าใจรถแข่งอย่างลึกซึ้ง ไม่ใช่แค่กดชัตเตอร์ แต่รู้จักเส้นทาง จังหวะ และฟิสิกส์ของความเร็ว<br>
+        พร้อมให้บริการทั้งสนาม Chang International Circuit และงาน Motorsport ทุกรูปแบบ
+      </p>
+      <ul class="ms-list">
+        <li><strong>Automotive Insight</strong> — เข้าใจมุมกล้องที่ดึงเสน่ห์ของรถออกมาได้ดี</li>
+        <li><strong>RAW Specialist</strong> — High-end Color Grading ระดับ Professional</li>
+        <li><strong>Fast Delivery</strong> — ส่งงานรวดเร็ว พร้อมใช้ทันที ไม่รอนาน</li>
+        <li><strong>Cinematic Video</strong> — รับทำ Video สำหรับ TikTok / Reels / Social Media</li>
+        <li><strong>Equipment</strong> — Nikon Z8 & Motorsport Lenses</li>
+      </ul>
+    </div>
+    <div class="ms-stats">
+      <div class="stat"><div class="stat-v" style="font-size:1rem;letter-spacing:0">Chang International Circuit</div><div class="stat-l">Buriram</div></div>
+      <div class="stat"><div class="stat-v" style="font-size:1rem;letter-spacing:0">Sepang International Circuit</div><div class="stat-l">Malaysia</div></div>
+      <div class="stat"><div class="stat-v">RAW</div><div class="stat-l">Specialist</div></div>
+      <div class="stat"><div class="stat-v">Panning</div><div class="stat-l">Action Shot</div></div>
+      <div class="stat"><div class="stat-v">Nikon</div><div class="stat-l">Z8 System</div></div>
+    </div>
+  </div>
+
+  <!-- Motorsport Photo Gallery -->
+  <div class="ms-gallery-wrap">
+    <p class="sec-label" style="margin-bottom:24px">Selected Shots</p>
+    <div class="ms-grid-full">
+      <div class="ms-photo"><img src="img/MA900004.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900010.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900014_2048px.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900034.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900052_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900053_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900061_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900069.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900085_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900086.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900092_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900110.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900122.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900152_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900218_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900258_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900259_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900286_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900313_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900377_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900495_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900558_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900566_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900584_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900624_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900746_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA900886_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901054_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901089_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901246_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901331_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901363_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901492_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901499_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901511_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901563_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901779_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MA901883_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00009.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00010_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00142_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00260_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00319_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00451_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00461_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00502_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+      <div class="ms-photo"><img src="img/MAN00630_fullres.jpg" alt="Motorsport Racing" loading="lazy"></div>
+    </div>
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:40px;text-align:center;margin-top:40px">
+    <p style="color:var(--gray);font-size:.88rem;margin-bottom:20px">🏎️ ดูผลงานรูปรถแข่งฉบับเต็มได้ที่ Canva Portfolio</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.canva.com/d/qbn-oRwYQbBgW3E" target="_blank" class="btn btn-primary">Portfolio Deck (4 หน้า)</a>
+      <a href="https://www.canva.com/d/uH4wV4_lm1PSIqz" target="_blank" class="btn btn-outline">One-Pager</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section id="contact">
+  <div class="sec-head">
+    <p class="sec-label">Get In Touch</p>
+    <h2 class="sec-title">CONTACT</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="contact-wrap">
+    <div>
+      <div class="citem">
+        <div class="cicon">📱</div>
+        <div><div class="clabel">Line ID</div><div class="cvalue">percussion_man</div></div>
+      </div>
+      <div class="citem">
+        <div class="cicon">📞</div>
+        <div><div class="clabel">โทรศัพท์</div><div class="cvalue">089-997-7941</div></div>
+      </div>
+      <div class="citem">
+        <div class="cicon">📧</div>
+        <div><div class="clabel">Email</div><div class="cvalue">kajornsak.jaikong@gmail.com</div></div>
+      </div>
+      <div class="citem">
+        <div class="cicon">🎬</div>
+        <div><div class="clabel">Social Media</div><div class="cvalue">Facebook · YouTube · TikTok</div></div>
+      </div>
+    </div>
+    <div class="cta-box">
+      <h3 class="cta-title">Let's drive your<br><em>brand forward</em><br>together.</h3>
+      <p class="cta-sub">
+        รับงาน Photography · Videography<br>
+        Video Editing · Motorsport Content<br>
+        Social Media Content
+      </p>
+      <a href="tel:0899977941" class="btn btn-primary" style="font-size:.9rem;padding:14px 36px">📞 ติดต่อเลย</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <span>© 2024 <strong style="color:var(--yellow)">Kajornsak Jaikong</strong> — Percussionman</span>
+  <span>Photographer · Videographer · Video Editor</span>
+</footer>
+
+<script>
+// ── Filter ──
+function filter(gridId, cat, btn, tabsId) {
+  document.querySelectorAll('#'+tabsId+' .tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#'+gridId+' .card').forEach(c=>{
+    const show = cat==='all' || c.dataset.cat===cat;
+    c.style.display = show ? '' : 'none';
+  });
+}
+
+// ── Scroll reveal ──
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }});
+},{threshold:.08});
+
+document.querySelectorAll('.card').forEach((c,i)=>{
+  c.style.transitionDelay = (i%4)*0.05+'s';
+  c.style.transition='opacity .45s ease,transform .45s ease,border-color .25s,box-shadow .25s';
+  io.observe(c);
+});
+
+// ── Active nav link on scroll ──
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{ if(window.scrollY>=s.offsetTop-80) cur=s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.color = a.getAttribute('href')==='#'+cur ? 'var(--yellow)' : '';
+  });
+});
+</script>
+</body>
+</html>
