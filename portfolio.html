@@ -235,6 +235,38 @@
     .cta-title em{color:var(--yellow);font-style:normal}
     .cta-sub{color:var(--gray);font-size:.88rem;margin-bottom:28px;line-height:1.8}
 
+    /* ── Product Lightbox ── */
+    #plb{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.93);
+      display:none;align-items:center;justify-content:center;}
+    #plb.open{display:flex;}
+    #plb-img{max-width:88vw;max-height:82vh;object-fit:contain;border-radius:6px;
+      box-shadow:0 8px 48px rgba(0,0,0,.6);user-select:none;}
+    #plb-close{position:absolute;top:22px;right:30px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.3rem;
+      width:42px;height:42px;border-radius:50%;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s;line-height:1;}
+    #plb-close:hover{background:rgba(255,255,255,.18);}
+    #plb-prev,#plb-next{position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+      color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;
+      cursor:pointer;transition:background .2s;
+      display:flex;align-items:center;justify-content:center;}
+    #plb-prev{left:20px;}#plb-next{right:20px;}
+    #plb-prev:hover,#plb-next:hover{background:rgba(255,215,0,.22);border-color:rgba(255,215,0,.35);}
+    #plb-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+      color:rgba(255,255,255,.45);font-size:.75rem;letter-spacing:2px;white-space:nowrap;}
+    .card-clickable{cursor:pointer;position:relative;}
+    .card-clickable .card-thumb::after{
+      content:'▶  View Gallery';position:absolute;inset:0;
+      background:rgba(0,0,0,.45);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:.78rem;letter-spacing:2.5px;text-transform:uppercase;
+      opacity:0;transition:opacity .25s;border-radius:10px 10px 0 0;
+    }
+    .card-clickable:hover .card-thumb::after{opacity:1;}
+    .card-clickable .card-thumb{position:relative;}
+
     /* ── FOOTER ── */
     footer{
       background:var(--black);border-top:1px solid var(--border);
@@ -831,105 +863,14 @@
     </div>
 
     <!-- ── Product Photography ── -->
-    <div class="card" data-cat="Product" style="grid-column:1/-1;">
-      <div class="card-thumb" style="aspect-ratio:16/9;">
-        <img src="img/product/product_overview.jpg" alt="CAPME Crispy Pork Rinds Collection" loading="lazy"
-             style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="card card-clickable" data-cat="Product" onclick="openPLB(0)">
+      <div class="card-thumb">
+        <img src="img/product/product_overview.jpg" alt="CAPME Crispy Pork Rinds Collection" loading="lazy">
       </div>
       <div class="card-body">
         <div class="ctags"><span class="ctag">Product Photography</span><span class="ctag">Commercial</span></div>
-        <h3 class="ctitle">CAPME Crispy Pork Rinds — Full Collection</h3>
-        <div class="croles"><span class="crole">Photographer</span><span class="crole">Commercial</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_01.jpg" alt="Sweet Corn" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Sweet Corn</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_02.jpg" alt="Original" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Original</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_03.jpg" alt="Salted Egg" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Salted Egg</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_04.jpg" alt="Somtum" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Somtum</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_05.jpg" alt="Sour Cream and Onion" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Sour Cream &amp; Onion</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_06.jpg" alt="Sriracha Sauce" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Sriracha Sauce</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_07.jpg" alt="Seafood Sauce" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Seafood Sauce</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_08.jpg" alt="Somtum Vol.2" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Somtum (Vol.2)</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_09.jpg" alt="Original Vol.2" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Original (Vol.2)</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-cat="Product">
-      <div class="card-thumb"><img src="img/product/product_10.jpg" alt="Sour Cream Onion Vol.2" loading="lazy"></div>
-      <div class="card-body">
-        <div class="ctags"><span class="ctag">Product Photography</span></div>
-        <h3 class="ctitle">Crispy Pork Rinds — Sour Cream &amp; Onion (Vol.2)</h3>
-        <div class="croles"><span class="crole">Photographer</span></div>
+        <h3 class="ctitle">CAPME Crispy Pork Rinds — Product Photography</h3>
+        <div class="croles"><span class="crole">Photographer</span><span class="crole">Commercial</span><span class="crole" style="color:var(--yellow)">11 Photos</span></div>
       </div>
     </div>
 
@@ -1073,6 +1014,15 @@
   </div>
 </section>
 
+<!-- ════ PRODUCT LIGHTBOX ════ -->
+<div id="plb" onclick="if(event.target===this)closePLB()">
+  <button id="plb-close" onclick="closePLB()">✕</button>
+  <button id="plb-prev" onclick="plbNav(-1)">&#8249;</button>
+  <img id="plb-img" src="" alt="Product Photo">
+  <button id="plb-next" onclick="plbNav(1)">&#8250;</button>
+  <span id="plb-counter"></span>
+</div>
+
 <!-- ════ FOOTER ════ -->
 <footer>
   <span>© 2024 <strong style="color:var(--yellow)">Kajornsak Jaikong</strong> — Percussionman</span>
@@ -1099,6 +1049,40 @@ document.querySelectorAll('.card').forEach((c,i)=>{
   c.style.transitionDelay = (i%4)*0.05+'s';
   c.style.transition='opacity .45s ease,transform .45s ease,border-color .25s,box-shadow .25s';
   io.observe(c);
+});
+
+// ── Product Lightbox ──
+const plbImgs = [
+  'img/product/product_overview.jpg',
+  'img/product/product_01.jpg','img/product/product_02.jpg',
+  'img/product/product_03.jpg','img/product/product_04.jpg',
+  'img/product/product_05.jpg','img/product/product_06.jpg',
+  'img/product/product_07.jpg','img/product/product_08.jpg',
+  'img/product/product_09.jpg','img/product/product_10.jpg',
+];
+let plbIdx = 0;
+function openPLB(i){
+  plbIdx = i||0;
+  const lb = document.getElementById('plb');
+  document.getElementById('plb-img').src = plbImgs[plbIdx];
+  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+plbImgs.length;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePLB(){
+  document.getElementById('plb').classList.remove('open');
+  document.body.style.overflow='';
+}
+function plbNav(dir){
+  plbIdx = (plbIdx+dir+plbImgs.length)%plbImgs.length;
+  document.getElementById('plb-img').src = plbImgs[plbIdx];
+  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+plbImgs.length;
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('plb').classList.contains('open')) return;
+  if(e.key==='Escape') closePLB();
+  if(e.key==='ArrowRight') plbNav(1);
+  if(e.key==='ArrowLeft') plbNav(-1);
 });
 
 // ── Active nav link on scroll ──
