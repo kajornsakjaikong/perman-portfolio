@@ -47,8 +47,42 @@
       padding:9px 20px;font-size:.85rem;font-weight:700;cursor:pointer;
       display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;
       font-family:inherit;
-    }
     .print-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,215,0,.3)}
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switch{
+      display:inline-flex;align-items:center;gap:3px;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,215,0,.3);
+      border-radius:20px;padding:3px 8px;
+    }
+    .lang-btn{
+      background:none;border:none;color:var(--text-muted);
+      font-size:.74rem;font-weight:700;letter-spacing:.8px;
+      cursor:pointer;padding:2px 8px;border-radius:12px;
+      transition:all .2s ease;font-family:'Plus Jakarta Sans',sans-serif;
+    }
+    .lang-btn:hover{color:var(--gold)}
+    .lang-btn.active{
+      color:#000;background:var(--gold);
+      box-shadow:0 0 10px rgba(255,215,0,.3);
+    }
+    .lang-divider{color:var(--border);font-size:.7rem;user-select:none}
+
+    /* ── MULTI-LANGUAGE DISPLAY RULES ── */
+    body.lang-en .lang-th { display: none !important; }
+    body:not(.lang-en) .lang-en { display: none !important; }
+    body.lang-en span.lang-en,
+    body.lang-en strong.lang-en,
+    body.lang-en em.lang-en { display: inline !important; }
+    body.lang-en a.lang-en { display: inline-flex !important; }
+    body.lang-en div.lang-en,
+    body.lang-en p.lang-en,
+    body.lang-en h1.lang-en,
+    body.lang-en h2.lang-en,
+    body.lang-en h3.lang-en,
+    body.lang-en h4.lang-en,
+    body.lang-en ul.lang-en,
+    body.lang-en li.lang-en { display: block !important; }
 
     /* ── RESUME PAPER CONTAINER ── */
     .resume-wrapper{
@@ -191,11 +225,23 @@
 
 <!-- ════ TOP ACTION BAR ════ -->
 <div class="top-bar">
-  <a href="portfolio.html" class="back-btn">
-    <span>←</span> กลับสู่หน้าผลงาน (Portfolio)
-  </a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="portfolio.html" class="back-btn">
+      <span>←</span>
+      <span class="lang-th">กลับสู่หน้าผลงาน (Portfolio)</span>
+      <span class="lang-en">Back to Portfolio</span>
+    </a>
+    <!-- Language Switcher -->
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn active" data-lang="th" onclick="setLang('th')">TH</button>
+      <span class="lang-divider">/</span>
+      <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
   <button onclick="window.print()" class="print-btn">
-    <span>🖨️</span> บันทึกเป็น PDF / พิมพ์ (Print to PDF)
+    <span>🖨️</span>
+    <span class="lang-th">บันทึกเป็น PDF / พิมพ์ (Print to PDF)</span>
+    <span class="lang-en">Print / Save to PDF</span>
   </button>
 </div>
 
@@ -205,17 +251,20 @@
   <!-- ── HEADER ── -->
   <header class="resume-header">
     <div>
-      <h1 class="applicant-name">ขจรศักดิ์ ใจคง</h1>
+      <h1 class="applicant-name">
+        <span class="lang-th">ขจรศักดิ์ ใจคง</span>
+        <span class="lang-en">Kajornsak Jaikong</span>
+      </h1>
       <div class="applicant-title">Senior Videographer · Motorsport Media Specialist · Video Editor & Colorist</div>
       
       <div class="contact-grid">
         <div class="contact-item">
           <span>📞</span>
-          <span><strong>โทรศัพท์:</strong> <a href="tel:0899977941">089-997-7941</a></span>
+          <span><strong><span class="lang-th">โทรศัพท์:</span><span class="lang-en">Phone:</span></strong> <a href="tel:0899977941">089-997-7941</a></span>
         </div>
         <div class="contact-item">
           <span>📧</span>
-          <span><strong>อีเมล:</strong> <a href="mailto:kajornsak.jaikong@gmail.com">kajornsak.jaikong@gmail.com</a></span>
+          <span><strong><span class="lang-th">อีเมล:</span><span class="lang-en">Email:</span></strong> <a href="mailto:kajornsak.jaikong@gmail.com">kajornsak.jaikong@gmail.com</a></span>
         </div>
         <div class="contact-item">
           <span>💬</span>
@@ -227,7 +276,10 @@
         </div>
         <div class="contact-item">
           <span>📍</span>
-          <span><strong>ที่อยู่:</strong> กรุงเทพมหานคร และพร้อมเดินทางปฏิบัติงานทั่วประเทศ / ต่างประเทศ</span>
+          <span>
+            <span class="lang-th"><strong>ที่อยู่:</strong> กรุงเทพมหานคร และพร้อมเดินทางปฏิบัติงานทั่วประเทศ / ต่างประเทศ</span>
+            <span class="lang-en"><strong>Location:</strong> Bangkok, Thailand (Available for nationwide & international travel)</span>
+          </span>
         </div>
         <div class="contact-item">
           <span>🎬</span>
@@ -244,20 +296,36 @@
   <!-- ── PROFESSIONAL SUMMARY ── -->
   <section class="resume-sec">
     <div class="sec-head">
-      <h2 class="sec-title">ประวัติย่อและจุดเด่นทางวิชาชีพ (Professional Summary)</h2>
+      <h2 class="sec-title">
+        <span class="lang-th">ประวัติย่อและจุดเด่นทางวิชาชีพ (Professional Summary)</span>
+        <span class="lang-en">Professional Summary</span>
+      </h2>
     </div>
-    <p class="summary-p">
-      วิดีโอกราเฟอร์และช่างภาพมืออาชีพที่มีประสบการณ์การผลิตสื่อภาพนิ่งและภาพเคลื่อนไหวมากว่า <strong>5 ปี</strong> มีจุดเด่นเฉพาะตัวจากการนำความเข้าใจเชิงลึกใน <strong>"จังหวะดนตรี" (Percussion)</strong> มาผสมผสานกับการถ่ายทอด <strong>"พลังและฟิสิกส์ของความเร็ว" (Speed & Motion)</strong> ได้อย่างแม่นยำ เชี่ยวชาญงานถ่ายทอดสดคอนเสิร์ตขนาดใหญ่และเทศกาลดนตรีระดับประเทศร่วมกับศิลปินชั้นนำ (อาทิ 4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall)
-    </p>
-    <p class="summary-p">
-      พร้อมความเชี่ยวชาญระดับสูงในสาย <strong>Motorsport</strong> ณ สนามแข่งขันระดับสากลและสนามชั้นนำ (Chang International Circuit บุรีรัมย์, Sepang International Circuit มาเลเซีย, D1 Grand Prix Thailand, Rotax Max Challenge Thailand โกคาร์ทเยาวชน และสนามภูเก็ต) เข้าใจมุมกล้องยานยนต์ การเคลื่อนที่ของรถแข่งที่ความเร็วสูง และมีทักษะการทำ <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES) รองรับการผลิตสื่อแบบครบวงจร (End-to-End) พร้อมส่งมอบงานรวดเร็ว (Fast Delivery) สำหรับ Social Media และงานพรีเมียม
-    </p>
+    <div class="lang-th">
+      <p class="summary-p">
+        วิดีโอกราเฟอร์และช่างภาพมืออาชีพที่มีประสบการณ์การผลิตสื่อภาพนิ่งและภาพเคลื่อนไหวมากว่า <strong>5 ปี</strong> มีจุดเด่นเฉพาะตัวจากการนำความเข้าใจเชิงลึกใน <strong>"จังหวะดนตรี" (Percussion)</strong> มาผสมผสานกับการถ่ายทอด <strong>"พลังและฟิสิกส์ของความเร็ว" (Speed & Motion)</strong> ได้อย่างแม่นยำ เชี่ยวชาญงานถ่ายทอดสดคอนเสิร์ตขนาดใหญ่และเทศกาลดนตรีระดับประเทศร่วมกับศิลปินชั้นนำ (อาทิ 4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall)
+      </p>
+      <p class="summary-p">
+        พร้อมความเชี่ยวชาญระดับสูงในสาย <strong>Motorsport</strong> ณ สนามแข่งขันระดับสากลและสนามชั้นนำ (Chang International Circuit บุรีรัมย์, Sepang International Circuit มาเลเซีย, D1 Grand Prix Thailand, Rotax Max Challenge Thailand โกคาร์ทเยาวชน และสนามภูเก็ต) เข้าใจมุมกล้องยานยนต์ การเคลื่อนที่ของรถแข่งที่ความเร็วสูง และมีทักษะการทำ <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES) รองรับการผลิตสื่อแบบครบวงจร (End-to-End) พร้อมส่งมอบงานรวดเร็ว (Fast Delivery) สำหรับ Social Media และงานพรีเมียม
+      </p>
+    </div>
+    <div class="lang-en">
+      <p class="summary-p">
+        Professional Videographer and Photographer with over <strong>5 years</strong> of experience in visual media production. Distinguished by a signature background in <strong>musical rhythm and percussion</strong>, seamlessly integrating dynamic tempo with <strong>the physics and velocity of speed</strong>. Proven track record capturing major arena concerts and premier national music festivals with top-tier artists (including 4EVE, Madam Pang, Pod Moderndog, Nadech Kugimiya, and Soul After Six @ Royal Paragon Hall).
+      </p>
+      <p class="summary-p">
+        Specialized expertise in <strong>Motorsport Media</strong> across premier and international circuits (Chang International Circuit Buriram, Sepang International Circuit Malaysia, D1 Grand Prix Thailand, Rotax Max Challenge Thailand Junior Karting, and Phuket Racing Circuit). In-depth mastery of automotive framing, high-speed vehicle dynamics, and <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES). Providing comprehensive end-to-end production with rapid same-day delivery optimized for viral social media and premium commercial assets.
+      </p>
+    </div>
   </section>
 
   <!-- ── SKILLS & GEAR ── -->
   <section class="resume-sec">
     <div class="sec-head">
-      <h2 class="sec-title">ทักษะและความเชี่ยวชาญ (Core Competencies & Skills)</h2>
+      <h2 class="sec-title">
+        <span class="lang-th">ทักษะและความเชี่ยวชาญ (Core Competencies & Skills)</span>
+        <span class="lang-en">Core Competencies & Skills</span>
+      </h2>
     </div>
     <div class="skills-row">
       <div class="skill-block">
@@ -302,24 +370,41 @@
   <!-- ── WORK EXPERIENCE ── -->
   <section class="resume-sec">
     <div class="sec-head">
-      <h2 class="sec-title">ประสบการณ์การทำงาน (Professional Experience)</h2>
+      <h2 class="sec-title">
+        <span class="lang-th">ประสบการณ์การทำงาน (Professional Experience)</span>
+        <span class="lang-en">Professional Experience</span>
+      </h2>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
         <span class="exp-role">Lead Videographer, Photographer & Video Editor <em>(Freelance)</em></span>
-        <span class="exp-date">2019 – ปัจจุบัน</span>
+        <span class="exp-date">
+          <span class="lang-th">2019 – ปัจจุบัน</span>
+          <span class="lang-en">2019 – Present</span>
+        </span>
       </div>
-      <div class="exp-company">Percussionman Production / ร่วมงานกับค่ายเพลง สื่อ และแบรนด์ชั้นนำ</div>
-      <p class="exp-desc">
+      <div class="exp-company lang-th">Percussionman Production / ร่วมงานกับค่ายเพลง สื่อ และแบรนด์ชั้นนำ</div>
+      <div class="exp-company lang-en">Percussionman Production / Collaborations with Leading Record Labels, Media & Brands</div>
+      <p class="exp-desc lang-th">
         รับผิดชอบการวางแผน ออกแบบมุมกล้อง ควบคุมการบันทึกภาพทั้งภาพนิ่งและวิดีโอ (Cinematography) การตัดต่อ และการเกรดสีสำหรับโปรเจกต์มิวสิควิดีโอ คอนเสิร์ตใหญ่ งานมอเตอร์สปอร์ต และงานโฆษณา
       </p>
-      <ul class="exp-bullets">
+      <p class="exp-desc lang-en">
+        Responsible for cinematography planning, camera blocking, high-velocity on-site tracking, camera rigging, editing, and cinematic color grading across music videos, arena concerts, motorsport championships, and commercial campaigns.
+      </p>
+      <ul class="exp-bullets lang-th">
         <li><strong>Motorsport Media Production:</strong> ปฏิบัติงานบันทึกภาพและวิดีโอการแข่งขันรถยนต์ระดับประเทศและนานาชาติ ณ สนามช้าง อินเตอร์เนชั่นแนล เซอร์กิต (บุรีรัมย์), สนามเซปัง อินเตอร์เนชั่นแนล เซอร์กิต (มาเลเซีย), การแข่งขัน D1 Grand Prix Thailand (Drifting Series), Rotax Max Challenge Thailand (โกคาร์ทเยาวชน) และสนามภูเก็ต เชี่ยวชาญการจับภาพเทคนิค Panning ช็อตความเร็วสูง ควันยางดริฟต์ การเล่าเรื่องทีมในพิทเลน และวิดีโอ Cinematic สำหรับทีมแข่งและสปอนเซอร์</li>
         <li><strong>Concert & Live Performance Production:</strong> บันทึกภาพและวิดีโอคอนเสิร์ตใหญ่ของศิลปินระดับแถวหน้าของเมืองไทย เช่น 4EVE, คุณแป้ง นวลพรรณ, คอนเสิร์ต Soul After Six @ Royal Paragon Hall, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, First Anuwat</li>
         <li><strong>Music Video & Live Session Production:</strong> ร่วมงานกับค่ายเพลง MammothMusic, Riser Music, SongZoom, และ Space Brothers ในตำแหน่ง Videographer และ Lead Editor ผลิต Live Performance Video และ Cover MV คุณภาพสูง</li>
         <li><strong>Commercial & Corporate Media:</strong> ผลิตภาพถ่ายสินค้าและวิดีโอแบรนด์ อาทิ CAPME Crispy Pork Rinds (Commercial Product Set), โครงการ Soonthareeya Ratchadamri (Areeya Property), และงานอีเวนต์โรงแรมหรู The Westin Grande Sukhumvit</li>
         <li><strong>High-End Colorist & Fast Delivery:</strong> พัฒนา Workflow การเกรดสีใน DaVinci Resolve จัดการไฟล์ Log/RAW ส่งมอบงานวิดีโอตัดต่อเสร็จพร้อมลงโซเชียลมีเดียได้อย่างรวดเร็ว ตรงตามเวลา 100%</li>
+      </ul>
+      <ul class="exp-bullets lang-en">
+        <li><strong>Motorsport Media Production:</strong> Trackside photo and video coverage for national and international championships at Chang International Circuit (Buriram), Sepang International Circuit (Malaysia), D1 Grand Prix Thailand (Drifting Series), Rotax Max Challenge Thailand (Junior Karting), and Phuket Racing Circuit. Specialized in high-speed panning action, drift tire smoke capture, pit lane team storytelling, and cinematic video reels for racing teams and sponsors.</li>
+        <li><strong>Concert & Live Performance Production:</strong> Captured dynamic live stage visuals and arena concert photography for premier Thai artists, including 4EVE, Madam Pang, Soul After Six @ Royal Paragon Hall, Pod Moderndog, Nadech Kugimiya, and First Anuwat.</li>
+        <li><strong>Music Video & Live Session Production:</strong> Collaborated with leading record labels including MammothMusic, Riser Music, SongZoom, and Space Brothers as Videographer and Lead Editor, delivering high-fidelity Live Performance Videos and Cover MVs.</li>
+        <li><strong>Commercial & Corporate Media:</strong> Produced commercial product photography and brand promotional media, including CAPME Crispy Pork Rinds (Commercial Set), Soonthareeya Ratchadamri (Areeya Property), and luxury hospitality events at The Westin Grande Sukhumvit.</li>
+        <li><strong>High-End Colorist & Fast Delivery:</strong> Built robust color management pipelines in DaVinci Resolve (Log/RAW workflows), delivering high-quality finished edits with same-day/rapid turnaround and 100% on-time delivery.</li>
       </ul>
     </div>
   </section>
@@ -327,16 +412,19 @@
   <!-- ── SELECTED CREDITS TABLE ── -->
   <section class="resume-sec">
     <div class="sec-head">
-      <h2 class="sec-title">ผลงานเด่นที่คัดสรร (Selected Production Credits)</h2>
+      <h2 class="sec-title">
+        <span class="lang-th">ผลงานเด่นที่คัดสรร (Selected Production Credits)</span>
+        <span class="lang-en">Selected Production Credits</span>
+      </h2>
     </div>
 
     <table class="proj-table">
       <thead>
         <tr>
-          <th>ประเภทงาน</th>
-          <th>ชิ้นงาน / ศิลปิน / อีเวนต์</th>
-          <th>สถานที่ / ค่าย / ลูกค้า</th>
-          <th>หน้าที่รับผิดชอบ (Role)</th>
+          <th><span class="lang-th">ประเภทงาน</span><span class="lang-en">Category</span></th>
+          <th><span class="lang-th">ชิ้นงาน / ศิลปิน / อีเวนต์</span><span class="lang-en">Project / Artist / Event</span></th>
+          <th><span class="lang-th">สถานที่ / ค่าย / ลูกค้า</span><span class="lang-en">Venue / Client / Label</span></th>
+          <th><span class="lang-th">หน้าที่รับผิดชอบ (Role)</span><span class="lang-en">Role & Scope</span></th>
         </tr>
       </thead>
       <tbody>
@@ -349,18 +437,18 @@
         <tr>
           <td><span class="proj-tag">Motorsport</span></td>
           <td>Rotax Max Challenge Thailand (RMC Round 3 — Junior Karting)</td>
-          <td>RMC Thailand / Boy Racing (น้องเฮเดย์ #289)</td>
+          <td>RMC Thailand / Boy Racing <span class="lang-th">(น้องเฮเดย์ #289)</span><span class="lang-en">(Driver Heyday #289)</span></td>
           <td><strong>Lead Photographer / Action Panning, Pit Story & Victory Podium</strong></td>
         </tr>
         <tr>
           <td><span class="proj-tag">Motorsport</span></td>
           <td>BRIC Supercar & Circuit Speed Series</td>
-          <td>Chang Circuit (Buriram) · Sepang (MY) · สนามภูเก็ต</td>
+          <td>Chang Circuit (Buriram) · Sepang (MY) · <span class="lang-th">สนามภูเก็ต</span><span class="lang-en">Phuket Circuit</span></td>
           <td><strong>Lead Photographer / Action Camera</strong></td>
         </tr>
         <tr>
           <td><span class="proj-tag">Concert</span></td>
-          <td>Soul After Six : ความทรงจำของก้อนหิน</td>
+          <td>Soul After Six : <span class="lang-th">ความทรงจำของก้อนหิน</span><span class="lang-en">Memories of Stone</span></td>
           <td>Royal Paragon Hall</td>
           <td><strong>Photographer / Stage Dynamic</strong></td>
         </tr>
@@ -378,13 +466,13 @@
         </tr>
         <tr>
           <td><span class="proj-tag">Live Session</span></td>
-          <td>Nadech Kugimiya — เหมือนเคย (Cover)</td>
+          <td>Nadech Kugimiya — <span class="lang-th">เหมือนเคย (Cover)</span><span class="lang-en">Muan Koey (Cover)</span></td>
           <td>MammothMusic</td>
           <td><strong>Videographer / Video Editor</strong></td>
         </tr>
         <tr>
           <td><span class="proj-tag">Live Session</span></td>
-          <td>ปั่น ไพบูลย์เกียรติ — The Way You Look Tonight / รักยืนยง</td>
+          <td><span class="lang-th">ปั่น ไพบูลย์เกียรติ</span><span class="lang-en">Pun Paiboonkiat</span> — The Way You Look Tonight / <span class="lang-th">รักยืนยง</span><span class="lang-en">Rak Yuen Yong</span></td>
           <td>MammothMusic Special Live</td>
           <td><strong>Videographer / Video Editor</strong></td>
         </tr>
@@ -413,27 +501,73 @@
   <!-- ── EDUCATION & LANGUAGE ── -->
   <section class="resume-sec" style="margin-bottom:0">
     <div class="sec-head">
-      <h2 class="sec-title">ทักษะเพิ่มเติมและภาษา (Additional Strengths & Languages)</h2>
+      <h2 class="sec-title">
+        <span class="lang-th">ทักษะเพิ่มเติมและภาษา (Additional Strengths & Languages)</span>
+        <span class="lang-en">Additional Strengths & Languages</span>
+      </h2>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:.84rem;color:#ccc">
       <div>
-        <p><strong>ทักษะดนตรีและจังหวะ (Musicality & Percussion):</strong></p>
-        <p style="color:#aaa;margin-top:4px">
-          ความเชี่ยวชาญเครื่องดนตรีเพอร์คัสชัน ทำให้มีเซนส์การจับจังหวะเพลง (BPM / Rhythm) การตัดต่อวิดีโอจึงสอดคล้องกับจังหวะดนตรีได้อย่างแนบเนียนและมีพลังเป็นพิเศษ
-        </p>
+        <div class="lang-th">
+          <p><strong>ทักษะดนตรีและจังหวะ (Musicality & Percussion):</strong></p>
+          <p style="color:#aaa;margin-top:4px">
+            ความเชี่ยวชาญเครื่องดนตรีเพอร์คัสชัน ทำให้มีเซนส์การจับจังหวะเพลง (BPM / Rhythm) การตัดต่อวิดีโอจึงสอดคล้องกับจังหวะดนตรีได้อย่างแนบเนียนและมีพลังเป็นพิเศษ
+          </p>
+        </div>
+        <div class="lang-en">
+          <p><strong>Musicality & Percussion:</strong></p>
+          <p style="color:#aaa;margin-top:4px">
+            Extensive background as a percussionist provides an intuitive mastery of rhythm, tempo, and musical BPM — allowing tempo-locked video cutting that elevates visual energy and emotional pacing.
+          </p>
+        </div>
       </div>
       <div>
-        <p><strong>ภาษาและการสื่อสาร (Languages & Mobility):</strong></p>
-        <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
-          <li>• ภาษาไทย: ภาษาแม่ (Native Proficiency)</li>
-          <li>• ภาษาอังกฤษ: สื่อสารการทำงานได้ (Working Proficiency)</li>
-          <li>• มีใบขับขี่และยานพาหนะ พร้อมเดินทางปฏิบัติงานต่างจังหวัดและต่างประเทศ</li>
-        </ul>
+        <div class="lang-th">
+          <p><strong>ภาษาและการสื่อสาร (Languages & Mobility):</strong></p>
+          <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
+            <li>• ภาษาไทย: ภาษาแม่ (Native Proficiency)</li>
+            <li>• ภาษาอังกฤษ: สื่อสารการทำงานได้ (Working Proficiency)</li>
+            <li>• มีใบขับขี่และยานพาหนะ พร้อมเดินทางปฏิบัติงานต่างจังหวัดและต่างประเทศ</li>
+          </ul>
+        </div>
+        <div class="lang-en">
+          <p><strong>Languages & Mobility:</strong></p>
+          <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
+            <li>• Thai: Native Proficiency</li>
+            <li>• English: Professional Working Proficiency</li>
+            <li>• Valid driver's license & vehicle; ready for nationwide and international travel</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
 </div>
+
+<script>
+// ── Language Toggle (TH / EN) ──
+function setLang(lang) {
+  const isEn = lang === 'en';
+  document.body.classList.toggle('lang-en', isEn);
+  document.documentElement.lang = isEn ? 'en' : 'th';
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try {
+    localStorage.setItem('perman_lang', lang);
+  } catch(e) {}
+}
+
+// Check saved language on initial load
+(function() {
+  try {
+    const saved = localStorage.getItem('perman_lang');
+    if (saved === 'en') {
+      setLang('en');
+    }
+  } catch(e) {}
+})();
+</script>
 
 </body>
 </html>

@@ -77,6 +77,41 @@
       box-shadow:0 0 16px var(--yellow-glow);
     }
 
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switch{
+      display:inline-flex;align-items:center;gap:3px;
+      background:rgba(255,255,255,.05);border:1px solid var(--border-gold);
+      border-radius:20px;padding:3px 8px;
+    }
+    .lang-btn{
+      background:none;border:none;color:var(--gray);
+      font-size:.74rem;font-weight:700;letter-spacing:.8px;
+      cursor:pointer;padding:2px 8px;border-radius:12px;
+      transition:all .2s ease;font-family:'Plus Jakarta Sans',sans-serif;
+    }
+    .lang-btn:hover{color:var(--yellow)}
+    .lang-btn.active{
+      color:var(--black);background:var(--yellow);
+      box-shadow:0 0 10px var(--yellow-glow);
+    }
+    .lang-divider{color:var(--border);font-size:.7rem;user-select:none}
+
+    /* ── MULTI-LANGUAGE DISPLAY RULES ── */
+    body.lang-en .lang-th { display: none !important; }
+    body:not(.lang-en) .lang-en { display: none !important; }
+    body.lang-en span.lang-en,
+    body.lang-en strong.lang-en,
+    body.lang-en em.lang-en { display: inline !important; }
+    body.lang-en a.lang-en { display: inline-flex !important; }
+    body.lang-en div.lang-en,
+    body.lang-en p.lang-en,
+    body.lang-en h1.lang-en,
+    body.lang-en h2.lang-en,
+    body.lang-en h3.lang-en,
+    body.lang-en h4.lang-en,
+    body.lang-en ul.lang-en,
+    body.lang-en li.lang-en { display: block !important; }
+
     .nav-toggle{
       display:none;background:transparent;border:1px solid var(--border);
       color:var(--white);font-size:1.3rem;padding:6px 12px;border-radius:6px;cursor:pointer;
@@ -571,14 +606,22 @@
     Percussionman
     <span>Kajornsak Jaikong</span>
   </a>
-  <button class="nav-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">☰</button>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <!-- Language Switcher -->
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn active" data-lang="th" onclick="setLang('th')">TH</button>
+      <span class="lang-divider">/</span>
+      <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">☰</button>
+  </div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about" onclick="closeMenu()">About</a></li>
-    <li><a href="#video" onclick="closeMenu()">Video</a></li>
-    <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
-    <li><a href="#motorsport" onclick="closeMenu()">Motorsport</a></li>
-    <li><a href="#skills" onclick="closeMenu()">Skills & Gear</a></li>
-    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="#about" onclick="closeMenu()"><span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About</span></a></li>
+    <li><a href="#video" onclick="closeMenu()"><span class="lang-th">วิดีโอ</span><span class="lang-en">Video</span></a></li>
+    <li><a href="#photography" onclick="closeMenu()"><span class="lang-th">ภาพถ่าย</span><span class="lang-en">Photography</span></a></li>
+    <li><a href="#motorsport" onclick="closeMenu()"><span class="lang-th">มอเตอร์สปอร์ต</span><span class="lang-en">Motorsport</span></a></li>
+    <li><a href="#skills" onclick="closeMenu()"><span class="lang-th">ทักษะ & อุปกรณ์</span><span class="lang-en">Skills & Gear</span></a></li>
+    <li><a href="#contact" onclick="closeMenu()"><span class="lang-th">ติดต่อ</span><span class="lang-en">Contact</span></a></li>
     <li><a href="resume.html" class="btn-nav-resume">📄 Resume / CV</a></li>
   </ul>
 </nav>
@@ -588,7 +631,10 @@
 
   <!-- LEFT: text content -->
   <div class="hero-inner">
-    <div class="hero-eyebrow">⚡ Available for Hire · Full-time & Production Contract</div>
+    <div class="hero-eyebrow">
+      <span class="lang-th">⚡ พร้อมรับงาน · Full-time & Production Contract</span>
+      <span class="lang-en">⚡ Available for Hire · Full-time & Production Contract</span>
+    </div>
     <h1 class="hero-name">Kajornsak<br><em>Jaikong</em></h1>
     <div class="hero-roles">
       <span class="rtag rtag-highlight">Senior Videographer</span>
@@ -603,8 +649,14 @@
     <div class="hero-btns">
       <a href="#video" class="btn btn-primary">🎬 Video Works</a>
       <a href="#motorsport" class="btn btn-outline">🏎️ Motorsport</a>
-      <a href="resume.html" class="btn btn-resume">📄 View Resume / CV</a>
-      <a href="#contact" class="btn btn-outline">📞 Contact</a>
+      <a href="resume.html" class="btn btn-resume">
+        <span class="lang-th">📄 ดูประวัติ / Resume</span>
+        <span class="lang-en">📄 View Resume / CV</span>
+      </a>
+      <a href="#contact" class="btn btn-outline">
+        <span class="lang-th">📞 ติดต่อ</span>
+        <span class="lang-en">📞 Contact</span>
+      </a>
     </div>
   </div>
 
@@ -630,15 +682,28 @@
 
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        สวัสดีครับ ผม <strong>ขจรศักดิ์ ใจคง (แมน / Percussionman)</strong> ช่างภาพ วิดีโอกราเฟอร์ และวิดีโอเอดิเตอร์มืออาชีพ ด้วยพื้นฐานความหลงใหลใน <strong>"จังหวะดนตรี" (Percussion)</strong> ผมนำเซนส์ของ Rhythm มาผสานกับศาสตร์แห่งภาพเคลื่อนไหว ทำให้ผลงานทุกชิ้นมีไดนามิกที่ดึงดูดสายตาและการตัดต่อที่แม่นยำทุกจังหวะ
-      </p>
-      <p>
-        ตลอดกว่า <strong>5 ปีในสายงาน Visual Production</strong> ผมมีประสบการณ์ครอบคลุมทั้งเวทีคอนเสิร์ตใหญ่ระดับประเทศ (อาทิ <em>4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall</em>) และความเชี่ยวชาญเฉพาะทางในสาย <strong>Motorsport</strong> ณ สนามแข่งขันทั้ง <em>Chang International Circuit (บุรีรัมย์)</em>, <em>Sepang International Circuit (มาเลเซีย)</em>, <em>D1 Grand Prix Thailand (ดริฟต์)</em>, <em>Rotax Max Challenge (โกคาร์ทเยาวชน)</em> และ <em>สนามภูเก็ต</em>
-      </p>
-      <p>
-        ทำงานอย่างครบวงจรแบบ <strong>End-to-End Production</strong> ตั้งแต่วาง Concept มุมกล้อง, ควบคุมการถ่ายทำ On-site, กริพและกิมบอล, การตัดต่อ ไปจนถึง <strong>High-end Color Grading (DaVinci Resolve / RAW Workflow)</strong> พร้อมระบบส่งมอบงานที่รวดเร็ว (Fast Delivery) ตอบโจทย์ทั้งสื่อโซเชียลมีเดียระดับไวรัลและงานพรีเมียมคอมเมอร์เชียล
-      </p>
+      <div class="lang-th">
+        <p>
+          สวัสดีครับ ผม <strong>ขจรศักดิ์ ใจคง (แมน / Percussionman)</strong> ช่างภาพ วิดีโอกราเฟอร์ และวิดีโอเอดิเตอร์มืออาชีพ ด้วยพื้นฐานความหลงใหลใน <strong>"จังหวะดนตรี" (Percussion)</strong> ผมนำเซนส์ของ Rhythm มาผสานกับศาสตร์แห่งภาพเคลื่อนไหว ทำให้ผลงานทุกชิ้นมีไดนามิกที่ดึงดูดสายตาและการตัดต่อที่แม่นยำทุกจังหวะ
+        </p>
+        <p>
+          ตลอดกว่า <strong>5 ปีในสายงาน Visual Production</strong> ผมมีประสบการณ์ครอบคลุมทั้งเวทีคอนเสิร์ตใหญ่ระดับประเทศ (อาทิ <em>4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall</em>) และความเชี่ยวชาญเฉพาะทางในสาย <strong>Motorsport</strong> ณ สนามแข่งขันทั้ง <em>Chang International Circuit (บุรีรัมย์)</em>, <em>Sepang International Circuit (มาเลเซีย)</em>, <em>D1 Grand Prix Thailand (ดริฟต์)</em>, <em>Rotax Max Challenge (โกคาร์ทเยาวชน)</em> และ <em>สนามภูเก็ต</em>
+        </p>
+        <p>
+          ทำงานอย่างครบวงจรแบบ <strong>End-to-End Production</strong> ตั้งแต่วาง Concept มุมกล้อง, ควบคุมการถ่ายทำ On-site, กริพและกิมบอล, การตัดต่อ ไปจนถึง <strong>High-end Color Grading (DaVinci Resolve / RAW Workflow)</strong> พร้อมระบบส่งมอบงานที่รวดเร็ว (Fast Delivery) ตอบโจทย์ทั้งสื่อโซเชียลมีเดียระดับไวรัลและงานพรีเมียมคอมเมอร์เชียล
+        </p>
+      </div>
+      <div class="lang-en">
+        <p>
+          Hi, I'm <strong>Kajornsak Jaikong (Man / Percussionman)</strong> — a professional Senior Videographer, Motorsport Media Specialist, and High-End Colorist. With a deep foundational background in <strong>musical rhythm and percussion</strong>, I fuse the instinct of rhythm with dynamic cinematography — creating visual stories characterized by high-energy movement and tempo-locked, razor-sharp editing.
+        </p>
+        <p>
+          With over <strong>5 years in visual production</strong>, my portfolio covers major national arena concerts (including <em>4EVE, Madam Pang, Pod Moderndog, Nadech Kugimiya, and Soul After Six @ Royal Paragon Hall</em>) as well as trackside expertise in <strong>Motorsport Media</strong> across world-class venues: <em>Chang International Circuit (Buriram)</em>, <em>Sepang International Circuit (Malaysia)</em>, <em>D1 Grand Prix Thailand (Drifting Series)</em>, <em>Rotax Max Challenge Thailand (Junior Karting)</em>, and <em>Phuket Racing Circuit</em>.
+        </p>
+        <p>
+          Operating as an <strong>end-to-end media creator</strong>, I manage the complete workflow: conceptual camera blocking, high-velocity on-site tracking, camera rigging & gimbals, precision editing, and <strong>high-end Color Grading (DaVinci Resolve / 8K RAW workflow)</strong>. Backed by fast-turnaround delivery pipelines, I produce high-impact content tailored for both viral social media and premium commercial broadcasts.
+        </p>
+      </div>
 
       <div class="about-highlights">
         <div class="highlight-pill">
@@ -1301,16 +1366,27 @@
   <div class="ms-hero">
     <div>
       <h3 class="ms-quote">"I don't just take photos;<br>I capture the <em>physics of speed.</em>"</h3>
-      <p class="ms-desc">
+      <p class="ms-desc lang-th">
         ช่างภาพมอเตอร์สปอร์ตที่เข้าใจรถแข่งอย่างลึกซึ้ง ไม่ใช่แค่กดชัตเตอร์ แต่รู้จักเส้นทาง จังหวะ และฟิสิกส์ของความเร็ว<br>
         พร้อมให้บริการทั้งสนาม Chang International Circuit (บุรีรัมย์), Sepang International Circuit (มาเลเซีย), D1 Grand Prix Thailand, Rotax Max Challenge (โกคาร์ทเยาวชน), สนามภูเก็ต และงาน Motorsport ทุกรูปแบบ
       </p>
-      <ul class="ms-list">
+      <p class="ms-desc lang-en">
+        A motorsport visual specialist who deeply understands racing dynamics — not just releasing the shutter, but anticipating apex lines, race rhythm, and the physics of speed.<br>
+        Available for trackside coverage at Chang International Circuit (Buriram), Sepang International Circuit (Malaysia), D1 Grand Prix Thailand, Rotax Max Challenge Thailand, Phuket Racing Circuit, and private racing teams worldwide.
+      </p>
+      <ul class="ms-list lang-th">
         <li><strong>Automotive Insight</strong> — เข้าใจมุมกล้องที่ดึงเสน่ห์ของรถออกมาได้ดี</li>
         <li><strong>RAW Specialist</strong> — High-end Color Grading ระดับ Professional</li>
         <li><strong>Fast Delivery</strong> — ส่งงานรวดเร็ว พร้อมใช้ทันที ไม่รอนาน</li>
         <li><strong>Cinematic Video</strong> — รับทำ Video สำหรับ TikTok / Reels / Social Media</li>
         <li><strong>Equipment</strong> — Nikon Z8 & Motorsport Lenses</li>
+      </ul>
+      <ul class="ms-list lang-en">
+        <li><strong>Automotive Insight</strong> — Expert framing that accentuates race car aerodynamics and stance</li>
+        <li><strong>RAW Specialist</strong> — High-end cinematic color grading for broadcast & print</li>
+        <li><strong>Fast Delivery</strong> — Rapid turnaround media sets ready for immediate social & PR posting</li>
+        <li><strong>Cinematic Video</strong> — High-octane vertical & horizontal reels for TikTok / Instagram</li>
+        <li><strong>Equipment</strong> — Nikon Z8 Flagship (8K RAW) & Motorsport Telephoto optics</li>
       </ul>
     </div>
     <div class="ms-stats">
@@ -1327,8 +1403,14 @@
   <div style="margin:44px 0 24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
     <div>
       <p class="sec-label" style="color:var(--yellow);margin-bottom:4px;">Featured Albums</p>
-      <h3 style="font-size:1.45rem;font-weight:800;color:var(--white);letter-spacing:.3px;">ชุดภาพถ่ายเซ็ตใหม่ (New Photo Albums)</h3>
-      <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">คลิกที่การ์ดเพื่อเปิดดูอัลบั้มภาพความละเอียดสูงแบบสไลด์โชว์เต็มจอ (Full Lightbox)</p>
+      <h3 style="font-size:1.45rem;font-weight:800;color:var(--white);letter-spacing:.3px;">
+        <span class="lang-th">ชุดภาพถ่ายเซ็ตใหม่ (New Photo Albums)</span>
+        <span class="lang-en">Featured Motorsport Albums</span>
+      </h3>
+      <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">
+        <span class="lang-th">คลิกที่การ์ดเพื่อเปิดดูอัลบั้มภาพความละเอียดสูงแบบสไลด์โชว์เต็มจอ (Full Lightbox)</span>
+        <span class="lang-en">Click any album card to view high-resolution photos in full-screen lightbox slider.</span>
+      </p>
     </div>
     <span style="font-size:.82rem;color:var(--yellow);background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);padding:5px 14px;border-radius:20px;font-weight:600;">
       📁 3 Curated Albums
@@ -1341,16 +1423,28 @@
       <div class="ms-album-thumb">
         <img src="img/d1gp_06.jpg" alt="D1 Grand Prix Thailand — Pro Drift Series" loading="lazy">
         <span class="ms-album-badge">🏁 D1GP Pro Drift</span>
-        <span class="ms-album-count">📁 อัลบั้ม 6 รูป (Full Res)</span>
+        <span class="ms-album-count">
+          <span class="lang-th">📁 อัลบั้ม 6 รูป (Full Res)</span>
+          <span class="lang-en">📁 Album · 6 Photos (Full Res)</span>
+        </span>
       </div>
       <div class="ms-album-info">
         <h4 class="ms-album-h3">D1 Grand Prix Thailand — Pro Drift Series</h4>
-        <div class="ms-album-meta">📍 สนามแข่ง Impact Speed Park | Motul P'Pubz #87</div>
-        <p class="ms-album-desc">
+        <div class="ms-album-meta">
+          <span class="lang-th">📍 สนามแข่ง Impact Speed Park | Motul P'Pubz #87</span>
+          <span class="lang-en">📍 Impact Speed Park | Motul P'Pubz #87</span>
+        </div>
+        <p class="ms-album-desc lang-th">
           การถ่ายภาพความเร็วสูงในรูปแบบ Panning Shot ดักจับจังหวะการดริฟต์เข้าโค้ง มุมแคมเบอร์ล้อ ควันยางท่วมแทร็ก และช็อตมาสเตอร์พีซไนท์ดริฟต์รอบกลางคืน
         </p>
+        <p class="ms-album-desc lang-en">
+          High-speed panning action capturing high-angle drift transitions, wheel camber dynamics, tire smoke density, and dramatic night battle showcase.
+        </p>
         <div class="ms-album-action">
-          <span>🖼️ เปิดดูอัลบั้มเต็มจอ (6 Photos)</span>
+          <span>
+            <span class="lang-th">🖼️ เปิดดูอัลบั้มเต็มจอ (6 Photos)</span>
+            <span class="lang-en">🖼️ View Full Album (6 Photos)</span>
+          </span>
           <span>→</span>
         </div>
       </div>
@@ -1361,16 +1455,28 @@
       <div class="ms-album-thumb">
         <img src="img/phuket_01.jpg" alt="Phuket Circuit Speed & Apex Dynamics" loading="lazy">
         <span class="ms-album-badge">🏎️ Circuit Racing</span>
-        <span class="ms-album-count">📁 อัลบั้ม 7 รูป (Full Res)</span>
+        <span class="ms-album-count">
+          <span class="lang-th">📁 อัลบั้ม 7 รูป (Full Res)</span>
+          <span class="lang-en">📁 Album · 7 Photos (Full Res)</span>
+        </span>
       </div>
       <div class="ms-album-info">
         <h4 class="ms-album-h3">Phuket Circuit Speed & Apex Dynamics</h4>
-        <div class="ms-album-meta">📍 สนามแข่งรถภูเก็ต (Phuket Racing Circuit)</div>
-        <p class="ms-album-desc">
+        <div class="ms-album-meta">
+          <span class="lang-th">📍 สนามแข่งรถภูเก็ต (Phuket Racing Circuit)</span>
+          <span class="lang-en">📍 Phuket Racing Circuit</span>
+        </div>
+        <p class="ms-album-desc lang-th">
           จับจังหวะการตัดไลน์ Apex ในโค้งความเร็วสูง สะท้อนฟิสิกส์การถ่ายโอนน้ำหนักของตัวถังและช่วงล่างรถแข่ง พร้อมมู้ดบรรยากาศพิทเลนและแพดด็อก
         </p>
+        <p class="ms-album-desc lang-en">
+          Precision apex framing through high-speed turns, capturing chassis weight transfer, suspension compression, and paddock/pit lane team atmosphere.
+        </p>
         <div class="ms-album-action">
-          <span>🖼️ เปิดดูอัลบั้มเต็มจอ (7 Photos)</span>
+          <span>
+            <span class="lang-th">🖼️ เปิดดูอัลบั้มเต็มจอ (7 Photos)</span>
+            <span class="lang-en">🖼️ View Full Album (7 Photos)</span>
+          </span>
           <span>→</span>
         </div>
       </div>
@@ -1381,16 +1487,28 @@
       <div class="ms-album-thumb">
         <img src="img/rmc_06.jpg" alt="Rotax Max Challenge Thailand — Junior Karting" loading="lazy">
         <span class="ms-album-badge">🏆 RMC Karting</span>
-        <span class="ms-album-count">📁 อัลบั้ม 6 รูป (Full Res)</span>
+        <span class="ms-album-count">
+          <span class="lang-th">📁 อัลบั้ม 6 รูป (Full Res)</span>
+          <span class="lang-en">📁 Album · 6 Photos (Full Res)</span>
+        </span>
       </div>
       <div class="ms-album-info">
         <h4 class="ms-album-h3">Rotax Max Challenge Thailand — Junior Karting</h4>
-        <div class="ms-album-meta">📍 RMC 2026 Round 3 | น้องเฮเดย์ #289 (Tony Kart)</div>
-        <p class="ms-album-desc">
+        <div class="ms-album-meta">
+          <span class="lang-th">📍 RMC 2026 Round 3 | น้องเฮเดย์ #289 (Tony Kart)</span>
+          <span class="lang-en">📍 RMC 2026 Round 3 | Driver Heyday #289 (Tony Kart)</span>
+        </div>
+        <p class="ms-album-desc lang-th">
           ซีรีส์การแข่งขันโกคาร์ทเยาวชนชิงแชมป์ประเทศไทย บันทึกภาพอารมณ์ความมุ่งมั่น บรรยากาศการเซ็ตติ้งรถในพิทเลน ช็อตดวลความเร็วเข้าโค้ง และการฉลองถ้วยรางวัลโพเดียม
         </p>
+        <p class="ms-album-desc lang-en">
+          Thailand National Junior Karting Championship series — documenting intense driver focus, technical pit lane tuning, wheel-to-wheel battles, and podium celebrations.
+        </p>
         <div class="ms-album-action">
-          <span>🖼️ เปิดดูอัลบั้มเต็มจอ (6 Photos)</span>
+          <span>
+            <span class="lang-th">🖼️ เปิดดูอัลบั้มเต็มจอ (6 Photos)</span>
+            <span class="lang-en">🖼️ View Full Album (6 Photos)</span>
+          </span>
           <span>→</span>
         </div>
       </div>
@@ -1403,7 +1521,10 @@
       <div>
         <p class="sec-label" style="margin-bottom:4px;">Selected Shots</p>
         <h3 style="font-size:1.45rem;font-weight:800;color:var(--white);">Chang & Sepang International Circuits</h3>
-        <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">ภาพถ่ายแอคชั่นการแข่งขัน Supercar & Circuit Racing ณ สนาม Chang International Circuit (บุรีรัมย์) และ Sepang (มาเลเซีย)</p>
+        <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">
+          <span class="lang-th">ภาพถ่ายแอคชั่นการแข่งขัน Supercar & Circuit Racing ณ สนาม Chang International Circuit (บุรีรัมย์) และ Sepang (มาเลเซีย)</span>
+          <span class="lang-en">Supercar & circuit racing trackside action at Chang International Circuit (Buriram) & Sepang (Malaysia)</span>
+        </p>
       </div>
       <span style="font-size:.82rem;color:var(--gray);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-weight:600;">
         🏁 47 Track Shots
@@ -1475,8 +1596,11 @@
     <div class="skill-card">
       <div class="skill-icon">💻</div>
       <h3 class="skill-card-title">Software & Post-Production</h3>
-      <p class="skill-card-desc">
+      <p class="skill-card-desc lang-th">
         เชี่ยวชาญการตัดต่อ การเกรดสีระดับภาพยนตร์ และการจัดการ Color Pipeline จากกล้อง RAW สู่ Master Delivery
+      </p>
+      <p class="skill-card-desc lang-en">
+        Proficient in cinematic video editing, advanced color grading, and color pipeline management from camera RAW to master delivery.
       </p>
       <ul class="skill-items">
         <li><span class="skill-name">DaVinci Resolve</span><span class="skill-badge">Color Grading & Edit</span></li>
@@ -1492,8 +1616,11 @@
     <div class="skill-card">
       <div class="skill-icon">📷</div>
       <h3 class="skill-card-title">Camera System & Hardware</h3>
-      <p class="skill-card-desc">
+      <p class="skill-card-desc lang-th">
         พร้อมด้วยอุปกรณ์ระดับไฮเอนด์ที่รองรับงานความเร็วสูงและแสงน้อย ทำงานได้ทันทีทั้งงานเดี่ยวและร่วมทีมใหญ่
+      </p>
+      <p class="skill-card-desc lang-en">
+        Equipped with flagship gear optimized for high-speed tracking and low-light venues — ready for solo and full crew productions.
       </p>
       <ul class="skill-items">
         <li><span class="skill-name">Nikon Z8 Flagship</span><span class="skill-badge">8K N-RAW / 4K 120p</span></li>
@@ -1509,8 +1636,11 @@
     <div class="skill-card">
       <div class="skill-icon">🎯</div>
       <h3 class="skill-card-title">Core Competencies</h3>
-      <p class="skill-card-desc">
+      <p class="skill-card-desc lang-th">
         ทักษะเฉพาะทางที่ผสมผสานระหว่างเซนส์ความเร็ว จังหวะดนตรี และการสื่อสารภาพเชิงพาณิชย์
+      </p>
+      <p class="skill-card-desc lang-en">
+        Specialized skill set combining high-velocity instincts, musical rhythm, and commercial visual aesthetics.
       </p>
       <ul class="skill-items">
         <li><span class="skill-name">Motorsport Panning & Apex Tracking</span><span class="skill-badge">Specialist</span></li>
@@ -1539,7 +1669,13 @@
       </div>
       <div class="citem">
         <div class="cicon">📞</div>
-        <div><div class="clabel">โทรศัพท์</div><div class="cvalue"><a href="tel:0899977941" style="color:inherit;text-decoration:none;">089-997-7941</a></div></div>
+        <div>
+          <div class="clabel">
+            <span class="lang-th">โทรศัพท์</span>
+            <span class="lang-en">Phone</span>
+          </div>
+          <div class="cvalue"><a href="tel:0899977941" style="color:inherit;text-decoration:none;">089-997-7941</a></div>
+        </div>
       </div>
       <div class="citem">
         <div class="cicon">📧</div>
@@ -1559,26 +1695,44 @@
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
           <span style="font-size:1.6rem">📄</span>
           <div>
-            <h4 style="font-size:.98rem;font-weight:700;color:var(--white)">สนใจพิจารณาประวัติการทำงาน (CV)?</h4>
-            <p style="font-size:.78rem;color:var(--gray)">สามารถเปิดดูเรซูเม่ฉบับดิจิทัล หรือสั่งพิมพ์เป็นไฟล์ PDF ได้ทันที</p>
+            <h4 style="font-size:.98rem;font-weight:700;color:var(--white)">
+              <span class="lang-th">สนใจพิจารณาประวัติการทำงาน (CV)?</span>
+              <span class="lang-en">Looking for Full Resume / CV?</span>
+            </h4>
+            <p style="font-size:.78rem;color:var(--gray)">
+              <span class="lang-th">สามารถเปิดดูเรซูเม่ฉบับดิจิทัล หรือสั่งพิมพ์เป็นไฟล์ PDF ได้ทันที</span>
+              <span class="lang-en">View the interactive digital CV or download / print as a clean PDF.</span>
+            </p>
           </div>
         </div>
         <a href="resume.html" class="btn btn-resume" style="width:100%;justify-content:center;margin-top:12px">
-          📄 เปิดดู Resume / CV (Digital & Print PDF)
+          <span class="lang-th">📄 เปิดดู Resume / CV (Digital & Print PDF)</span>
+          <span class="lang-en">📄 View Resume / CV (Digital & Print PDF)</span>
         </a>
       </div>
     </div>
 
     <div class="cta-box">
       <h3 class="cta-title">Let's drive your<br><em>vision forward</em><br>together.</h3>
-      <p class="cta-sub">
+      <p class="cta-sub lang-th">
         พร้อมร่วมงานทั้งตำแหน่ง <strong>Full-time</strong> และ <strong>Production Project Contract</strong><br>
         Videography · Photography · Video Editing<br>
         Motorsport Media Specialist · Concert & Commercial
       </p>
+      <p class="cta-sub lang-en">
+        Available for <strong>Full-time positions</strong> and <strong>Production Project Contracts</strong> worldwide.<br>
+        Videography · Photography · Video Editing<br>
+        Motorsport Media Specialist · Concert & Commercial
+      </p>
       <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
-        <a href="tel:0899977941" class="btn btn-primary" style="font-size:.9rem;padding:14px 36px;width:100%;max-width:320px;justify-content:center">📞 โทร 089-997-7941</a>
-        <a href="https://line.me/ti/p/~percussion_man" target="_blank" class="btn btn-outline" style="font-size:.85rem;padding:12px 30px;width:100%;max-width:320px;justify-content:center">💬 ทัก Line: percussion_man</a>
+        <a href="tel:0899977941" class="btn btn-primary" style="font-size:.9rem;padding:14px 36px;width:100%;max-width:320px;justify-content:center">
+          <span class="lang-th">📞 โทร 089-997-7941</span>
+          <span class="lang-en">📞 Call +66 89-997-7941</span>
+        </a>
+        <a href="https://line.me/ti/p/~percussion_man" target="_blank" class="btn btn-outline" style="font-size:.85rem;padding:12px 30px;width:100%;max-width:320px;justify-content:center">
+          <span class="lang-th">💬 ทัก Line: percussion_man</span>
+          <span class="lang-en">💬 Line: percussion_man</span>
+        </a>
       </div>
     </div>
   </div>
@@ -1598,7 +1752,10 @@
 
 <!-- ════ FLOATING MOBILE BAR ════ -->
 <div class="mobile-bar">
-  <a href="tel:0899977941" class="mbar-call">📞 โทร</a>
+  <a href="tel:0899977941" class="mbar-call">
+    <span class="lang-th">📞 โทร</span>
+    <span class="lang-en">📞 Call</span>
+  </a>
   <a href="https://line.me/ti/p/~percussion_man" target="_blank" class="mbar-line">💬 LINE</a>
   <a href="resume.html" class="mbar-resume">📄 Resume</a>
 </div>
@@ -1610,6 +1767,29 @@
 </footer>
 
 <script>
+// ── Language Toggle (TH / EN) ──
+function setLang(lang) {
+  const isEn = lang === 'en';
+  document.body.classList.toggle('lang-en', isEn);
+  document.documentElement.lang = isEn ? 'en' : 'th';
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try {
+    localStorage.setItem('perman_lang', lang);
+  } catch(e) {}
+}
+
+// Check saved language on initial load
+(function() {
+  try {
+    const saved = localStorage.getItem('perman_lang');
+    if (saved === 'en') {
+      setLang('en');
+    }
+  } catch(e) {}
+})();
+
 // ── Mobile Menu Toggle ──
 function toggleMenu() {
   const nav = document.getElementById('navLinks');
