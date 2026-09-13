@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume & CV — Kajornsak Jaikong (Percussionman)</title>
+  <meta name="description" content="Professional Resume and Curriculum Vitae for Kajornsak Jaikong (Percussionman) — Senior Videographer, Motorsport Media Specialist, Video Editor & Colorist.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0c0c0c;--paper:#141414;--text:#e6e6e6;--text-muted:#8e8e8e;
+      --gold:#FFD700;--gold-dim:rgba(255,215,0,.15);--border:#262626;
+      --accent-badge:#202020;
+    }
+
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Prompt','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+      line-height:1.6;padding-bottom:60px;
+    }
+
+    /* ── TOP ACTION BAR ── */
+    .top-bar{
+      position:sticky;top:0;z-index:100;
+      background:rgba(12,12,12,.94);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);padding:14px 24px;
+      display:flex;justify-content:space-between;align-items:center;
+      max-width:980px;margin:0 auto 28px;
+    }
+    .back-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;
+      transition:color .2s;
+    }
+    .back-btn:hover{color:var(--gold)}
+    .print-btn{
+      background:var(--gold);color:#000;border:none;border-radius:6px;
+      padding:9px 20px;font-size:.85rem;font-weight:700;cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;
+      font-family:inherit;
+    }
+    .print-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,215,0,.3)}
+
+    /* ── RESUME PAPER CONTAINER ── */
+    .resume-wrapper{
+      max-width:940px;margin:0 auto;background:var(--paper);
+      border:1px solid var(--border);border-radius:12px;
+      padding:48px 56px;box-shadow:0 12px 48px rgba(0,0,0,.6);
+    }
+
+    /* ── HEADER ── */
+    .resume-header{
+      display:grid;grid-template-columns:1fr auto;gap:24px;
+      border-bottom:2px solid var(--border);padding-bottom:32px;margin-bottom:32px;
+    }
+    .applicant-name{
+      font-size:2.4rem;font-weight:800;letter-spacing:-.5px;color:#fff;line-height:1.1;
+      margin-bottom:6px;
+    }
+    .applicant-title{
+      font-size:1.05rem;color:var(--gold);font-weight:600;letter-spacing:.5px;margin-bottom:14px;
+    }
+    .contact-grid{
+      display:grid;grid-template-columns:repeat(2,auto);gap:8px 24px;font-size:.82rem;color:var(--text-muted);
+    }
+    .contact-item{display:flex;align-items:center;gap:8px}
+    .contact-item a{color:inherit;text-decoration:none}
+    .contact-item a:hover{color:var(--gold)}
+
+    .photo-col img{
+      width:110px;height:110px;object-fit:cover;border-radius:10px;
+      border:2px solid var(--gold);box-shadow:0 4px 14px rgba(0,0,0,.4);
+    }
+
+    /* ── SECTION BLOCKS ── */
+    .resume-sec{margin-bottom:32px}
+    .sec-head{
+      display:flex;align-items:center;gap:12px;margin-bottom:16px;
+      border-bottom:1px solid var(--border);padding-bottom:8px;
+    }
+    .sec-title{
+      font-size:.95rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);
+    }
+
+    .summary-p{font-size:.88rem;color:#ccc;line-height:1.8;margin-bottom:12px}
+
+    /* ── SKILLS SECTION ── */
+    .skills-row{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    }
+    .skill-block h4{
+      font-size:.84rem;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:6px;
+    }
+    .skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .stag{
+      background:var(--accent-badge);border:1px solid var(--border);border-radius:4px;
+      padding:3px 10px;font-size:.76rem;color:#ddd;
+    }
+    .stag-highlight{
+      background:var(--gold-dim);border-color:rgba(255,215,0,.3);color:var(--gold);font-weight:600;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item{margin-bottom:24px;position:relative}
+    .exp-header{
+      display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
+      margin-bottom:4px;
+    }
+    .exp-role{font-size:.98rem;font-weight:700;color:#fff}
+    .exp-role em{color:var(--gold);font-style:normal}
+    .exp-date{font-size:.78rem;color:var(--text-muted);font-weight:500}
+    .exp-company{font-size:.84rem;color:var(--gold);font-weight:600;margin-bottom:8px}
+    .exp-desc{font-size:.84rem;color:#bbb;line-height:1.75;margin-bottom:8px}
+    .exp-bullets{list-style:none;padding-left:0}
+    .exp-bullets li{
+      position:relative;padding-left:18px;font-size:.82rem;color:#bbb;line-height:1.7;margin-bottom:4px;
+    }
+    .exp-bullets li::before{
+      content:'▪';position:absolute;left:0;color:var(--gold);font-size:.9rem;line-height:1.6;
+    }
+
+    /* ── PROJECT SHOWCASE TABLE ── */
+    .proj-table{
+      width:100%;border-collapse:collapse;margin-top:10px;font-size:.82rem;
+    }
+    .proj-table th{
+      text-align:left;padding:10px 12px;background:rgba(255,255,255,.03);
+      color:var(--gold);border-bottom:1px solid var(--border);font-size:.76rem;text-transform:uppercase;letter-spacing:1px;
+    }
+    .proj-table td{
+      padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;vertical-align:top;
+    }
+    .proj-table tr:hover td{background:rgba(255,215,0,.02)}
+    .proj-tag{
+      display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;
+      background:rgba(255,255,255,.05);color:#aaa;margin-right:4px;
+    }
+
+    /* ── PRINT STYLES (@media print) ── */
+    @media print{
+      body{
+        background:#fff!important;color:#111!important;font-size:9.5pt;line-height:1.45;padding:0;
+      }
+      .top-bar{display:none!important}
+      .resume-wrapper{
+        border:none!important;box-shadow:none!important;background:none!important;
+        padding:0!important;max-width:100%!important;
+      }
+      .applicant-name{color:#000!important;font-size:22pt!important}
+      .applicant-title{color:#996500!important;font-size:11pt!important}
+      .contact-grid{color:#444!important;font-size:8.5pt!important}
+      .resume-header{border-bottom:2px solid #333!important;padding-bottom:16px!important;margin-bottom:20px!important}
+      .sec-title{color:#996500!important;font-size:10pt!important}
+      .sec-head{border-bottom:1px solid #ddd!important;margin-bottom:10px!important;padding-bottom:4px!important}
+      .summary-p{color:#222!important;font-size:9pt!important}
+      .skill-block h4{color:#000!important;font-size:9pt!important}
+      .stag{background:#f0f0f0!important;color:#222!important;border:1px solid #ddd!important;font-size:8pt!important}
+      .stag-highlight{background:#fff8dc!important;border-color:#caa000!important;color:#775000!important}
+      .exp-role{color:#000!important;font-size:10pt!important}
+      .exp-company{color:#996500!important;font-size:9pt!important}
+      .exp-date{color:#666!important;font-size:8.5pt!important}
+      .exp-bullets li{color:#222!important;font-size:8.5pt!important}
+      .exp-bullets li::before{color:#996500!important}
+      .proj-table th{background:#f4f4f4!important;color:#000!important;border-bottom:1px solid #999!important}
+      .proj-table td{border-bottom:1px solid #e0e0e0!important;color:#222!important;font-size:8.5pt!important}
+      .proj-tag{background:#eee!important;color:#333!important}
+      .photo-col img{border:1px solid #000!important;width:90px!important;height:90px!important}
+      a{color:#111!important;text-decoration:none!important}
+      .page-break-after{page-break-after:always;}
+    }
+
+    @media(max-width:768px){
+      .resume-wrapper{padding:28px 20px}
+      .resume-header{grid-template-columns:1fr;text-align:left}
+      .photo-col{order:-1}
+      .skills-row{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ TOP ACTION BAR ════ -->
+<div class="top-bar">
+  <a href="portfolio.html" class="back-btn">
+    <span>←</span> กลับสู่หน้าผลงาน (Portfolio)
+  </a>
+  <button onclick="window.print()" class="print-btn">
+    <span>🖨️</span> บันทึกเป็น PDF / พิมพ์ (Print to PDF)
+  </button>
+</div>
+
+<!-- ════ MAIN RESUME WRAPPER ════ -->
+<div class="resume-wrapper">
+
+  <!-- ── HEADER ── -->
+  <header class="resume-header">
+    <div>
+      <h1 class="applicant-name">ขจรศักดิ์ ใจคง</h1>
+      <div class="applicant-title">Senior Videographer · Motorsport Media Specialist · Video Editor & Colorist</div>
+      
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span>📞</span>
+          <span><strong>โทรศัพท์:</strong> <a href="tel:0899977941">089-997-7941</a></span>
+        </div>
+        <div class="contact-item">
+          <span>📧</span>
+          <span><strong>อีเมล:</strong> <a href="mailto:kajornsak.jaikong@gmail.com">kajornsak.jaikong@gmail.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span>💬</span>
+          <span><strong>Line ID:</strong> <a href="https://line.me/ti/p/~percussion_man" target="_blank">percussion_man</a></span>
+        </div>
+        <div class="contact-item">
+          <span>🌐</span>
+          <span><strong>Portfolio:</strong> <a href="https://kajornsakjaikong.github.io/perman-portfolio/portfolio.html" target="_blank">perman-portfolio</a></span>
+        </div>
+        <div class="contact-item">
+          <span>📍</span>
+          <span><strong>ที่อยู่:</strong> กรุงเทพมหานคร และพร้อมเดินทางปฏิบัติงานทั่วประเทศ / ต่างประเทศ</span>
+        </div>
+        <div class="contact-item">
+          <span>🎬</span>
+          <span><strong>YouTube:</strong> <a href="https://www.youtube.com/watch?v=xN7pIpnIM88&list=PL6uMeWgCelzLrjyxV6-vq-Gs1w6ZS0dCq" target="_blank">Percussionman Channel</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-col">
+      <img src="img/page01.jpg" alt="Kajornsak Jaikong">
+    </div>
+  </header>
+
+  <!-- ── PROFESSIONAL SUMMARY ── -->
+  <section class="resume-sec">
+    <div class="sec-head">
+      <h2 class="sec-title">ประวัติย่อและจุดเด่นทางวิชาชีพ (Professional Summary)</h2>
+    </div>
+    <p class="summary-p">
+      วิดีโอกราเฟอร์และช่างภาพมืออาชีพที่มีประสบการณ์การผลิตสื่อภาพนิ่งและภาพเคลื่อนไหวมากว่า <strong>5 ปี</strong> มีจุดเด่นเฉพาะตัวจากการนำความเข้าใจเชิงลึกใน <strong>"จังหวะดนตรี" (Percussion)</strong> มาผสมผสานกับการถ่ายทอด <strong>"พลังและฟิสิกส์ของความเร็ว" (Speed & Motion)</strong> ได้อย่างแม่นยำ เชี่ยวชาญงานถ่ายทอดสดคอนเสิร์ตขนาดใหญ่และเทศกาลดนตรีระดับประเทศร่วมกับศิลปินชั้นนำ (อาทิ 4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall)
+    </p>
+    <p class="summary-p">
+      พร้อมความเชี่ยวชาญระดับสูงในสาย <strong>Motorsport</strong> ณ สนามแข่งขันระดับสากล (Chang International Circuit บุรีรัมย์ และ Sepang International Circuit มาเลเซีย) เข้าใจมุมกล้องยานยนต์ การเคลื่อนที่ของรถแข่งที่ความเร็วสูง และมีทักษะการทำ <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES) รองรับการผลิตสื่อแบบครบวงจร (End-to-End) พร้อมส่งมอบงานรวดเร็ว (Fast Delivery) สำหรับ Social Media และงานพรีเมียม
+    </p>
+  </section>
+
+  <!-- ── SKILLS & GEAR ── -->
+  <section class="resume-sec">
+    <div class="sec-head">
+      <h2 class="sec-title">ทักษะและความเชี่ยวชาญ (Core Competencies & Skills)</h2>
+    </div>
+    <div class="skills-row">
+      <div class="skill-block">
+        <h4>💻 Software & Post-Production</h4>
+        <div class="skill-tags">
+          <span class="stag stag-highlight">DaVinci Resolve (Color Grading)</span>
+          <span class="stag stag-highlight">Adobe Premiere Pro</span>
+          <span class="stag">Adobe After Effects</span>
+          <span class="stag stag-highlight">Adobe Lightroom Classic</span>
+          <span class="stag">Adobe Photoshop</span>
+          <span class="stag">Final Cut Pro</span>
+          <span class="stag">ACES & Rec.709 Pipeline</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h4>📷 Camera & Hardware Mastery</h4>
+        <div class="skill-tags">
+          <span class="stag stag-highlight">Nikon Z8 Flagship (8K N-RAW)</span>
+          <span class="stag stag-highlight">High-speed Telephoto Lenses</span>
+          <span class="stag">Fast Cinema Primes (f/1.2 - f/1.8)</span>
+          <span class="stag">3-Axis Gimbal & Car Rigging</span>
+          <span class="stag">Wireless Audio & Lavalier</span>
+          <span class="stag">High-CRI Studio Lighting</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h4>🎯 Production Capabilities</h4>
+        <div class="skill-tags">
+          <span class="stag stag-highlight">Motorsport Track Panning</span>
+          <span class="stag stag-highlight">Concert Low-Light Dynamic</span>
+          <span class="stag">Commercial Product Stills</span>
+          <span class="stag stag-highlight">Viral Reels & TikTok Content</span>
+          <span class="stag">Multi-camera Synchronizing</span>
+          <span class="stag">Fast On-Site Turnaround</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK EXPERIENCE ── -->
+  <section class="resume-sec">
+    <div class="sec-head">
+      <h2 class="sec-title">ประสบการณ์การทำงาน (Professional Experience)</h2>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Lead Videographer, Photographer & Video Editor <em>(Freelance)</em></span>
+        <span class="exp-date">2019 – ปัจจุบัน</span>
+      </div>
+      <div class="exp-company">Percussionman Production / ร่วมงานกับค่ายเพลง สื่อ และแบรนด์ชั้นนำ</div>
+      <p class="exp-desc">
+        รับผิดชอบการวางแผน ออกแบบมุมกล้อง ควบคุมการบันทึกภาพทั้งภาพนิ่งและวิดีโอ (Cinematography) การตัดต่อ และการเกรดสีสำหรับโปรเจกต์มิวสิควิดีโอ คอนเสิร์ตใหญ่ งานมอเตอร์สปอร์ต และงานโฆษณา
+      </p>
+      <ul class="exp-bullets">
+        <li><strong>Motorsport Media Production:</strong> ปฏิบัติงานบันทึกภาพและวิดีโอการแข่งขันรถยนต์ระดับประเทศและนานาชาติ ณ สนามช้าง อินเตอร์เนชั่นแนล เซอร์กิต (บุรีรัมย์) และสนามเซปัง อินเตอร์เนชั่นแนล เซอร์กิต (มาเลเซีย) เชี่ยวชาญการจับภาพเทคนิค Panning ช็อตความเร็วสูง และวิดีโอ Cinematic สำหรับทีมแข่งและสปอนเซอร์</li>
+        <li><strong>Concert & Live Performance Production:</strong> บันทึกภาพและวิดีโอคอนเสิร์ตใหญ่ของศิลปินระดับแถวหน้าของเมืองไทย เช่น 4EVE, คุณแป้ง นวลพรรณ, คอนเสิร์ต Soul After Six @ Royal Paragon Hall, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, First Anuwat</li>
+        <li><strong>Music Video & Live Session Production:</strong> ร่วมงานกับค่ายเพลง MammothMusic, Riser Music, SongZoom, และ Space Brothers ในตำแหน่ง Videographer และ Lead Editor ผลิต Live Performance Video และ Cover MV คุณภาพสูง</li>
+        <li><strong>Commercial & Corporate Media:</strong> ผลิตภาพถ่ายสินค้าและวิดีโอแบรนด์ อาทิ CAPME Crispy Pork Rinds (Commercial Product Set), โครงการ Soonthareeya Ratchadamri (Areeya Property), และงานอีเวนต์โรงแรมหรู The Westin Grande Sukhumvit</li>
+        <li><strong>High-End Colorist & Fast Delivery:</strong> พัฒนา Workflow การเกรดสีใน DaVinci Resolve จัดการไฟล์ Log/RAW ส่งมอบงานวิดีโอตัดต่อเสร็จพร้อมลงโซเชียลมีเดียได้อย่างรวดเร็ว ตรงตามเวลา 100%</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── SELECTED CREDITS TABLE ── -->
+  <section class="resume-sec">
+    <div class="sec-head">
+      <h2 class="sec-title">ผลงานเด่นที่คัดสรร (Selected Production Credits)</h2>
+    </div>
+
+    <table class="proj-table">
+      <thead>
+        <tr>
+          <th>ประเภทงาน</th>
+          <th>ชิ้นงาน / ศิลปิน / อีเวนต์</th>
+          <th>สถานที่ / ค่าย / ลูกค้า</th>
+          <th>หน้าที่รับผิดชอบ (Role)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="proj-tag">Motorsport</span></td>
+          <td>BRIC Supercar & Touring Championship</td>
+          <td>Chang International Circuit (Buriram) & Sepang (MY)</td>
+          <td><strong>Lead Photographer / Action Camera</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Concert</span></td>
+          <td>Soul After Six : ความทรงจำของก้อนหิน</td>
+          <td>Royal Paragon Hall</td>
+          <td><strong>Photographer / Stage Dynamic</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Concert</span></td>
+          <td>4EVE Show & Concert</td>
+          <td>Soonthareeya Ratchadamri (Areeya)</td>
+          <td><strong>Lead Photographer</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Live Session</span></td>
+          <td>Krist Live Session feat. Gawin Caskey</td>
+          <td>Riser Music</td>
+          <td><strong>Videographer</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Live Session</span></td>
+          <td>Nadech Kugimiya — เหมือนเคย (Cover)</td>
+          <td>MammothMusic</td>
+          <td><strong>Videographer / Video Editor</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Live Session</span></td>
+          <td>ปั่น ไพบูลย์เกียรติ — The Way You Look Tonight / รักยืนยง</td>
+          <td>MammothMusic Special Live</td>
+          <td><strong>Videographer / Video Editor</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Music Video</span></td>
+          <td>'Pink Venom' MV Cover</td>
+          <td>SongZoom</td>
+          <td><strong>Videographer / Video Editor</strong></td>
+        </tr>
+        <tr>
+          <td><span class="proj-tag">Commercial</span></td>
+          <td>CAPME Crispy Pork Rinds (Commercial Set)</td>
+          <td>CAPME Brand</td>
+          <td><strong>Product Photographer / Lighting</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── EDUCATION & LANGUAGE ── -->
+  <section class="resume-sec" style="margin-bottom:0">
+    <div class="sec-head">
+      <h2 class="sec-title">ทักษะเพิ่มเติมและภาษา (Additional Strengths & Languages)</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:.84rem;color:#ccc">
+      <div>
+        <p><strong>ทักษะดนตรีและจังหวะ (Musicality & Percussion):</strong></p>
+        <p style="color:#aaa;margin-top:4px">
+          ความเชี่ยวชาญเครื่องดนตรีเพอร์คัสชัน ทำให้มีเซนส์การจับจังหวะเพลง (BPM / Rhythm) การตัดต่อวิดีโอจึงสอดคล้องกับจังหวะดนตรีได้อย่างแนบเนียนและมีพลังเป็นพิเศษ
+        </p>
+      </div>
+      <div>
+        <p><strong>ภาษาและการสื่อสาร (Languages & Mobility):</strong></p>
+        <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
+          <li>• ภาษาไทย: ภาษาแม่ (Native Proficiency)</li>
+          <li>• ภาษาอังกฤษ: สื่อสารการทำงานได้ (Working Proficiency)</li>
+          <li>• มีใบขับขี่และยานพาหนะ พร้อมเดินทางปฏิบัติงานต่างจังหวัดและต่างประเทศ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

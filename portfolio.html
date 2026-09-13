@@ -3,71 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kajornsak Jaikong | Percussionman — Portfolio</title>
+  <title>Kajornsak Jaikong | Percussionman — Portfolio & Digital Resume</title>
+  <meta name="description" content="Kajornsak Jaikong (Percussionman) — Senior Videographer, Motorsport Photographer & Media Specialist, Video Editor & Colorist. Portfolio and production credits.">
+  <meta property="og:title" content="Kajornsak Jaikong | Percussionman — Portfolio">
+  <meta property="og:description" content="Senior Videographer & Motorsport Media Specialist. Capturing the rhythm, energy, and physics of speed.">
+  <meta property="og:image" content="img/page01.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --black:#080808;--dark:#111;--card:#181818;
-      --yellow:#FFD700;--white:#fff;--gray:#888;--border:#252525;
+      --black:#080808;--dark:#101010;--card:#161616;--card-hover:#1c1c1c;
+      --yellow:#FFD700;--yellow-glow:rgba(255,215,0,.25);--white:#fff;--gray:#949494;--gray-light:#ccc;--border:#242424;
+      --border-gold:rgba(255,215,0,.28);
     }
     html{scroll-behavior:smooth}
-    body{background:var(--black);color:var(--white);font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6}
+    body{
+      background:var(--black);color:var(--white);
+      font-family:'Prompt','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+      line-height:1.65;overflow-x:hidden;
+    }
 
     /* ── NAV ── */
     nav{
-      position:fixed;top:0;left:0;right:0;z-index:200;
-      background:rgba(8,8,8,.97);backdrop-filter:blur(12px);
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      background:rgba(8,8,8,.94);backdrop-filter:blur(16px);
       border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;
-      padding:0 60px;height:62px;
+      padding:0 60px;height:66px;transition:all .3s ease;
     }
-    .nav-logo{font-size:1rem;font-weight:900;letter-spacing:3px;color:var(--yellow);text-decoration:none;text-transform:uppercase}
-    .nav-links{display:flex;gap:36px;list-style:none}
-    .nav-links a{color:var(--gray);text-decoration:none;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+    .nav-logo{
+      font-size:1.05rem;font-weight:900;letter-spacing:2.5px;color:var(--yellow);
+      text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;
+    }
+    .nav-logo span{font-size:.7rem;color:var(--gray);font-weight:400;letter-spacing:1px}
+    .nav-links{display:flex;gap:28px;align-items:center;list-style:none}
+    .nav-links a{
+      color:var(--gray);text-decoration:none;font-size:.78rem;letter-spacing:1.2px;
+      text-transform:uppercase;font-weight:500;transition:all .2s;
+    }
     .nav-links a:hover{color:var(--yellow)}
+    .nav-links a.active{color:var(--yellow);font-weight:700}
+    
+    .btn-nav-resume{
+      background:linear-gradient(135deg,rgba(255,215,0,.15) 0%,rgba(255,215,0,.05) 100%);
+      border:1px solid var(--border-gold)!important;
+      color:var(--yellow)!important;
+      padding:6px 16px!important;border-radius:20px;
+      display:inline-flex;align-items:center;gap:6px;
+      font-weight:600!important;transition:all .25s ease!important;
+    }
+    .btn-nav-resume:hover{
+      background:var(--yellow)!important;color:var(--black)!important;
+      box-shadow:0 0 16px var(--yellow-glow);
+    }
+
+    .nav-toggle{
+      display:none;background:transparent;border:1px solid var(--border);
+      color:var(--white);font-size:1.3rem;padding:6px 12px;border-radius:6px;cursor:pointer;
+    }
 
     /* ── HERO ── */
     #hero{
-      min-height:100vh;display:grid;
-      grid-template-columns:1fr 1fr;
+      min-height:92vh;display:grid;
+      grid-template-columns:1.15fr .85fr;
       align-items:center;
-      padding:90px 80px 60px;position:relative;overflow:hidden;
+      padding:110px 80px 70px;position:relative;overflow:hidden;
     }
     #hero::after{
       content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-      background:radial-gradient(ellipse at 75% 50%,rgba(255,215,0,.06) 0%,transparent 65%);
+      background:radial-gradient(ellipse at 75% 45%,rgba(255,215,0,.07) 0%,transparent 60%);
       pointer-events:none;
     }
-    .hero-inner{position:relative;z-index:1}
-    .hero-eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
-    .hero-name{font-size:clamp(3rem,7vw,6.5rem);font-weight:900;line-height:.95;margin-bottom:20px;letter-spacing:-2px}
+    .hero-inner{position:relative;z-index:2}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.72rem;letter-spacing:3px;text-transform:uppercase;
+      color:var(--yellow);margin-bottom:18px;
+      background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);
+      padding:4px 14px;border-radius:20px;
+    }
+    .hero-name{
+      font-size:clamp(3.2rem,6.5vw,6.2rem);font-weight:900;line-height:.95;
+      margin-bottom:22px;letter-spacing:-2px;
+    }
     .hero-name em{color:var(--yellow);font-style:normal}
     .hero-roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-    .rtag{border:1px solid #2e2e2e;border-radius:20px;padding:5px 16px;font-size:.75rem;color:var(--gray);letter-spacing:.5px}
-    .hero-quote{
-      font-size:.95rem;color:var(--gray);font-style:italic;
-      border-left:3px solid var(--yellow);padding-left:18px;margin-bottom:36px;line-height:1.7;
+    .rtag{
+      border:1px solid var(--border);background:rgba(255,255,255,.02);
+      border-radius:20px;padding:6px 16px;font-size:.75rem;color:var(--gray-light);letter-spacing:.5px;
     }
-    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .rtag-highlight{
+      border-color:var(--border-gold);color:var(--yellow);background:rgba(255,215,0,.05);font-weight:600;
+    }
+    .hero-quote{
+      font-size:1.02rem;color:var(--gray-light);font-style:italic;
+      border-left:3px solid var(--yellow);padding-left:18px;margin-bottom:34px;line-height:1.75;
+    }
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
     .btn{
       display:inline-flex;align-items:center;gap:8px;
-      padding:11px 24px;border-radius:4px;font-size:.82rem;text-decoration:none;
-      letter-spacing:.8px;font-weight:600;transition:all .2s;border:1px solid transparent;
+      padding:12px 26px;border-radius:6px;font-size:.84rem;text-decoration:none;
+      letter-spacing:.6px;font-weight:600;transition:all .25s ease;border:1px solid transparent;cursor:pointer;
     }
     .btn-primary{background:var(--yellow);color:var(--black)}
-    .btn-primary:hover{background:#fff}
-    .btn-outline{border-color:var(--border);color:var(--white)}
-    .btn-outline:hover{border-color:var(--yellow);color:var(--yellow)}
+    .btn-primary:hover{background:#fff;box-shadow:0 4px 20px rgba(255,215,0,.3)}
+    .btn-outline{border-color:var(--border);color:var(--white);background:rgba(255,255,255,.02)}
+    .btn-outline:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(255,215,0,.05)}
+    .btn-resume{
+      background:linear-gradient(135deg,#FFD700 0%,#e6c200 100%);
+      color:var(--black);font-weight:700;box-shadow:0 4px 18px rgba(255,215,0,.25);
+    }
+    .btn-resume:hover{
+      transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,215,0,.45);color:var(--black);
+    }
 
     /* hero photo */
     .hero-photo-col{
-      position:relative;z-index:1;
+      position:relative;z-index:2;
       display:flex;align-items:center;justify-content:flex-end;
       height:100%;padding-left:40px;
     }
     .hero-photo-wrap{
       position:relative;
-      width:min(420px,42vw);
+      width:min(400px,40vw);
       flex-shrink:0;
     }
     .hero-photo-wrap::before{
@@ -83,27 +147,94 @@
       z-index:3;pointer-events:none;
     }
     .hero-photo-wrap img{
-      width:100%;
-      display:block;
+      width:100%;display:block;
       filter:grayscale(100%) contrast(1.1) brightness(.92);
       clip-path:polygon(0 6%,6% 0,100% 0,100% 94%,94% 100%,0 100%);
+      transition:filter .4s;
     }
+    .hero-photo-wrap:hover img{filter:grayscale(20%) contrast(1.05) brightness(1);}
     .hero-photo-badge{
       position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
       z-index:4;
-      background:rgba(0,0,0,.78);backdrop-filter:blur(8px);
+      background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
       border:1px solid rgba(255,215,0,.35);border-radius:8px;
       padding:8px 20px;text-align:center;white-space:nowrap;
     }
-    .hero-photo-badge span{font-size:.65rem;letter-spacing:2px;color:var(--yellow);text-transform:uppercase}
+    .hero-photo-badge span{font-size:.68rem;letter-spacing:2px;color:var(--yellow);text-transform:uppercase;font-weight:600}
 
-    /* ── SECTION ── */
-    section{padding:90px 80px}
+    /* ── SECTION BASE ── */
+    section{padding:96px 80px}
     .sec-alt{background:var(--dark)}
-    .sec-head{margin-bottom:52px}
-    .sec-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
-    .sec-title{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;letter-spacing:-1px}
-    .sec-bar{width:52px;height:3px;background:var(--yellow);margin-top:14px}
+    .sec-head{margin-bottom:48px}
+    .sec-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;font-weight:600}
+    .sec-title{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:900;letter-spacing:-1px}
+    .sec-bar{width:54px;height:3px;background:var(--yellow);margin-top:14px;border-radius:2px}
+
+    /* ── ABOUT SECTION & METRICS ── */
+    #about{position:relative;}
+    .about-grid{
+      display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center;
+    }
+    .about-text{font-size:.95rem;color:var(--gray-light);line-height:1.9}
+    .about-text p{margin-bottom:18px}
+    .about-text strong{color:var(--white)}
+    .about-highlights{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;
+    }
+    .highlight-pill{
+      background:rgba(255,255,255,.02);border:1px solid var(--border);
+      border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;
+    }
+    .highlight-pill span{color:var(--yellow);font-size:1.2rem}
+    .highlight-pill div{font-size:.82rem;font-weight:600;color:var(--white)}
+
+    .metrics-container{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    }
+    .metric-card{
+      background:linear-gradient(145deg,#161616 0%,#101010 100%);
+      border:1px solid var(--border);border-radius:12px;padding:26px;
+      text-align:center;transition:all .3s ease;position:relative;overflow:hidden;
+    }
+    .metric-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,transparent,var(--yellow),transparent);
+      opacity:0;transition:opacity .3s;
+    }
+    .metric-card:hover{
+      transform:translateY(-4px);border-color:var(--border-gold);
+      box-shadow:0 8px 30px rgba(0,0,0,.4);
+    }
+    .metric-card:hover::before{opacity:1}
+    .metric-val{
+      font-size:2.6rem;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:8px;
+      font-family:'Plus Jakarta Sans',sans-serif;
+    }
+    .metric-label{font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:4px}
+    .metric-sub{font-size:.68rem;color:var(--gray)}
+
+    /* ── CLIENTS / BRANDS ── */
+    #clients{padding:60px 80px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .clients-label{
+      text-align:center;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;
+      color:var(--gray);margin-bottom:28px;
+    }
+    .clients-grid{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:14px 20px;
+    }
+    .client-badge{
+      background:rgba(255,255,255,.02);border:1px solid var(--border);
+      border-radius:30px;padding:8px 20px;font-size:.82rem;font-weight:600;
+      color:var(--gray-light);letter-spacing:.5px;transition:all .25s ease;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .client-badge:hover{
+      border-color:var(--border-gold);color:var(--yellow);
+      background:rgba(255,215,0,.06);transform:translateY(-2px);
+    }
+    .client-badge::before{
+      content:'•';color:var(--yellow);font-size:1.1rem;line-height:0;
+    }
 
     /* ── FILTER TABS ── */
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
@@ -137,22 +268,19 @@
     .ctitle{font-size:.92rem;font-weight:700;line-height:1.45;margin-bottom:8px}
     .cmeta{font-size:.74rem;color:var(--gray);margin-bottom:10px}
     .croles{display:flex;gap:6px;flex-wrap:wrap}
-    .crole{font-size:.68rem;background:rgba(255,255,255,.05);border-radius:4px;padding:2px 9px;color:#777}
+    .crole{font-size:.68rem;background:rgba(255,255,255,.05);border-radius:4px;padding:2px 9px;color:#888}
+    .crole-key{background:rgba(255,215,0,.12);color:var(--yellow);font-weight:600;border:1px solid rgba(255,215,0,.25)}
 
     /* ── MOTORSPORT GALLERY ── */
     .ms-gallery-wrap{margin-bottom:0}
     .ms-gallery{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      grid-template-rows:auto auto;
-      gap:14px;
+      display:grid;grid-template-columns:repeat(4,1fr);
+      grid-template-rows:auto auto;gap:14px;
     }
     .ms-photo-wide{grid-column:span 2;grid-row:span 2}
     .ms-photo{
       position:relative;overflow:hidden;border-radius:10px;
-      border:1px solid var(--border);
-      background:var(--card);
-      aspect-ratio:16/10;
+      border:1px solid var(--border);background:var(--card);aspect-ratio:16/10;
     }
     .ms-photo-wide{aspect-ratio:auto}
     .ms-photo img{
@@ -163,9 +291,7 @@
     .ms-photo-cap{
       position:absolute;bottom:0;left:0;right:0;
       background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);
-      padding:32px 18px 16px;
-      transform:translateY(6px);opacity:.85;
-      transition:all .3s;
+      padding:32px 18px 16px;transform:translateY(6px);opacity:.85;transition:all .3s;
     }
     .ms-photo:hover .ms-photo-cap{transform:translateY(0);opacity:1}
     .ms-photo-tag{
@@ -184,9 +310,7 @@
 
     /* full motorsport grid */
     .ms-grid-full{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:12px;
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;
     }
     .ms-grid-full .ms-photo{aspect-ratio:3/2}
 
@@ -199,20 +323,47 @@
     }
     .ms-quote{font-size:1.6rem;font-weight:800;line-height:1.35;margin-bottom:18px}
     .ms-quote em{color:var(--yellow);font-style:normal}
-    .ms-desc{color:var(--gray);font-size:.88rem;margin-bottom:28px;line-height:1.8}
+    .ms-desc{color:var(--gray-light);font-size:.88rem;margin-bottom:28px;line-height:1.8}
     .ms-list{list-style:none}
     .ms-list li{
       padding:11px 0;border-bottom:1px solid var(--border);
       font-size:.88rem;display:flex;align-items:flex-start;gap:10px;
     }
     .ms-list li::before{content:'▶';color:var(--yellow);font-size:.55rem;margin-top:5px;flex-shrink:0}
-    .ms-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .ms-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .stat{
       background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.12);
-      border-radius:10px;padding:24px;text-align:center;
+      border-radius:10px;padding:22px;text-align:center;
     }
-    .stat-v{font-size:1.5rem;font-weight:900;color:var(--yellow);letter-spacing:1px}
+    .stat-v{font-size:1.4rem;font-weight:900;color:var(--yellow);letter-spacing:1px}
     .stat-l{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+    /* ── SKILLS & GEAR SECTION ── */
+    #skills{position:relative}
+    .skills-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    }
+    .skill-card{
+      background:var(--card);border:1px solid var(--border);border-radius:12px;
+      padding:32px;display:flex;flex-direction:column;transition:all .3s ease;
+    }
+    .skill-card:hover{
+      border-color:var(--border-gold);transform:translateY(-4px);
+    }
+    .skill-icon{font-size:2rem;margin-bottom:16px}
+    .skill-card-title{font-size:1.15rem;font-weight:800;margin-bottom:14px;color:var(--white)}
+    .skill-card-desc{font-size:.82rem;color:var(--gray);margin-bottom:20px;line-height:1.6}
+    .skill-items{list-style:none;margin-top:auto}
+    .skill-items li{
+      padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);
+      font-size:.82rem;display:flex;align-items:center;justify-content:space-between;
+    }
+    .skill-items li:last-child{border-bottom:none}
+    .skill-name{font-weight:600;color:var(--gray-light)}
+    .skill-badge{
+      font-size:.65rem;background:rgba(255,215,0,.1);color:var(--yellow);
+      border-radius:4px;padding:2px 8px;font-weight:600;
+    }
 
     /* ── CONTACT ── */
     .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -228,12 +379,13 @@
     .clabel{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.2px}
     .cvalue{font-size:.98rem;font-weight:600;margin-top:2px}
     .cta-box{
-      background:var(--card);border:1px solid var(--border);border-radius:14px;
-      padding:44px;text-align:center;
+      background:linear-gradient(145deg,#181818 0%,#101010 100%);
+      border:1px solid var(--border-gold);border-radius:14px;
+      padding:44px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.5);
     }
     .cta-title{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:12px}
     .cta-title em{color:var(--yellow);font-style:normal}
-    .cta-sub{color:var(--gray);font-size:.88rem;margin-bottom:28px;line-height:1.8}
+    .cta-sub{color:var(--gray-light);font-size:.88rem;margin-bottom:28px;line-height:1.8}
 
     /* ── Product Lightbox ── */
     #plb{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.93);
@@ -270,16 +422,42 @@
     /* ── FOOTER ── */
     footer{
       background:var(--black);border-top:1px solid var(--border);
-      padding:22px 80px;display:flex;justify-content:space-between;
-      align-items:center;font-size:.75rem;color:var(--gray);
+      padding:24px 80px;display:flex;justify-content:space-between;
+      align-items:center;font-size:.78rem;color:var(--gray);
     }
     footer a{color:var(--gray);text-decoration:none}
     footer a:hover{color:var(--yellow)}
 
+    /* ── FLOATING MOBILE BAR ── */
+    .mobile-bar{
+      display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;
+      background:rgba(10,10,10,.95);backdrop-filter:blur(12px);
+      border-top:1px solid var(--border);padding:10px 16px;
+      justify-content:space-around;align-items:center;gap:8px;
+    }
+    .mobile-bar a{
+      flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+      padding:9px 12px;border-radius:6px;font-size:.78rem;font-weight:600;
+      text-decoration:none;text-align:center;
+    }
+    .mbar-call{background:rgba(255,255,255,.08);color:var(--white);border:1px solid var(--border)}
+    .mbar-line{background:#06C755;color:#fff}
+    .mbar-resume{background:var(--yellow);color:var(--black)}
+
     /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .skills-grid{grid-template-columns:1fr 1fr}
+      .about-grid{grid-template-columns:1fr}
+    }
     @media(max-width:900px){
       nav{padding:0 24px}
-      .nav-links{gap:18px}
+      .nav-links{
+        position:fixed;top:66px;left:0;right:0;background:rgba(10,10,10,.98);
+        border-bottom:1px solid var(--border);padding:24px;flex-direction:column;
+        gap:20px;align-items:flex-start;display:none;
+      }
+      .nav-links.open{display:flex}
+      .nav-toggle{display:block}
       section{padding:60px 24px}
       #hero{
         grid-template-columns:1fr;
@@ -295,7 +473,9 @@
       .grid{grid-template-columns:1fr}
       .ms-hero{grid-template-columns:1fr;padding:28px}
       .contact-wrap{grid-template-columns:1fr}
-      footer{flex-direction:column;gap:6px;padding:18px 24px;text-align:center}
+      .skills-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:6px;padding:18px 24px;text-align:center;margin-bottom:60px}
+      .mobile-bar{display:flex}
     }
   </style>
 </head>
@@ -303,12 +483,19 @@
 
 <!-- ════ NAV ════ -->
 <nav>
-  <a href="#hero" class="nav-logo">Percussionman</a>
-  <ul class="nav-links">
-    <li><a href="#video">Video</a></li>
-    <li><a href="#photography">Photography</a></li>
-    <li><a href="#motorsport">Motorsport</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <a href="#hero" class="nav-logo">
+    Percussionman
+    <span>Kajornsak Jaikong</span>
+  </a>
+  <button class="nav-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#video" onclick="closeMenu()">Video</a></li>
+    <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
+    <li><a href="#motorsport" onclick="closeMenu()">Motorsport</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills & Gear</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="resume.html" class="btn-nav-resume">📄 Resume / CV</a></li>
   </ul>
 </nav>
 
@@ -317,22 +504,23 @@
 
   <!-- LEFT: text content -->
   <div class="hero-inner">
-    <p class="hero-eyebrow">Portfolio 2024</p>
+    <div class="hero-eyebrow">⚡ Available for Hire · Full-time & Production Contract</div>
     <h1 class="hero-name">Kajornsak<br><em>Jaikong</em></h1>
     <div class="hero-roles">
-      <span class="rtag">Photographer</span>
-      <span class="rtag">Videographer</span>
-      <span class="rtag">Video Editor</span>
-      <span class="rtag">Freelancer</span>
+      <span class="rtag rtag-highlight">Senior Videographer</span>
+      <span class="rtag rtag-highlight">Motorsport Media Specialist</span>
+      <span class="rtag">Video Editor & Colorist</span>
+      <span class="rtag">Live Concert Visuals</span>
       <span class="rtag">Percussionman</span>
     </div>
     <p class="hero-quote">
-      "I don't just take photos;<br>I capture the physics of speed."
+      "I don't just capture images;<br>I capture the rhythm, emotion, and the physics of speed."
     </p>
     <div class="hero-btns">
       <a href="#video" class="btn btn-primary">🎬 Video Works</a>
-      <a href="#photography" class="btn btn-outline">📸 Photography</a>
       <a href="#motorsport" class="btn btn-outline">🏎️ Motorsport</a>
+      <a href="resume.html" class="btn btn-resume">📄 View Resume / CV</a>
+      <a href="#contact" class="btn btn-outline">📞 Contact</a>
     </div>
   </div>
 
@@ -347,6 +535,93 @@
   </div>
 
 </section>
+
+<!-- ════ ABOUT / EXECUTIVE SUMMARY ════ -->
+<section id="about" class="sec-alt">
+  <div class="sec-head">
+    <p class="sec-label">Executive Bio</p>
+    <h2 class="sec-title">ABOUT ME</h2>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        สวัสดีครับ ผม <strong>ขจรศักดิ์ ใจคง (แมน / Percussionman)</strong> ช่างภาพ วิดีโอกราเฟอร์ และวิดีโอเอดิเตอร์มืออาชีพ ด้วยพื้นฐานความหลงใหลใน <strong>"จังหวะดนตรี" (Percussion)</strong> ผมนำเซนส์ของ Rhythm มาผสานกับศาสตร์แห่งภาพเคลื่อนไหว ทำให้ผลงานทุกชิ้นมีไดนามิกที่ดึงดูดสายตาและการตัดต่อที่แม่นยำทุกจังหวะ
+      </p>
+      <p>
+        ตลอดกว่า <strong>5 ปีในสายงาน Visual Production</strong> ผมมีประสบการณ์ครอบคลุมทั้งเวทีคอนเสิร์ตใหญ่ระดับประเทศ (อาทิ <em>4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall</em>) และความเชี่ยวชาญเฉพาะทางในสาย <strong>Motorsport</strong> ณ สนามระดับโลกอย่าง <em>Chang International Circuit (บุรีรัมย์)</em> และ <em>Sepang International Circuit (มาเลเซีย)</em>
+      </p>
+      <p>
+        ทำงานอย่างครบวงจรแบบ <strong>End-to-End Production</strong> ตั้งแต่วาง Concept มุมกล้อง, ควบคุมการถ่ายทำ On-site, กริพและกิมบอล, การตัดต่อ ไปจนถึง <strong>High-end Color Grading (DaVinci Resolve / RAW Workflow)</strong> พร้อมระบบส่งมอบงานที่รวดเร็ว (Fast Delivery) ตอบโจทย์ทั้งสื่อโซเชียลมีเดียระดับไวรัลและงานพรีเมียมคอมเมอร์เชียล
+      </p>
+
+      <div class="about-highlights">
+        <div class="highlight-pill">
+          <span>🏁</span>
+          <div>Motorsport Speed & Panning Specialist</div>
+        </div>
+        <div class="highlight-pill">
+          <span>🎸</span>
+          <div>Concert Low-light & Live Stage Mastery</div>
+        </div>
+        <div class="highlight-pill">
+          <span>🎨</span>
+          <div>RAW Colorist (DaVinci Resolve / ACES)</div>
+        </div>
+        <div class="highlight-pill">
+          <span>⚡</span>
+          <div>Fast-Turnaround Viral Content Creation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics-container">
+      <div class="metric-card">
+        <div class="metric-val">5+</div>
+        <div class="metric-label">Years Experience</div>
+        <div class="metric-sub">Professional Media & Production</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">50+</div>
+        <div class="metric-label">Concerts & Shows</div>
+        <div class="metric-sub">Major Artists & Venues in Thailand</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">2</div>
+        <div class="metric-label">World-Class Circuits</div>
+        <div class="metric-sub">Chang (TH) & Sepang (MY)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">8K</div>
+        <div class="metric-label">RAW Production</div>
+        <div class="metric-sub">Nikon Z8 & High-speed Lenses</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRODUCTION PARTNERS & BRANDS ════ -->
+<section id="clients">
+  <div class="clients-label">Trusted By Top Music Labels, Event Organizers & Brands</div>
+  <div class="clients-grid">
+    <div class="client-badge">MammothMusic</div>
+    <div class="client-badge">Space Brothers</div>
+    <div class="client-badge">SongZoom</div>
+    <div class="client-badge">Riser Music</div>
+    <div class="client-badge">Chang International Circuit</div>
+    <div class="client-badge">Sepang International Circuit</div>
+    <div class="client-badge">Royal Paragon Hall</div>
+    <div class="client-badge">Soonthareeya Ratchadamri</div>
+    <div class="client-badge">Areeya Property</div>
+    <div class="client-badge">The Westin Grande Sukhumvit</div>
+    <div class="client-badge">CAPME Crispy Pork</div>
+    <div class="client-badge">ฟังดี Channel</div>
+    <div class="client-badge">U-BAR Khon Kaen</div>
+  </div>
+</section>
+
 
 <!-- ════ VIDEO ════ -->
 <section id="video" class="sec-alt">
@@ -972,8 +1247,70 @@
   </div>
 </section>
 
+<!-- ════ SKILLS & GEAR ════ -->
+<section id="skills">
+  <div class="sec-head">
+    <p class="sec-label">Production Capabilities</p>
+    <h2 class="sec-title">SKILLS & GEAR</h2>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="skills-grid">
+    <!-- Card 1: Software -->
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <h3 class="skill-card-title">Software & Post-Production</h3>
+      <p class="skill-card-desc">
+        เชี่ยวชาญการตัดต่อ การเกรดสีระดับภาพยนตร์ และการจัดการ Color Pipeline จากกล้อง RAW สู่ Master Delivery
+      </p>
+      <ul class="skill-items">
+        <li><span class="skill-name">DaVinci Resolve</span><span class="skill-badge">Color Grading & Edit</span></li>
+        <li><span class="skill-name">Adobe Premiere Pro</span><span class="skill-badge">Master Editing</span></li>
+        <li><span class="skill-name">Adobe After Effects</span><span class="skill-badge">Motion Graphics</span></li>
+        <li><span class="skill-name">Adobe Lightroom Classic</span><span class="skill-badge">RAW Retouching</span></li>
+        <li><span class="skill-name">Adobe Photoshop</span><span class="skill-badge">Commercial Stills</span></li>
+        <li><span class="skill-name">Final Cut Pro</span><span class="skill-badge">Fast Delivery</span></li>
+      </ul>
+    </div>
+
+    <!-- Card 2: Hardware & Gear -->
+    <div class="skill-card">
+      <div class="skill-icon">📷</div>
+      <h3 class="skill-card-title">Camera System & Hardware</h3>
+      <p class="skill-card-desc">
+        พร้อมด้วยอุปกรณ์ระดับไฮเอนด์ที่รองรับงานความเร็วสูงและแสงน้อย ทำงานได้ทันทีทั้งงานเดี่ยวและร่วมทีมใหญ่
+      </p>
+      <ul class="skill-items">
+        <li><span class="skill-name">Nikon Z8 Flagship</span><span class="skill-badge">8K N-RAW / 4K 120p</span></li>
+        <li><span class="skill-name">Motorsport Telephoto Lenses</span><span class="skill-badge">High-Speed AF</span></li>
+        <li><span class="skill-name">Fast Prime Lenses (f/1.2 - f/1.8)</span><span class="skill-badge">Concert Low-Light</span></li>
+        <li><span class="skill-name">3-Axis Gimbal & Car Rigging</span><span class="skill-badge">Cinematic Tracking</span></li>
+        <li><span class="skill-name">Wireless Mic & Field Audio</span><span class="skill-badge">Pro Sound Sync</span></li>
+        <li><span class="skill-name">High-CRI Location Lighting</span><span class="skill-badge">Studio & Ambient</span></li>
+      </ul>
+    </div>
+
+    <!-- Card 3: Competencies -->
+    <div class="skill-card">
+      <div class="skill-icon">🎯</div>
+      <h3 class="skill-card-title">Core Competencies</h3>
+      <p class="skill-card-desc">
+        ทักษะเฉพาะทางที่ผสมผสานระหว่างเซนส์ความเร็ว จังหวะดนตรี และการสื่อสารภาพเชิงพาณิชย์
+      </p>
+      <ul class="skill-items">
+        <li><span class="skill-name">Motorsport Panning & Apex Tracking</span><span class="skill-badge">Specialist</span></li>
+        <li><span class="skill-name">Concert & Stage Dynamic Shooting</span><span class="skill-badge">Expert</span></li>
+        <li><span class="skill-name">Automotive & Product Commercial</span><span class="skill-badge">High-End</span></li>
+        <li><span class="skill-name">Viral Short-Form (Reels/TikTok)</span><span class="skill-badge">High Reach</span></li>
+        <li><span class="skill-name">Color Science (ACES / Rec.709)</span><span class="skill-badge">Standardized</span></li>
+        <li><span class="skill-name">Rapid On-site Media Turnaround</span><span class="skill-badge">100% Reliable</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ════ CONTACT ════ -->
-<section id="contact">
+<section id="contact" class="sec-alt">
   <div class="sec-head">
     <p class="sec-label">Get In Touch</p>
     <h2 class="sec-title">CONTACT</h2>
@@ -987,11 +1324,11 @@
       </div>
       <div class="citem">
         <div class="cicon">📞</div>
-        <div><div class="clabel">โทรศัพท์</div><div class="cvalue">089-997-7941</div></div>
+        <div><div class="clabel">โทรศัพท์</div><div class="cvalue"><a href="tel:0899977941" style="color:inherit;text-decoration:none;">089-997-7941</a></div></div>
       </div>
       <div class="citem">
         <div class="cicon">📧</div>
-        <div><div class="clabel">Email</div><div class="cvalue">kajornsak.jaikong@gmail.com</div></div>
+        <div><div class="clabel">Email</div><div class="cvalue"><a href="mailto:kajornsak.jaikong@gmail.com" style="color:inherit;text-decoration:none;">kajornsak.jaikong@gmail.com</a></div></div>
       </div>
       <div class="citem">
         <div class="cicon">🎬</div>
@@ -1001,15 +1338,33 @@
           <span style="margin-left:12px;">TikTok</span>
         </div></div>
       </div>
+
+      <!-- RESUME CALLOUT -->
+      <div style="margin-top:32px;background:rgba(255,215,0,.04);border:1px dashed var(--border-gold);border-radius:12px;padding:24px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <span style="font-size:1.6rem">📄</span>
+          <div>
+            <h4 style="font-size:.98rem;font-weight:700;color:var(--white)">สนใจพิจารณาประวัติการทำงาน (CV)?</h4>
+            <p style="font-size:.78rem;color:var(--gray)">สามารถเปิดดูเรซูเม่ฉบับดิจิทัล หรือสั่งพิมพ์เป็นไฟล์ PDF ได้ทันที</p>
+          </div>
+        </div>
+        <a href="resume.html" class="btn btn-resume" style="width:100%;justify-content:center;margin-top:12px">
+          📄 เปิดดู Resume / CV (Digital & Print PDF)
+        </a>
+      </div>
     </div>
+
     <div class="cta-box">
-      <h3 class="cta-title">Let's drive your<br><em>brand forward</em><br>together.</h3>
+      <h3 class="cta-title">Let's drive your<br><em>vision forward</em><br>together.</h3>
       <p class="cta-sub">
-        รับงาน Photography · Videography<br>
-        Video Editing · Motorsport Content<br>
-        Social Media Content
+        พร้อมร่วมงานทั้งตำแหน่ง <strong>Full-time</strong> และ <strong>Production Project Contract</strong><br>
+        Videography · Photography · Video Editing<br>
+        Motorsport Media Specialist · Concert & Commercial
       </p>
-      <a href="tel:0899977941" class="btn btn-primary" style="font-size:.9rem;padding:14px 36px">📞 ติดต่อเลย</a>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+        <a href="tel:0899977941" class="btn btn-primary" style="font-size:.9rem;padding:14px 36px;width:100%;max-width:320px;justify-content:center">📞 โทร 089-997-7941</a>
+        <a href="https://line.me/ti/p/~percussion_man" target="_blank" class="btn btn-outline" style="font-size:.85rem;padding:12px 30px;width:100%;max-width:320px;justify-content:center">💬 ทัก Line: percussion_man</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1023,13 +1378,30 @@
   <span id="plb-counter"></span>
 </div>
 
+<!-- ════ FLOATING MOBILE BAR ════ -->
+<div class="mobile-bar">
+  <a href="tel:0899977941" class="mbar-call">📞 โทร</a>
+  <a href="https://line.me/ti/p/~percussion_man" target="_blank" class="mbar-line">💬 LINE</a>
+  <a href="resume.html" class="mbar-resume">📄 Resume</a>
+</div>
+
 <!-- ════ FOOTER ════ -->
 <footer>
-  <span>© 2024 <strong style="color:var(--yellow)">Kajornsak Jaikong</strong> — Percussionman</span>
-  <span>Photographer · Videographer · Video Editor</span>
+  <span>© 2026 <strong style="color:var(--yellow)">Kajornsak Jaikong</strong> — Percussionman</span>
+  <span>Senior Videographer · Motorsport Media Specialist · Video Editor</span>
 </footer>
 
 <script>
+// ── Mobile Menu Toggle ──
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.classList.toggle('open');
+}
+function closeMenu() {
+  const nav = document.getElementById('navLinks');
+  if(nav) nav.classList.remove('open');
+}
+
 // ── Filter ──
 function filter(gridId, cat, btn, tabsId) {
   document.querySelectorAll('#'+tabsId+' .tab').forEach(t=>t.classList.remove('on'));
@@ -1089,9 +1461,10 @@ document.addEventListener('keydown',e=>{
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll',()=>{
   let cur='';
-  sections.forEach(s=>{ if(window.scrollY>=s.offsetTop-80) cur=s.id; });
+  sections.forEach(s=>{ if(window.scrollY>=s.offsetTop-100) cur=s.id; });
   document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.style.color = a.getAttribute('href')==='#'+cur ? 'var(--yellow)' : '';
+    if(a.classList.contains('btn-nav-resume')) return;
+    a.classList.toggle('active', a.getAttribute('href')==='#'+cur);
   });
 });
 </script>
