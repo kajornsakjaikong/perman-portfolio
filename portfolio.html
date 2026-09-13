@@ -310,55 +310,74 @@
 
     /* full motorsport grid */
     .ms-grid-full{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;
-    }
-    .ms-grid-full .ms-photo{aspect-ratio:3/2}
-
-    /* ── MOTORSPORT GROUPED BLOCKS ── */
-    .ms-group-block{
-      background:rgba(255,255,255,.015);
-      border:1px solid var(--border);border-radius:18px;
-      padding:36px;margin-bottom:48px;transition:border-color .3s, box-shadow .3s;
-    }
-    .ms-group-block:hover{
-      border-color:rgba(255,215,0,.35);box-shadow:0 16px 44px rgba(0,0,0,.6);
-    }
-    .ms-group-header{
-      display:flex;justify-content:space-between;align-items:flex-start;
-      margin-bottom:28px;flex-wrap:wrap;gap:18px;border-bottom:1px solid rgba(255,255,255,.07);
-      padding-bottom:22px;
-    }
-    .ms-group-title-area{flex:1;min-width:280px}
-    .ms-group-badge{
-      display:inline-block;background:rgba(255,215,0,.1);color:var(--yellow);
-      border:1px solid rgba(255,215,0,.25);border-radius:20px;
-      padding:4px 12px;font-size:.72rem;font-weight:700;letter-spacing:1.5px;
-      text-transform:uppercase;margin-bottom:10px;
-    }
-    .ms-group-h3{font-size:1.45rem;font-weight:800;color:var(--white);line-height:1.3}
-    .ms-group-sub{font-size:.86rem;color:var(--gray-light);margin-top:6px;line-height:1.6}
-    .ms-group-btn{
-      background:rgba(255,255,255,.05);border:1px solid var(--border-gold);
-      color:var(--yellow);padding:11px 22px;border-radius:30px;
-      font-size:.82rem;font-weight:700;cursor:pointer;
-      display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;
-      white-space:nowrap;
-    }
-    .ms-group-btn:hover{
-      background:var(--yellow);color:var(--black);transform:translateY(-2px);
-      box-shadow:0 6px 20px rgba(255,215,0,.3);
-    }
-    .ms-group-grid{
       display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;
     }
-    .ms-group-grid .ms-photo{
-      aspect-ratio:3/2;border-radius:10px;overflow:hidden;cursor:pointer;
+    .ms-grid-full .ms-photo{
+      aspect-ratio:3/2;cursor:pointer;border-radius:10px;overflow:hidden;
+      background:var(--card);border:1px solid var(--border);position:relative;
+    }
+
+    /* ── MOTORSPORT FEATURED ALBUMS ── */
+    .ms-albums-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-bottom:48px;
+    }
+    .ms-album-card{
+      background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;
+      overflow:hidden;cursor:pointer;transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      display:flex;flex-direction:column;
+    }
+    .ms-album-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,215,0,.45);
+      box-shadow:0 14px 36px rgba(0,0,0,.6), 0 0 20px rgba(255,215,0,.12);
+    }
+    .ms-album-thumb{
+      position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#050505;
+    }
+    .ms-album-thumb img{
+      width:100%;height:100%;object-fit:cover;transition:transform .5s ease, filter .3s ease;
+      filter:brightness(.92);
+    }
+    .ms-album-card:hover .ms-album-thumb img{
+      transform:scale(1.05);filter:brightness(1);
+    }
+    .ms-album-badge{
+      position:absolute;top:14px;left:14px;
+      background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,215,0,.35);color:var(--yellow);
+      font-size:.72rem;font-weight:700;letter-spacing:1px;
+      padding:5px 13px;border-radius:20px;text-transform:uppercase;
+    }
+    .ms-album-count{
+      position:absolute;bottom:12px;right:14px;
+      background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.18);color:#fff;
+      font-size:.75rem;font-weight:600;padding:4px 12px;border-radius:12px;
+    }
+    .ms-album-info{
+      padding:24px;display:flex;flex-direction:column;flex:1;
+    }
+    .ms-album-h3{
+      font-size:1.3rem;font-weight:800;color:var(--white);margin-bottom:8px;line-height:1.3;
+    }
+    .ms-album-meta{
+      font-size:.84rem;color:var(--gray);margin-bottom:12px;
+    }
+    .ms-album-desc{
+      font-size:.83rem;color:var(--gray-light);line-height:1.6;margin-bottom:20px;flex:1;
+    }
+    .ms-album-action{
+      display:inline-flex;align-items:center;justify-content:space-between;
+      color:var(--yellow);font-size:.82rem;font-weight:700;letter-spacing:.5px;
+      padding-top:14px;border-top:1px solid rgba(255,255,255,.07);
+    }
+    .ms-album-card:hover .ms-album-action{
+      color:#fff;
     }
     @media(max-width:768px){
-      .ms-group-block{padding:20px 14px;border-radius:12px}
-      .ms-group-header{flex-direction:column;align-items:flex-start}
-      .ms-group-btn{width:100%;justify-content:center}
-      .ms-group-h3{font-size:1.2rem}
+      .ms-albums-grid{grid-template-columns:1fr;gap:18px}
+      .ms-album-info{padding:18px}
+      .ms-album-h3{font-size:1.15rem}
     }
 
     /* ── MOTORSPORT HERO ── */
@@ -1277,249 +1296,121 @@
     </div>
   </div>
 
-  <!-- ════ FILTER TABS BY MOTORSPORT GROUP ════ -->
-  <div class="tabs" id="mstabs" style="justify-content:center;margin-bottom:36px">
-    <button class="tab on" onclick="filterMS('all', this)">ทุกกลุ่มงาน (All Groups)</button>
-    <button class="tab" onclick="filterMS('d1gp', this)">🏁 D1 Grand Prix (Drift Series)</button>
-    <button class="tab" onclick="filterMS('phuket', this)">🏎️ Phuket Circuit Series</button>
-    <button class="tab" onclick="filterMS('circuit', this)">🏆 Chang & Sepang (Supercars)</button>
+  <!-- ════ NEW PHOTO SETS (CURATED ALBUMS) ════ -->
+  <div style="margin:44px 0 24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+    <div>
+      <p class="sec-label" style="color:var(--yellow);margin-bottom:4px;">Featured Albums</p>
+      <h3 style="font-size:1.45rem;font-weight:800;color:var(--white);letter-spacing:.3px;">ชุดภาพถ่ายเซ็ตใหม่ (New Photo Albums)</h3>
+      <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">คลิกที่การ์ดเพื่อเปิดดูอัลบั้มภาพความละเอียดสูงแบบสไลด์โชว์เต็มจอ (Full Lightbox)</p>
+    </div>
+    <span style="font-size:.82rem;color:var(--yellow);background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);padding:5px 14px;border-radius:20px;font-weight:600;">
+      📁 2 Curated Albums
+    </span>
   </div>
 
-  <!-- ══════════════════════════════════════════════════
-       GROUP 1: D1 GRAND PRIX THAILAND (DRIFT SERIES)
-  ══════════════════════════════════════════════════ -->
-  <div class="ms-group-block" data-group="d1gp">
-    <div class="ms-group-header">
-      <div class="ms-group-title-area">
-        <span class="ms-group-badge">D1GP Thailand 2024 · Pro Drift Series</span>
-        <h3 class="ms-group-h3">D1 Grand Prix Thailand — Motul P'Pubz #87</h3>
-        <p class="ms-group-sub">
-          📍 สนาม Impact Speed Park | 📸 6 Curated Shots (High-Speed Panning, Tire Smoke Screen & Night Drift Attack)
-        </p>
+  <div class="ms-albums-grid">
+    <!-- Album 1: D1GP Thailand -->
+    <div class="ms-album-card" onclick="openGallery('d1gp',0)">
+      <div class="ms-album-thumb">
+        <img src="img/d1gp_06.jpg" alt="D1 Grand Prix Thailand — Pro Drift Series" loading="lazy">
+        <span class="ms-album-badge">🏁 D1GP Pro Drift</span>
+        <span class="ms-album-count">📁 อัลบั้ม 6 รูป (Full Res)</span>
       </div>
-      <button class="ms-group-btn" onclick="openGallery('d1gp',0)">
-        <span>🖼️ เปิดดูสไลด์เต็มจอ (6 Photos)</span> <span>→</span>
-      </button>
+      <div class="ms-album-info">
+        <h4 class="ms-album-h3">D1 Grand Prix Thailand — Pro Drift Series</h4>
+        <div class="ms-album-meta">📍 สนามแข่ง Impact Speed Park | Motul P'Pubz #87</div>
+        <p class="ms-album-desc">
+          การถ่ายภาพความเร็วสูงในรูปแบบ Panning Shot ดักจับจังหวะการดริฟต์เข้าโค้ง มุมแคมเบอร์ล้อ ควันยางท่วมแทร็ก และช็อตมาสเตอร์พีซไนท์ดริฟต์รอบกลางคืน
+        </p>
+        <div class="ms-album-action">
+          <span>🖼️ เปิดดูอัลบั้มเต็มจอ (6 Photos)</span>
+          <span>→</span>
+        </div>
+      </div>
     </div>
 
-    <div class="ms-group-grid">
-      <div class="ms-photo" onclick="openGallery('d1gp',0)">
-        <img src="img/d1gp_01.jpg" alt="D1GP Drifting — Pit Garage & Camber" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Pit Garage</span>
-          <span class="ms-photo-title">Widebody & Camber Angle</span>
-        </div>
+    <!-- Album 2: Phuket Circuit Series -->
+    <div class="ms-album-card" onclick="openGallery('phuket',0)">
+      <div class="ms-album-thumb">
+        <img src="img/phuket_01.jpg" alt="Phuket Circuit Speed & Apex Dynamics" loading="lazy">
+        <span class="ms-album-badge">🏎️ Circuit Racing</span>
+        <span class="ms-album-count">📁 อัลบั้ม 7 รูป (Full Res)</span>
       </div>
-      <div class="ms-photo" onclick="openGallery('d1gp',1)">
-        <img src="img/d1gp_02.jpg" alt="D1GP Drifting — Team & Engine Tuning" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Pit Paddock</span>
-          <span class="ms-photo-title">Team Mechanics & Engine Tuning</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('d1gp',2)">
-        <img src="img/d1gp_03.jpg" alt="D1GP Drifting — High Speed Panning" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Speed Panning</span>
-          <span class="ms-photo-title">High-Speed Side Panning</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('d1gp',3)">
-        <img src="img/d1gp_04.jpg" alt="D1GP Drifting — Countersteer & Smoke" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Apex Countersteer</span>
-          <span class="ms-photo-title">Apex Attack & Tire Smoke</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('d1gp',4)">
-        <img src="img/d1gp_05.jpg" alt="D1GP Drifting — Aggressive Slide" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Full Smoke</span>
-          <span class="ms-photo-title">Full Smoke Drift Attack</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('d1gp',5)">
-        <img src="img/d1gp_06.jpg" alt="D1GP Drifting — Night Drift Masterpiece" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">Masterpiece</span>
-          <span class="ms-photo-title">Twilight & Night Drift Action</span>
+      <div class="ms-album-info">
+        <h4 class="ms-album-h3">Phuket Circuit Speed & Apex Dynamics</h4>
+        <div class="ms-album-meta">📍 สนามแข่งรถภูเก็ต (Phuket Racing Circuit)</div>
+        <p class="ms-album-desc">
+          จับจังหวะการตัดไลน์ Apex ในโค้งความเร็วสูง สะท้อนฟิสิกส์การถ่ายโอนน้ำหนักของตัวถังและช่วงล่างรถแข่ง พร้อมมู้ดบรรยากาศพิทเลนและแพดด็อก
+        </p>
+        <div class="ms-album-action">
+          <span>🖼️ เปิดดูอัลบั้มเต็มจอ (7 Photos)</span>
+          <span>→</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════
-       GROUP 2: PHUKET CIRCUIT SPEED SERIES
-  ══════════════════════════════════════════════════ -->
-  <div class="ms-group-block" data-group="phuket">
-    <div class="ms-group-header">
-      <div class="ms-group-title-area">
-        <span class="ms-group-badge">Phuket Track · Circuit Speed</span>
-        <h3 class="ms-group-h3">Phuket Circuit Speed & Apex Dynamics</h3>
-        <p class="ms-group-sub">
-          📍 สนามแข่งรถภูเก็ต | 📸 7 Curated Shots (High-Speed Apex, Track Action & Paddock Mood)
-        </p>
+  <!-- ════ ORIGINAL MOTORSPORT GALLERY (SELECTED TRACK SHOTS) ════ -->
+  <div class="ms-gallery-wrap">
+    <div style="margin: 54px 0 24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.07);padding-top:40px;">
+      <div>
+        <p class="sec-label" style="margin-bottom:4px;">Selected Shots</p>
+        <h3 style="font-size:1.45rem;font-weight:800;color:var(--white);">Chang & Sepang International Circuits</h3>
+        <p style="color:var(--gray);font-size:.88rem;margin-top:4px;">ภาพถ่ายแอคชั่นการแข่งขัน Supercar & Circuit Racing ณ สนาม Chang International Circuit (บุรีรัมย์) และ Sepang (มาเลเซีย)</p>
       </div>
-      <button class="ms-group-btn" onclick="openGallery('phuket',0)">
-        <span>🖼️ เปิดดูสไลด์เต็มจอ (7 Photos)</span> <span>→</span>
-      </button>
+      <span style="font-size:.82rem;color:var(--gray);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-weight:600;">
+        🏁 47 Track Shots
+      </span>
     </div>
 
-    <div class="ms-group-grid">
-      <div class="ms-photo" onclick="openGallery('phuket',0)">
-        <img src="img/phuket_01.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">Motorsport Action & Speed</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',1)">
-        <img src="img/phuket_02.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">Track Action Shot</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',2)">
-        <img src="img/phuket_03.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">High-Speed Apex</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',3)">
-        <img src="img/phuket_04.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">Pitlane & Paddock Mood</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',4)">
-        <img src="img/phuket_05.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">Race Focus & Detail</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',5)">
-        <img src="img/phuket_06.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">High Dynamic Action</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('phuket',6)">
-        <img src="img/phuket_07.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Phuket Track</span>
-          <span class="ms-photo-title">Dynamic Panning Shot</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════
-       GROUP 3: CHANG & SEPANG INTERNATIONAL CIRCUITS
-  ══════════════════════════════════════════════════ -->
-  <div class="ms-group-block" data-group="circuit">
-    <div class="ms-group-header">
-      <div class="ms-group-title-area">
-        <span class="ms-group-badge">Buriram & Sepang · FIA Grade 1 Circuits</span>
-        <h3 class="ms-group-h3">Chang International Circuit & Sepang International Circuit</h3>
-        <p class="ms-group-sub">
-          📍 บุรีรัมย์ (Chang Circuit) & มาเลเซีย (Sepang Circuit) | 📸 12 Selected Shots (Supercar & Speed Series)
-        </p>
-      </div>
-      <button class="ms-group-btn" onclick="openGallery('circuit',0)">
-        <span>🖼️ เปิดดูสไลด์เต็มจอ (12 Photos)</span> <span>→</span>
-      </button>
-    </div>
-
-    <div class="ms-group-grid">
-      <div class="ms-photo" onclick="openGallery('circuit',0)">
-        <img src="img/MA900052_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Chang Circuit</span>
-          <span class="ms-photo-title">Supercar Speed Challenge</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',1)">
-        <img src="img/MA900014_2048px.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">International Track</span>
-          <span class="ms-photo-title">Track Attack Line</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',2)">
-        <img src="img/MA900061_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Circuit Speed</span>
-          <span class="ms-photo-title">High Speed Cornering</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',3)">
-        <img src="img/MA900085_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Chang Circuit</span>
-          <span class="ms-photo-title">Apex Panning Precision</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',4)">
-        <img src="img/MA900092_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Track Dynamics</span>
-          <span class="ms-photo-title">Race Car Motion Blur</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',5)">
-        <img src="img/MA900152_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Sepang Circuit</span>
-          <span class="ms-photo-title">International Challenge</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',6)">
-        <img src="img/MA900258_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Circuit Racing</span>
-          <span class="ms-photo-title">Track Action Focus</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',7)">
-        <img src="img/MA900377_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Chang Circuit</span>
-          <span class="ms-photo-title">Buriram High-Speed Apex</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',8)">
-        <img src="img/MA900584_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Circuit Speed</span>
-          <span class="ms-photo-title">Straight Panning Control</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',9)">
-        <img src="img/MAN00010_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Track Action</span>
-          <span class="ms-photo-title">Motorsport Raw Grade</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',10)">
-        <img src="img/MAN00260_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Sepang Circuit</span>
-          <span class="ms-photo-title">High Speed Cornering Exit</span>
-        </div>
-      </div>
-      <div class="ms-photo" onclick="openGallery('circuit',11)">
-        <img src="img/MAN00319_fullres.jpg" alt="Motorsport Racing — Buriram & Sepang" loading="lazy">
-        <div class="ms-photo-cap">
-          <span class="ms-photo-tag">Chang Circuit</span>
-          <span class="ms-photo-title">Championship Race Focus</span>
-        </div>
-      </div>
+    <div class="ms-grid-full">
+      <div class="ms-photo" onclick="openGallery('circuit',0)"><img src="img/MA900004.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',1)"><img src="img/MA900010.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',2)"><img src="img/MA900014_2048px.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',3)"><img src="img/MA900034.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',4)"><img src="img/MA900052_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',5)"><img src="img/MA900053_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',6)"><img src="img/MA900061_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',7)"><img src="img/MA900069.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',8)"><img src="img/MA900085_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',9)"><img src="img/MA900086.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',10)"><img src="img/MA900092_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',11)"><img src="img/MA900110.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',12)"><img src="img/MA900122.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',13)"><img src="img/MA900152_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',14)"><img src="img/MA900218_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',15)"><img src="img/MA900258_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',16)"><img src="img/MA900259_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',17)"><img src="img/MA900286_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',18)"><img src="img/MA900313_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',19)"><img src="img/MA900377_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',20)"><img src="img/MA900495_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',21)"><img src="img/MA900558_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',22)"><img src="img/MA900566_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',23)"><img src="img/MA900584_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',24)"><img src="img/MA900624_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',25)"><img src="img/MA900746_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',26)"><img src="img/MA900886_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',27)"><img src="img/MA901054_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',28)"><img src="img/MA901089_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',29)"><img src="img/MA901246_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',30)"><img src="img/MA901331_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',31)"><img src="img/MA901363_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',32)"><img src="img/MA901492_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',33)"><img src="img/MA901499_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',34)"><img src="img/MA901511_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',35)"><img src="img/MA901563_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',36)"><img src="img/MA901779_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',37)"><img src="img/MA901883_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',38)"><img src="img/MAN00009.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',39)"><img src="img/MAN00010_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',40)"><img src="img/MAN00142_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',41)"><img src="img/MAN00260_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',42)"><img src="img/MAN00319_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',43)"><img src="img/MAN00451_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',44)"><img src="img/MAN00461_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',45)"><img src="img/MAN00502_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
+      <div class="ms-photo" onclick="openGallery('circuit',46)"><img src="img/MAN00630_fullres.jpg" alt="Motorsport Racing — Chang & Sepang Circuit" loading="lazy"></div>
     </div>
   </div>
 
@@ -1700,16 +1591,6 @@ function filter(gridId, cat, btn, tabsId) {
   });
 }
 
-// ── Motorsport Group Filter ──
-function filterMS(cat, btn) {
-  document.querySelectorAll('#mstabs .tab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  document.querySelectorAll('.ms-group-block').forEach(b=>{
-    const show = (cat === 'all' || b.dataset.group === cat);
-    b.style.display = show ? '' : 'none';
-  });
-}
-
 // ── Scroll reveal ──
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }});
@@ -1769,20 +1650,55 @@ const galleries = {
     ]
   },
   circuit: {
-    title: 'Chang & Sepang International Supercar Challenge',
+    title: 'Chang & Sepang International Supercars (47 Photos)',
     images: [
-      'img/MA900052_fullres.jpg',
+      'img/MA900004.jpg',
+      'img/MA900010.jpg',
       'img/MA900014_2048px.jpg',
+      'img/MA900034.jpg',
+      'img/MA900052_fullres.jpg',
+      'img/MA900053_fullres.jpg',
       'img/MA900061_fullres.jpg',
+      'img/MA900069.jpg',
       'img/MA900085_fullres.jpg',
+      'img/MA900086.jpg',
       'img/MA900092_fullres.jpg',
+      'img/MA900110.jpg',
+      'img/MA900122.jpg',
       'img/MA900152_fullres.jpg',
+      'img/MA900218_fullres.jpg',
       'img/MA900258_fullres.jpg',
+      'img/MA900259_fullres.jpg',
+      'img/MA900286_fullres.jpg',
+      'img/MA900313_fullres.jpg',
       'img/MA900377_fullres.jpg',
+      'img/MA900495_fullres.jpg',
+      'img/MA900558_fullres.jpg',
+      'img/MA900566_fullres.jpg',
       'img/MA900584_fullres.jpg',
+      'img/MA900624_fullres.jpg',
+      'img/MA900746_fullres.jpg',
+      'img/MA900886_fullres.jpg',
+      'img/MA901054_fullres.jpg',
+      'img/MA901089_fullres.jpg',
+      'img/MA901246_fullres.jpg',
+      'img/MA901331_fullres.jpg',
+      'img/MA901363_fullres.jpg',
+      'img/MA901492_fullres.jpg',
+      'img/MA901499_fullres.jpg',
+      'img/MA901511_fullres.jpg',
+      'img/MA901563_fullres.jpg',
+      'img/MA901779_fullres.jpg',
+      'img/MA901883_fullres.jpg',
+      'img/MAN00009.jpg',
       'img/MAN00010_fullres.jpg',
+      'img/MAN00142_fullres.jpg',
       'img/MAN00260_fullres.jpg',
       'img/MAN00319_fullres.jpg',
+      'img/MAN00451_fullres.jpg',
+      'img/MAN00461_fullres.jpg',
+      'img/MAN00502_fullres.jpg',
+      'img/MAN00630_fullres.jpg'
     ]
   }
 };
