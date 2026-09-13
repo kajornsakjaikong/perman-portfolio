@@ -606,6 +606,7 @@
 <section id="clients">
   <div class="clients-label">Trusted By Top Music Labels, Event Organizers & Brands</div>
   <div class="clients-grid">
+    <div class="client-badge">SCG (Siam Cement Group)</div>
     <div class="client-badge">MammothMusic</div>
     <div class="client-badge">Space Brothers</div>
     <div class="client-badge">SongZoom</div>
@@ -928,6 +929,19 @@
   </div>
 
   <div class="grid" id="pgrid">
+
+    <!-- ── SCG Cowboy Night ── -->
+    <div class="card card-clickable" data-cat="Concert" onclick="openSCGLB(0)">
+      <div class="card-thumb">
+        <img src="img/scg_06.jpg" alt="SCG Cowboy Night" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">SCG</span><span class="ctag">Corporate Event</span><span class="ctag">Staff Party</span></div>
+        <h3 class="ctitle">SCG Cowboy Night — Annual Corporate Party & Live Stage</h3>
+        <p class="cmeta">@ Siam Cement Group (SCG)</p>
+        <div class="croles"><span class="crole crole-key">Lead Photographer</span><span class="crole">Stage & Event Lighting</span><span class="crole" style="color:var(--yellow)">6 Selected Photos</span></div>
+      </div>
+    </div>
 
     <div class="card" data-cat="Concert">
       <div class="card-thumb"><img src="img/page24.jpg" alt="photo work" loading="lazy"></div>
@@ -1474,33 +1488,61 @@ document.querySelectorAll('.card').forEach((c,i)=>{
   io.observe(c);
 });
 
-// ── Product Lightbox ──
-const plbImgs = [
-  'img/product/product_overview.jpg',
-  'img/product/product_01.jpg','img/product/product_02.jpg',
-  'img/product/product_03.jpg','img/product/product_04.jpg',
-  'img/product/product_05.jpg','img/product/product_06.jpg',
-  'img/product/product_07.jpg','img/product/product_08.jpg',
-  'img/product/product_09.jpg','img/product/product_10.jpg',
-];
+// ── Lightbox Collections ──
+const galleries = {
+  product: [
+    'img/product/product_overview.jpg',
+    'img/product/product_01.jpg','img/product/product_02.jpg',
+    'img/product/product_03.jpg','img/product/product_04.jpg',
+    'img/product/product_05.jpg','img/product/product_06.jpg',
+    'img/product/product_07.jpg','img/product/product_08.jpg',
+    'img/product/product_09.jpg','img/product/product_10.jpg',
+  ],
+  scg: [
+    'img/scg_01.jpg',
+    'img/scg_02.jpg',
+    'img/scg_03.jpg',
+    'img/scg_04.jpg',
+    'img/scg_05.jpg',
+    'img/scg_06.jpg',
+  ]
+};
+let curGallery = 'product';
 let plbIdx = 0;
+
 function openPLB(i){
-  plbIdx = i||0;
+  curGallery = 'product';
+  openGallery(curGallery, i||0);
+}
+
+function openSCGLB(i){
+  curGallery = 'scg';
+  openGallery(curGallery, i||0);
+}
+
+function openGallery(galName, i){
+  curGallery = galName;
+  const list = galleries[galName] || galleries.product;
+  plbIdx = Math.max(0, Math.min(i||0, list.length - 1));
   const lb = document.getElementById('plb');
-  document.getElementById('plb-img').src = plbImgs[plbIdx];
-  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+plbImgs.length;
+  document.getElementById('plb-img').src = list[plbIdx];
+  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+list.length;
   lb.classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function closePLB(){
   document.getElementById('plb').classList.remove('open');
   document.body.style.overflow='';
 }
+
 function plbNav(dir){
-  plbIdx = (plbIdx+dir+plbImgs.length)%plbImgs.length;
-  document.getElementById('plb-img').src = plbImgs[plbIdx];
-  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+plbImgs.length;
+  const list = galleries[curGallery] || galleries.product;
+  plbIdx = (plbIdx + dir + list.length) % list.length;
+  document.getElementById('plb-img').src = list[plbIdx];
+  document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+list.length;
 }
+
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('plb').classList.contains('open')) return;
   if(e.key==='Escape') closePLB();
