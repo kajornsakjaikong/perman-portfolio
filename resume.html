@@ -12,47 +12,64 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#0c0c0c;--paper:#141414;--text:#e6e6e6;--text-muted:#8e8e8e;
-      --gold:#FFD700;--gold-dim:rgba(255,215,0,.15);--border:#262626;
-      --accent-badge:#202020;
+      --bg:#080808;--paper:#121212;--paper-card:#181818;--text:#e6e6e6;--text-muted:#949494;
+      --gold:#FFD700;--gold-glow:rgba(255,215,0,.25);--gold-dim:rgba(255,215,0,.12);
+      --border:#242424;--border-gold:rgba(255,215,0,.28);
     }
 
     body{
-      background:var(--bg);color:var(--text);
+      background:radial-gradient(circle at 50% -10%,rgba(255,215,0,.07) 0%,transparent 50%),var(--bg);
+      color:var(--text);
       font-family:'Prompt','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-      line-height:1.6;padding-bottom:60px;
+      line-height:1.65;padding-bottom:80px;min-height:100vh;
     }
 
     /* ── TOP ACTION BAR ── */
-    .top-bar{
+    .top-bar-outer{
       position:sticky;top:0;z-index:100;
-      background:rgba(12,12,12,.94);backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);padding:14px 24px;
+      background:rgba(8,8,8,.94);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      padding:0 30px;
+    }
+    .top-bar{
+      max-width:1040px;margin:0 auto;height:66px;
       display:flex;justify-content:space-between;align-items:center;
-      max-width:980px;margin:0 auto 28px;
+    }
+    .nav-brand-group{display:flex;align-items:center;gap:20px}
+    .nav-logo{
+      font-size:1.05rem;font-weight:900;letter-spacing:2px;color:var(--gold);
+      text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:6px;
     }
     .back-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;
-      transition:color .2s;
+      display:inline-flex;align-items:center;gap:6px;
+      color:var(--text-muted);text-decoration:none;font-size:.82rem;font-weight:600;
+      padding:6px 14px;border-radius:20px;border:1px solid var(--border);
+      background:rgba(255,255,255,.02);transition:all .2s ease;
     }
-    .back-btn:hover{color:var(--gold)}
+    .back-btn:hover{color:var(--gold);border-color:var(--border-gold);background:rgba(255,215,0,.05)}
+    
+    .nav-actions{display:flex;align-items:center;gap:14px}
     .print-btn{
-      background:var(--gold);color:#000;border:none;border-radius:6px;
-      padding:9px 20px;font-size:.85rem;font-weight:700;cursor:pointer;
-      display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;
-      font-family:inherit;
-    .print-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,215,0,.3)}
+      background:linear-gradient(135deg,#FFD700 0%,#e6c200 100%);
+      color:#000;border:none;border-radius:20px;
+      padding:8px 20px;font-size:.82rem;font-weight:700;cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;
+      font-family:inherit;box-shadow:0 2px 14px var(--gold-glow);
+    }
+    .print-btn:hover{
+      background:#fff;transform:translateY(-1px);
+      box-shadow:0 4px 20px rgba(255,215,0,.45);
+    }
 
     /* ── LANGUAGE SWITCHER ── */
     .lang-switch{
       display:inline-flex;align-items:center;gap:3px;
-      background:rgba(255,255,255,.05);border:1px solid rgba(255,215,0,.3);
+      background:rgba(255,255,255,.05);border:1px solid var(--border-gold);
       border-radius:20px;padding:3px 8px;
     }
     .lang-btn{
@@ -64,7 +81,7 @@
     .lang-btn:hover{color:var(--gold)}
     .lang-btn.active{
       color:#000;background:var(--gold);
-      box-shadow:0 0 10px rgba(255,215,0,.3);
+      box-shadow:0 0 10px var(--gold-glow);
     }
     .lang-divider{color:var(--border);font-size:.7rem;user-select:none}
 
@@ -86,97 +103,223 @@
 
     /* ── RESUME PAPER CONTAINER ── */
     .resume-wrapper{
-      max-width:940px;margin:0 auto;background:var(--paper);
-      border:1px solid var(--border);border-radius:12px;
-      padding:48px 56px;box-shadow:0 12px 48px rgba(0,0,0,.6);
+      max-width:1020px;margin:36px auto 0;
+      background:linear-gradient(180deg,#151515 0%,#0f0f0f 100%);
+      border:1px solid var(--border-gold);border-radius:16px;
+      padding:56px 64px;
+      box-shadow:0 25px 80px rgba(0,0,0,.85),0 0 50px rgba(255,215,0,.03);
+      position:relative;overflow:hidden;
+    }
+    .resume-wrapper::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
     }
 
     /* ── HEADER ── */
     .resume-header{
-      display:grid;grid-template-columns:1fr auto;gap:24px;
-      border-bottom:2px solid var(--border);padding-bottom:32px;margin-bottom:32px;
+      display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:34px;margin-bottom:34px;
+    }
+    .header-eyebrow{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--gold);background:rgba(255,215,0,.08);
+      border:1px solid rgba(255,215,0,.25);
+      padding:3px 14px;border-radius:20px;font-weight:700;margin-bottom:12px;
     }
     .applicant-name{
-      font-size:2.4rem;font-weight:800;letter-spacing:-.5px;color:#fff;line-height:1.1;
-      margin-bottom:6px;
+      font-size:clamp(2.3rem,4.5vw,3.2rem);font-weight:900;letter-spacing:-1px;color:#fff;line-height:1.05;
+      margin-bottom:8px;font-family:'Plus Jakarta Sans','Prompt',sans-serif;
+    }
+    .applicant-name em{
+      color:var(--gold);font-style:normal;font-weight:700;font-size:.82em;margin-left:6px;
     }
     .applicant-title{
-      font-size:1.05rem;color:var(--gold);font-weight:600;letter-spacing:.5px;margin-bottom:14px;
+      font-size:1.02rem;color:var(--text-muted);font-weight:500;
+      margin-bottom:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+    .applicant-title span.badge{
+      background:rgba(255,215,0,.1);color:var(--gold);border:1px solid rgba(255,215,0,.25);
+      font-size:.7rem;padding:2px 10px;border-radius:12px;font-weight:600;
     }
     .contact-grid{
-      display:grid;grid-template-columns:repeat(2,auto);gap:8px 24px;font-size:.82rem;color:var(--text-muted);
+      display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;
     }
-    .contact-item{display:flex;align-items:center;gap:8px}
+    .contact-item{
+      display:flex;align-items:center;gap:10px;
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--border);
+      border-radius:8px;padding:8px 14px;font-size:.82rem;
+      color:#ccc;transition:all .2s ease;
+    }
+    .contact-item:hover{
+      border-color:var(--border-gold);background:rgba(255,215,0,.03);
+    }
     .contact-item a{color:inherit;text-decoration:none}
     .contact-item a:hover{color:var(--gold)}
+    .c-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
 
-    .photo-col img{
-      width:110px;height:110px;object-fit:cover;border-radius:10px;
-      border:2px solid var(--gold);box-shadow:0 4px 14px rgba(0,0,0,.4);
+    .photo-col{position:relative;text-align:center}
+    .photo-col-wrap{
+      position:relative;width:140px;height:140px;margin:0 auto;
+    }
+    .photo-col-wrap img{
+      width:100%;height:100%;object-fit:cover;border-radius:14px;
+      border:2px solid var(--gold);
+      box-shadow:0 10px 30px rgba(0,0,0,.7),0 0 20px var(--gold-glow);
+    }
+    .photo-badge{
+      position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+      background:#080808;border:1px solid rgba(255,215,0,.4);
+      color:var(--gold);font-size:.65rem;font-weight:700;letter-spacing:1px;
+      text-transform:uppercase;padding:3px 12px;border-radius:12px;white-space:nowrap;
     }
 
     /* ── SECTION BLOCKS ── */
-    .resume-sec{margin-bottom:32px}
+    .resume-sec{margin-bottom:36px}
     .sec-head{
-      display:flex;align-items:center;gap:12px;margin-bottom:16px;
-      border-bottom:1px solid var(--border);padding-bottom:8px;
+      display:flex;align-items:center;gap:10px;margin-bottom:18px;
+      border-bottom:1px solid rgba(255,215,0,.2);padding-bottom:10px;
     }
     .sec-title{
-      font-size:.95rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);
+      font-size:.95rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+      display:flex;align-items:center;gap:8px;
+    }
+    .sec-title::before{
+      content:'';display:inline-block;width:7px;height:7px;
+      background:var(--gold);border-radius:2px;
     }
 
-    .summary-p{font-size:.88rem;color:#ccc;line-height:1.8;margin-bottom:12px}
+    /* ── SUMMARY CARD ── */
+    .summary-card{
+      background:rgba(255,215,0,.03);
+      border:1px solid rgba(255,215,0,.15);
+      border-left:4px solid var(--gold);
+      border-radius:0 12px 12px 0;
+      padding:22px 26px;
+    }
+    .summary-p{font-size:.88rem;color:#ddd;line-height:1.85;margin-bottom:14px}
+    .summary-p:last-child{margin-bottom:0}
+    .summary-p strong{color:#fff}
+    .summary-p em{color:var(--gold);font-style:normal}
 
     /* ── SKILLS SECTION ── */
     .skills-row{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    }
+    .skill-block{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:10px;padding:20px;
+      transition:all .25s ease;
+    }
+    .skill-block:hover{
+      border-color:var(--border-gold);transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,.4);
     }
     .skill-block h4{
-      font-size:.84rem;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:6px;
+      font-size:.82rem;font-weight:700;color:#fff;
+      text-transform:uppercase;letter-spacing:1px;
+      margin-bottom:12px;display:flex;align-items:center;gap:6px;
     }
     .skill-tags{display:flex;flex-wrap:wrap;gap:6px}
     .stag{
-      background:var(--accent-badge);border:1px solid var(--border);border-radius:4px;
-      padding:3px 10px;font-size:.76rem;color:#ddd;
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;
+      padding:4px 10px;font-size:.74rem;color:#ccc;
     }
     .stag-highlight{
-      background:var(--gold-dim);border-color:rgba(255,215,0,.3);color:var(--gold);font-weight:600;
+      background:var(--gold-dim);border-color:rgba(255,215,0,.35);color:var(--gold);font-weight:600;
     }
 
-    /* ── EXPERIENCE ── */
-    .exp-item{margin-bottom:24px;position:relative}
-    .exp-header{
-      display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
-      margin-bottom:4px;
+    /* ── EXPERIENCE TIMELINE ── */
+    .exp-timeline{
+      position:relative;padding-left:28px;
+      border-left:2px solid rgba(255,215,0,.3);
+      margin-left:8px;
     }
-    .exp-role{font-size:.98rem;font-weight:700;color:#fff}
-    .exp-role em{color:var(--gold);font-style:normal}
-    .exp-date{font-size:.78rem;color:var(--text-muted);font-weight:500}
-    .exp-company{font-size:.84rem;color:var(--gold);font-weight:600;margin-bottom:8px}
-    .exp-desc{font-size:.84rem;color:#bbb;line-height:1.75;margin-bottom:8px}
+    .exp-timeline::before{
+      content:'';position:absolute;top:4px;left:-7px;
+      width:12px;height:12px;border-radius:50%;
+      background:var(--gold);box-shadow:0 0 10px var(--gold);
+    }
+    .exp-header{
+      display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;
+      margin-bottom:6px;
+    }
+    .exp-role{font-size:1.06rem;font-weight:800;color:#fff}
+    .exp-role em{color:var(--gold);font-style:normal;font-weight:600;font-size:.85em}
+    .exp-date{
+      font-size:.76rem;font-weight:700;color:var(--gold);
+      background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);
+      padding:3px 12px;border-radius:12px;
+    }
+    .exp-company{font-size:.86rem;color:#aaa;font-weight:600;margin-bottom:12px}
+    .exp-desc{font-size:.86rem;color:#bbb;line-height:1.75;margin-bottom:14px}
     .exp-bullets{list-style:none;padding-left:0}
     .exp-bullets li{
-      position:relative;padding-left:18px;font-size:.82rem;color:#bbb;line-height:1.7;margin-bottom:4px;
+      position:relative;padding-left:22px;font-size:.84rem;color:#ccc;line-height:1.75;margin-bottom:8px;
     }
     .exp-bullets li::before{
-      content:'▪';position:absolute;left:0;color:var(--gold);font-size:.9rem;line-height:1.6;
+      content:'▸';position:absolute;left:0;color:var(--gold);font-size:1rem;
     }
+    .exp-bullets strong{color:#fff}
 
     /* ── PROJECT SHOWCASE TABLE ── */
+    .proj-table-wrap{
+      border-radius:10px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      margin-top:12px;
+    }
     .proj-table{
-      width:100%;border-collapse:collapse;margin-top:10px;font-size:.82rem;
+      width:100%;border-collapse:collapse;font-size:.84rem;
     }
     .proj-table th{
-      text-align:left;padding:10px 12px;background:rgba(255,255,255,.03);
-      color:var(--gold);border-bottom:1px solid var(--border);font-size:.76rem;text-transform:uppercase;letter-spacing:1px;
+      text-align:left;padding:12px 16px;
+      background:rgba(255,215,0,.08);
+      color:var(--gold);font-size:.74rem;text-transform:uppercase;
+      letter-spacing:1.2px;font-weight:800;
+      border-bottom:1px solid rgba(255,215,0,.25);
     }
     .proj-table td{
-      padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;vertical-align:top;
+      padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);
+      color:#ccc;vertical-align:top;
     }
-    .proj-table tr:hover td{background:rgba(255,215,0,.02)}
+    .proj-table tr:hover td{
+      background:rgba(255,215,0,.03);color:#fff;
+    }
     .proj-tag{
-      display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;
-      background:rgba(255,255,255,.05);color:#aaa;margin-right:4px;
+      display:inline-block;padding:3px 9px;border-radius:4px;font-size:.7rem;font-weight:700;
+      text-transform:uppercase;letter-spacing:.5px;
+    }
+    .proj-tag-ms{background:rgba(255,215,0,.12);color:var(--gold);border:1px solid rgba(255,215,0,.3)}
+    .proj-tag-concert{background:rgba(235,77,75,.12);color:#ff7675;border:1px solid rgba(235,77,75,.3)}
+    .proj-tag-live{background:rgba(9,132,227,.12);color:#74b9ff;border:1px solid rgba(9,132,227,.3)}
+    .proj-tag-mv{background:rgba(162,155,254,.12);color:#a29bfe;border:1px solid rgba(162,155,254,.3)}
+    .proj-tag-comm{background:rgba(0,184,148,.12);color:#55efc4;border:1px solid rgba(0,184,148,.3)}
+    .proj-tag-corp{background:rgba(253,203,110,.12);color:#ffeaa7;border:1px solid rgba(253,203,110,.3)}
+
+    /* ── STRENGTHS & LANGUAGES ── */
+    .strengths-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px;
+    }
+    .strength-card{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:10px;padding:20px 24px;
+    }
+    .strength-card h4{
+      font-size:.88rem;font-weight:700;color:#fff;margin-bottom:8px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .strength-card p,.strength-card li{
+      font-size:.83rem;color:#aaa;line-height:1.75;
+    }
+    .strength-card ul{list-style:none;padding:0;margin:0}
+    .strength-card li{margin-bottom:6px}
+
+    /* ── BOTTOM ACTIONS ── */
+    .bottom-actions{
+      display:flex;justify-content:center;gap:16px;margin-top:40px;
     }
 
     /* ── PRINT STYLES (@media print) ── */
@@ -184,65 +327,92 @@
       body{
         background:#fff!important;color:#111!important;font-size:9.5pt;line-height:1.45;padding:0;
       }
-      .top-bar{display:none!important}
+      .top-bar-outer,.bottom-actions{display:none!important}
       .resume-wrapper{
         border:none!important;box-shadow:none!important;background:none!important;
-        padding:0!important;max-width:100%!important;
+        padding:0!important;max-width:100%!important;margin:0!important;
       }
+      .resume-wrapper::before{display:none!important}
+      .header-eyebrow{color:#996500!important;border:1px solid #caa000!important;background:#fff8dc!important}
       .applicant-name{color:#000!important;font-size:22pt!important}
-      .applicant-title{color:#996500!important;font-size:11pt!important}
-      .contact-grid{color:#444!important;font-size:8.5pt!important}
-      .resume-header{border-bottom:2px solid #333!important;padding-bottom:16px!important;margin-bottom:20px!important}
-      .sec-title{color:#996500!important;font-size:10pt!important}
+      .applicant-name em{color:#996500!important}
+      .applicant-title{color:#444!important;font-size:10pt!important}
+      .applicant-title span.badge{background:#fff8dc!important;color:#775000!important;border:1px solid #caa000!important}
+      .contact-grid{grid-template-columns:repeat(2,1fr)!important;gap:6px 16px!important}
+      .contact-item{border:1px solid #ddd!important;background:#fafafa!important;color:#333!important;font-size:8.5pt!important;padding:4px 8px!important}
+      .resume-header{border-bottom:2px solid #333!important;padding-bottom:16px!important;margin-bottom:18px!important}
+      .sec-title{color:#996500!important;font-size:10.5pt!important}
       .sec-head{border-bottom:1px solid #ddd!important;margin-bottom:10px!important;padding-bottom:4px!important}
+      .summary-card{background:#fafafa!important;border:1px solid #ddd!important;border-left:4px solid #caa000!important;padding:12px 16px!important}
       .summary-p{color:#222!important;font-size:9pt!important}
-      .skill-block h4{color:#000!important;font-size:9pt!important}
-      .stag{background:#f0f0f0!important;color:#222!important;border:1px solid #ddd!important;font-size:8pt!important}
+      .skills-row{grid-template-columns:repeat(3,1fr)!important;gap:12px!important}
+      .skill-block{background:#fafafa!important;border:1px solid #ddd!important;padding:10px!important}
+      .skill-block h4{color:#000!important;font-size:8.5pt!important}
+      .stag{background:#f0f0f0!important;color:#222!important;border:1px solid #ddd!important;font-size:7.8pt!important}
       .stag-highlight{background:#fff8dc!important;border-color:#caa000!important;color:#775000!important}
+      .exp-timeline{border-left:2px solid #caa000!important;padding-left:16px!important}
+      .exp-timeline::before{background:#caa000!important;box-shadow:none!important}
       .exp-role{color:#000!important;font-size:10pt!important}
-      .exp-company{color:#996500!important;font-size:9pt!important}
-      .exp-date{color:#666!important;font-size:8.5pt!important}
+      .exp-role em{color:#996500!important}
+      .exp-company{color:#996500!important;font-size:8.5pt!important}
+      .exp-date{color:#666!important;font-size:8pt!important;background:#eee!important;border:1px solid #ccc!important}
       .exp-bullets li{color:#222!important;font-size:8.5pt!important}
       .exp-bullets li::before{color:#996500!important}
-      .proj-table th{background:#f4f4f4!important;color:#000!important;border-bottom:1px solid #999!important}
-      .proj-table td{border-bottom:1px solid #e0e0e0!important;color:#222!important;font-size:8.5pt!important}
-      .proj-tag{background:#eee!important;color:#333!important}
-      .photo-col img{border:1px solid #000!important;width:90px!important;height:90px!important}
+      .proj-table-wrap{border:1px solid #999!important}
+      .proj-table th{background:#f4f4f4!important;color:#000!important;border-bottom:1px solid #999!important;font-size:8pt!important}
+      .proj-table td{border-bottom:1px solid #e0e0e0!important;color:#222!important;font-size:8.2pt!important}
+      .proj-tag{background:#eee!important;color:#333!important;border:1px solid #ccc!important}
+      .strength-card{background:#fafafa!important;border:1px solid #ddd!important;padding:10px 14px!important}
+      .strength-card h4{color:#000!important}
+      .photo-col-wrap img{border:1px solid #000!important;width:90px!important;height:90px!important;box-shadow:none!important}
+      .photo-badge{display:none!important}
       a{color:#111!important;text-decoration:none!important}
       .page-break-after{page-break-after:always;}
     }
 
     @media(max-width:768px){
-      .resume-wrapper{padding:28px 20px}
-      .resume-header{grid-template-columns:1fr;text-align:left}
-      .photo-col{order:-1}
+      .top-bar-outer{padding:0 16px}
+      .resume-wrapper{padding:28px 20px;margin-top:16px;border-radius:0;border-left:none;border-right:none}
+      .resume-header{grid-template-columns:1fr;text-align:left;gap:24px}
+      .photo-col{order:-1;margin:0 auto}
       .skills-row{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
+      .strengths-grid{grid-template-columns:1fr}
+      .proj-table th, .proj-table td{padding:8px 10px;font-size:.78rem}
     }
   </style>
 </head>
 <body>
 
 <!-- ════ TOP ACTION BAR ════ -->
-<div class="top-bar">
-  <div style="display:flex;align-items:center;gap:16px;">
-    <a href="portfolio.html" class="back-btn">
-      <span>←</span>
-      <span class="lang-th">กลับสู่หน้าผลงาน (Portfolio)</span>
-      <span class="lang-en">Back to Portfolio</span>
-    </a>
-    <!-- Language Switcher -->
-    <div class="lang-switch" role="group" aria-label="Language selector">
-      <button type="button" class="lang-btn active" data-lang="th" onclick="setLang('th')">TH</button>
-      <span class="lang-divider">/</span>
-      <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+<div class="top-bar-outer">
+  <div class="top-bar">
+    <div class="nav-brand-group">
+      <a href="portfolio.html" class="nav-logo">
+        🏁 Percussionman
+      </a>
+      <a href="portfolio.html" class="back-btn">
+        <span>←</span>
+        <span class="lang-th">หน้าหลักผลงาน</span>
+        <span class="lang-en">Portfolio</span>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Language Switcher -->
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="th" onclick="setLang('th')">TH</button>
+        <span class="lang-divider">/</span>
+        <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+
+      <button onclick="window.print()" class="print-btn">
+        <span>🖨️</span>
+        <span class="lang-th">บันทึกเป็น PDF / พิมพ์</span>
+        <span class="lang-en">Print / Save PDF</span>
+      </button>
     </div>
   </div>
-  <button onclick="window.print()" class="print-btn">
-    <span>🖨️</span>
-    <span class="lang-th">บันทึกเป็น PDF / พิมพ์ (Print to PDF)</span>
-    <span class="lang-en">Print / Save to PDF</span>
-  </button>
 </div>
 
 <!-- ════ MAIN RESUME WRAPPER ════ -->
@@ -251,45 +421,53 @@
   <!-- ── HEADER ── -->
   <header class="resume-header">
     <div>
+      <div class="header-eyebrow">⚡ Senior Visual Creator · Official Resume 2026</div>
       <h1 class="applicant-name">
-        <span class="lang-th">ขจรศักดิ์ ใจคง</span>
-        <span class="lang-en">Kajornsak Jaikong</span>
+        <span class="lang-th">ขจรศักดิ์ ใจคง <em>(แมน / Percussionman)</em></span>
+        <span class="lang-en">Kajornsak Jaikong <em>(Percussionman)</em></span>
       </h1>
-      <div class="applicant-title">Senior Videographer · Motorsport Media Specialist · Video Editor & Colorist</div>
+      <div class="applicant-title">
+        <span>Senior Videographer · Motorsport Media Specialist · Video Editor & Colorist</span>
+        <span class="badge">Nikon Z8 8K RAW</span>
+        <span class="badge">DaVinci Resolve</span>
+      </div>
       
       <div class="contact-grid">
         <div class="contact-item">
-          <span>📞</span>
+          <span class="c-icon">📞</span>
           <span><strong><span class="lang-th">โทรศัพท์:</span><span class="lang-en">Phone:</span></strong> <a href="tel:0899977941">089-997-7941</a></span>
         </div>
         <div class="contact-item">
-          <span>📧</span>
+          <span class="c-icon">📧</span>
           <span><strong><span class="lang-th">อีเมล:</span><span class="lang-en">Email:</span></strong> <a href="mailto:kajornsak.jaikong@gmail.com">kajornsak.jaikong@gmail.com</a></span>
         </div>
         <div class="contact-item">
-          <span>💬</span>
+          <span class="c-icon">💬</span>
           <span><strong>Line ID:</strong> <a href="https://line.me/ti/p/~percussion_man" target="_blank">percussion_man</a></span>
         </div>
         <div class="contact-item">
-          <span>🌐</span>
+          <span class="c-icon">🌐</span>
           <span><strong>Portfolio:</strong> <a href="https://kajornsakjaikong.github.io/perman-portfolio/portfolio.html" target="_blank">perman-portfolio</a></span>
         </div>
         <div class="contact-item">
-          <span>📍</span>
+          <span class="c-icon">📍</span>
           <span>
-            <span class="lang-th"><strong>ที่อยู่:</strong> กรุงเทพมหานคร และพร้อมเดินทางปฏิบัติงานทั่วประเทศ / ต่างประเทศ</span>
-            <span class="lang-en"><strong>Location:</strong> Bangkok, Thailand (Available for nationwide & international travel)</span>
+            <span class="lang-th"><strong>ที่อยู่:</strong> กรุงเทพมหานคร (พร้อมเดินทางทั่วประเทศ/ต่างประเทศ)</span>
+            <span class="lang-en"><strong>Location:</strong> Bangkok (Available for Worldwide Travel)</span>
           </span>
         </div>
         <div class="contact-item">
-          <span>🎬</span>
+          <span class="c-icon">🎬</span>
           <span><strong>YouTube:</strong> <a href="https://www.youtube.com/watch?v=xN7pIpnIM88&list=PL6uMeWgCelzLrjyxV6-vq-Gs1w6ZS0dCq" target="_blank">Percussionman Channel</a></span>
         </div>
       </div>
     </div>
 
     <div class="photo-col">
-      <img src="img/page01.jpg" alt="Kajornsak Jaikong">
+      <div class="photo-col-wrap">
+        <img src="img/page01.jpg" alt="Kajornsak Jaikong — Percussionman">
+        <div class="photo-badge">⚡ Available for Hire</div>
+      </div>
     </div>
   </header>
 
@@ -301,21 +479,23 @@
         <span class="lang-en">Professional Summary</span>
       </h2>
     </div>
-    <div class="lang-th">
-      <p class="summary-p">
-        วิดีโอกราเฟอร์และช่างภาพมืออาชีพที่มีประสบการณ์การผลิตสื่อภาพนิ่งและภาพเคลื่อนไหวมากว่า <strong>5 ปี</strong> มีจุดเด่นเฉพาะตัวจากการนำความเข้าใจเชิงลึกใน <strong>"จังหวะดนตรี" (Percussion)</strong> มาผสมผสานกับการถ่ายทอด <strong>"พลังและฟิสิกส์ของความเร็ว" (Speed & Motion)</strong> ได้อย่างแม่นยำ เชี่ยวชาญงานถ่ายทอดสดคอนเสิร์ตขนาดใหญ่และเทศกาลดนตรีระดับประเทศร่วมกับศิลปินชั้นนำ (อาทิ 4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall)
-      </p>
-      <p class="summary-p">
-        พร้อมความเชี่ยวชาญระดับสูงในสาย <strong>Motorsport</strong> ณ สนามแข่งขันระดับสากลและสนามชั้นนำ (Chang International Circuit บุรีรัมย์, Sepang International Circuit มาเลเซีย, D1 Grand Prix Thailand, Rotax Max Challenge Thailand โกคาร์ทเยาวชน และสนามภูเก็ต) เข้าใจมุมกล้องยานยนต์ การเคลื่อนที่ของรถแข่งที่ความเร็วสูง และมีทักษะการทำ <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES) รองรับการผลิตสื่อแบบครบวงจร (End-to-End) พร้อมส่งมอบงานรวดเร็ว (Fast Delivery) สำหรับ Social Media และงานพรีเมียม
-      </p>
-    </div>
-    <div class="lang-en">
-      <p class="summary-p">
-        Professional Videographer and Photographer with over <strong>5 years</strong> of experience in visual media production. Distinguished by a signature background in <strong>musical rhythm and percussion</strong>, seamlessly integrating dynamic tempo with <strong>the physics and velocity of speed</strong>. Proven track record capturing major arena concerts and premier national music festivals with top-tier artists (including 4EVE, Madam Pang, Pod Moderndog, Nadech Kugimiya, and Soul After Six @ Royal Paragon Hall).
-      </p>
-      <p class="summary-p">
-        Specialized expertise in <strong>Motorsport Media</strong> across premier and international circuits (Chang International Circuit Buriram, Sepang International Circuit Malaysia, D1 Grand Prix Thailand, Rotax Max Challenge Thailand Junior Karting, and Phuket Racing Circuit). In-depth mastery of automotive framing, high-speed vehicle dynamics, and <strong>Color Grading / RAW Workflow</strong> (DaVinci Resolve / ACES). Providing comprehensive end-to-end production with rapid same-day delivery optimized for viral social media and premium commercial assets.
-      </p>
+    <div class="summary-card">
+      <div class="lang-th">
+        <p class="summary-p">
+          วิดีโอกราเฟอร์และช่างภาพมืออาชีพที่มีประสบการณ์การผลิตสื่อภาพนิ่งและภาพเคลื่อนไหวมากว่า <strong>5 ปี</strong> มีจุดเด่นเฉพาะตัวจากการนำความเข้าใจเชิงลึกใน <strong>"จังหวะดนตรี" (Percussion)</strong> มาผสมผสานกับการถ่ายทอด <strong>"พลังและฟิสิกส์ของความเร็ว" (Speed & Motion)</strong> ได้อย่างแม่นยำ เชี่ยวชาญงานถ่ายทอดสดคอนเสิร์ตขนาดใหญ่และเทศกาลดนตรีระดับประเทศร่วมกับศิลปินชั้นนำ (อาทิ <em>4EVE, คุณแป้ง นวลพรรณ, ป๊อด Moderndog, ณเดชน์ คูกิมิยะ, Soul After Six @ Royal Paragon Hall</em>)
+        </p>
+        <p class="summary-p">
+          พร้อมความเชี่ยวชาญระดับสูงในสาย <strong>Motorsport Media</strong> ณ สนามแข่งขันระดับสากลและสนามชั้นนำ (<em>Chang International Circuit บุรีรัมย์, Sepang International Circuit มาเลเซีย, D1 Grand Prix Thailand, Rotax Max Challenge Thailand โกคาร์ทเยาวชน และสนามภูเก็ต</em>) เข้าใจมุมกล้องยานยนต์ การเคลื่อนที่ของรถแข่งที่ความเร็วสูง และมีทักษะการทำ <strong>Color Grading / RAW Workflow (DaVinci Resolve / ACES)</strong> รองรับการผลิตสื่อแบบครบวงจร (End-to-End) พร้อมส่งมอบงานรวดเร็ว (Fast Delivery) สำหรับ Social Media และงานพรีเมียม
+        </p>
+      </div>
+      <div class="lang-en">
+        <p class="summary-p">
+          Professional Videographer and Photographer with over <strong>5 years</strong> of experience in visual media production. Distinguished by a signature background in <strong>musical rhythm and percussion</strong>, seamlessly integrating dynamic tempo with <strong>the physics and velocity of speed</strong>. Proven track record capturing major arena concerts and premier national music festivals with top-tier artists (including <em>4EVE, Madam Pang, Pod Moderndog, Nadech Kugimiya, and Soul After Six @ Royal Paragon Hall</em>).
+        </p>
+        <p class="summary-p">
+          Specialized expertise in <strong>Motorsport Media</strong> across premier and international circuits (<em>Chang International Circuit Buriram, Sepang International Circuit Malaysia, D1 Grand Prix Thailand, Rotax Max Challenge Thailand Junior Karting, and Phuket Racing Circuit</em>). In-depth mastery of automotive framing, high-speed vehicle dynamics, and <strong>Color Grading / RAW Workflow (DaVinci Resolve / ACES)</strong>. Providing comprehensive end-to-end production with rapid same-day delivery optimized for viral social media and premium commercial assets.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -376,9 +556,12 @@
       </h2>
     </div>
 
-    <div class="exp-item">
+    <div class="exp-timeline">
       <div class="exp-header">
-        <span class="exp-role">Lead Videographer, Photographer & Video Editor <em>(Freelance)</em></span>
+        <span class="exp-role">
+          Lead Videographer, Photographer & Video Editor
+          <em>(Freelance & Contract)</em>
+        </span>
         <span class="exp-date">
           <span class="lang-th">2019 – ปัจจุบัน</span>
           <span class="lang-en">2019 – Present</span>
@@ -418,84 +601,86 @@
       </h2>
     </div>
 
-    <table class="proj-table">
-      <thead>
-        <tr>
-          <th><span class="lang-th">ประเภทงาน</span><span class="lang-en">Category</span></th>
-          <th><span class="lang-th">ชิ้นงาน / ศิลปิน / อีเวนต์</span><span class="lang-en">Project / Artist / Event</span></th>
-          <th><span class="lang-th">สถานที่ / ค่าย / ลูกค้า</span><span class="lang-en">Venue / Client / Label</span></th>
-          <th><span class="lang-th">หน้าที่รับผิดชอบ (Role)</span><span class="lang-en">Role & Scope</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="proj-tag">Motorsport</span></td>
-          <td>D1 Grand Prix Thailand (Pro Drift Series — P'Pubz / Motul)</td>
-          <td>Impact Speed Park / D1GP Thailand</td>
-          <td><strong>Lead Photographer / Action Panning & Tire Smoke</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Motorsport</span></td>
-          <td>Rotax Max Challenge Thailand (RMC Round 3 — Junior Karting)</td>
-          <td>RMC Thailand / Boy Racing <span class="lang-th">(น้องเฮเดย์ #289)</span><span class="lang-en">(Driver Heyday #289)</span></td>
-          <td><strong>Lead Photographer / Action Panning, Pit Story & Victory Podium</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Motorsport</span></td>
-          <td>BRIC Supercar & Circuit Speed Series</td>
-          <td>Chang Circuit (Buriram) · Sepang (MY) · <span class="lang-th">สนามภูเก็ต</span><span class="lang-en">Phuket Circuit</span></td>
-          <td><strong>Lead Photographer / Action Camera</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Concert</span></td>
-          <td>Soul After Six : <span class="lang-th">ความทรงจำของก้อนหิน</span><span class="lang-en">Memories of Stone</span></td>
-          <td>Royal Paragon Hall</td>
-          <td><strong>Photographer / Stage Dynamic</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Concert</span></td>
-          <td>4EVE Show & Concert</td>
-          <td>Soonthareeya Ratchadamri (Areeya)</td>
-          <td><strong>Lead Photographer</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Live Session</span></td>
-          <td>Krist Live Session feat. Gawin Caskey</td>
-          <td>Riser Music</td>
-          <td><strong>Videographer</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Live Session</span></td>
-          <td>Nadech Kugimiya — <span class="lang-th">เหมือนเคย (Cover)</span><span class="lang-en">Muan Koey (Cover)</span></td>
-          <td>MammothMusic</td>
-          <td><strong>Videographer / Video Editor</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Live Session</span></td>
-          <td><span class="lang-th">ปั่น ไพบูลย์เกียรติ</span><span class="lang-en">Pun Paiboonkiat</span> — The Way You Look Tonight / <span class="lang-th">รักยืนยง</span><span class="lang-en">Rak Yuen Yong</span></td>
-          <td>MammothMusic Special Live</td>
-          <td><strong>Videographer / Video Editor</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Music Video</span></td>
-          <td>'Pink Venom' MV Cover</td>
-          <td>SongZoom</td>
-          <td><strong>Videographer / Video Editor</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Commercial</span></td>
-          <td>CAPME Crispy Pork Rinds (Commercial Set)</td>
-          <td>CAPME Brand</td>
-          <td><strong>Product Photographer / Lighting</strong></td>
-        </tr>
-        <tr>
-          <td><span class="proj-tag">Corporate</span></td>
-          <td>SCG Cowboy Night (Annual Corporate Party & Live Stage)</td>
-          <td>Siam Cement Group (SCG)</td>
-          <td><strong>Lead Photographer / Stage & Event Lighting</strong></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="proj-table-wrap">
+      <table class="proj-table">
+        <thead>
+          <tr>
+            <th style="width:18%"><span class="lang-th">ประเภทงาน</span><span class="lang-en">Category</span></th>
+            <th style="width:34%"><span class="lang-th">ชิ้นงาน / ศิลปิน / อีเวนต์</span><span class="lang-en">Project / Artist / Event</span></th>
+            <th style="width:26%"><span class="lang-th">สถานที่ / ค่าย / ลูกค้า</span><span class="lang-en">Venue / Client / Label</span></th>
+            <th style="width:22%"><span class="lang-th">หน้าที่รับผิดชอบ (Role)</span><span class="lang-en">Role & Scope</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="proj-tag proj-tag-ms">Motorsport</span></td>
+            <td><strong>D1 Grand Prix Thailand</strong><br><span style="font-size:.76rem;color:#888">Pro Drift Series — P'Pubz / Motul</span></td>
+            <td>Impact Speed Park / D1GP Thailand</td>
+            <td><strong>Lead Photographer</strong><br><span style="font-size:.74rem;color:var(--gold)">Action Panning & Drift Smoke</span></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-ms">Motorsport</span></td>
+            <td><strong>Rotax Max Challenge Thailand</strong><br><span style="font-size:.76rem;color:#888">RMC Round 3 — Junior Karting</span></td>
+            <td>RMC Thailand / Boy Racing <span class="lang-th">(น้องเฮเดย์ #289)</span><span class="lang-en">(Driver Heyday #289)</span></td>
+            <td><strong>Lead Photographer</strong><br><span style="font-size:.74rem;color:var(--gold)">Panning, Pit Story & Podium</span></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-ms">Motorsport</span></td>
+            <td><strong>BRIC Supercar & Circuit Series</strong><br><span style="font-size:.76rem;color:#888">High-speed Trackside Media</span></td>
+            <td>Chang Circuit (Buriram) · Sepang (MY) · <span class="lang-th">สนามภูเก็ต</span><span class="lang-en">Phuket Circuit</span></td>
+            <td><strong>Lead Photographer</strong><br><span style="font-size:.74rem;color:var(--gold)">Action Speed Dynamics</span></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-concert">Concert</span></td>
+            <td><strong>Soul After Six</strong> : <span class="lang-th">ความทรงจำของก้อนหิน</span><span class="lang-en">Memories of Stone</span></td>
+            <td>Royal Paragon Hall</td>
+            <td><strong>Photographer</strong><br><span style="font-size:.74rem;color:#aaa">Stage Dynamic Lighting</span></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-concert">Concert</span></td>
+            <td><strong>4EVE</strong> Show & Arena Concert</td>
+            <td>Soonthareeya Ratchadamri (Areeya)</td>
+            <td><strong>Lead Photographer</strong></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-live">Live Session</span></td>
+            <td><strong>Krist</strong> Live Session feat. Gawin Caskey</td>
+            <td>Riser Music</td>
+            <td><strong>Videographer</strong></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-live">Live Session</span></td>
+            <td><strong>Nadech Kugimiya</strong> — <span class="lang-th">เหมือนเคย (Cover)</span><span class="lang-en">Muan Koey (Cover)</span></td>
+            <td>MammothMusic</td>
+            <td><strong>Videographer / Editor</strong></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-live">Live Session</span></td>
+            <td><span class="lang-th"><strong>ปั่น ไพบูลย์เกียรติ</strong></span><span class="lang-en"><strong>Pun Paiboonkiat</strong></span> — The Way You Look Tonight / <span class="lang-th">รักยืนยง</span><span class="lang-en">Rak Yuen Yong</span></td>
+            <td>MammothMusic Special Live</td>
+            <td><strong>Videographer / Editor</strong></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-mv">Music Video</span></td>
+            <td><strong>'Pink Venom'</strong> MV Cover Dance</td>
+            <td>SongZoom</td>
+            <td><strong>Videographer / Editor</strong></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-comm">Commercial</span></td>
+            <td><strong>CAPME</strong> Crispy Pork Rinds Collection</td>
+            <td>CAPME Brand</td>
+            <td><strong>Product Photographer</strong><br><span style="font-size:.74rem;color:#55efc4">Commercial Lighting</span></td>
+          </tr>
+          <tr>
+            <td><span class="proj-tag proj-tag-corp">Corporate</span></td>
+            <td><strong>SCG Cowboy Night</strong> (Annual Staff Party)</td>
+            <td>Siam Cement Group (SCG)</td>
+            <td><strong>Lead Photographer</strong><br><span style="font-size:.74rem;color:#ffeaa7">Live Stage & Lighting</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- ── EDUCATION & LANGUAGE ── -->
@@ -506,41 +691,56 @@
         <span class="lang-en">Additional Strengths & Languages</span>
       </h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:.84rem;color:#ccc">
-      <div>
+    <div class="strengths-grid">
+      <div class="strength-card">
         <div class="lang-th">
-          <p><strong>ทักษะดนตรีและจังหวะ (Musicality & Percussion):</strong></p>
-          <p style="color:#aaa;margin-top:4px">
+          <h4>🎵 ทักษะดนตรีและจังหวะ (Musicality & Percussion)</h4>
+          <p>
             ความเชี่ยวชาญเครื่องดนตรีเพอร์คัสชัน ทำให้มีเซนส์การจับจังหวะเพลง (BPM / Rhythm) การตัดต่อวิดีโอจึงสอดคล้องกับจังหวะดนตรีได้อย่างแนบเนียนและมีพลังเป็นพิเศษ
           </p>
         </div>
         <div class="lang-en">
-          <p><strong>Musicality & Percussion:</strong></p>
-          <p style="color:#aaa;margin-top:4px">
+          <h4>🎵 Musicality & Percussion</h4>
+          <p>
             Extensive background as a percussionist provides an intuitive mastery of rhythm, tempo, and musical BPM — allowing tempo-locked video cutting that elevates visual energy and emotional pacing.
           </p>
         </div>
       </div>
-      <div>
+
+      <div class="strength-card">
         <div class="lang-th">
-          <p><strong>ภาษาและการสื่อสาร (Languages & Mobility):</strong></p>
-          <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
-            <li>• ภาษาไทย: ภาษาแม่ (Native Proficiency)</li>
-            <li>• ภาษาอังกฤษ: สื่อสารการทำงานได้ (Working Proficiency)</li>
-            <li>• มีใบขับขี่และยานพาหนะ พร้อมเดินทางปฏิบัติงานต่างจังหวัดและต่างประเทศ</li>
+          <h4>🌐 ภาษาและการสื่อสาร (Languages & Mobility)</h4>
+          <ul>
+            <li>• <strong>ภาษาไทย:</strong> ภาษาแม่ (Native Proficiency)</li>
+            <li>• <strong>ภาษาอังกฤษ:</strong> สื่อสารการทำงานได้ (Working Proficiency)</li>
+            <li>• มีใบขับขี่และยานพาหนะ พร้อมเดินทางปฏิบัติงานทั่วประเทศและต่างประเทศ</li>
           </ul>
         </div>
         <div class="lang-en">
-          <p><strong>Languages & Mobility:</strong></p>
-          <ul style="list-style:none;padding:0;margin-top:4px;color:#aaa">
-            <li>• Thai: Native Proficiency</li>
-            <li>• English: Professional Working Proficiency</li>
+          <h4>🌐 Languages & Mobility</h4>
+          <ul>
+            <li>• <strong>Thai:</strong> Native Proficiency</li>
+            <li>• <strong>English:</strong> Professional Working Proficiency</li>
             <li>• Valid driver's license & vehicle; ready for nationwide and international travel</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ── BOTTOM ACTIONS ── -->
+  <div class="bottom-actions">
+    <a href="portfolio.html" class="back-btn" style="padding:10px 24px;font-size:.88rem">
+      <span>←</span>
+      <span class="lang-th">กลับสู่หน้าผลงาน (Portfolio)</span>
+      <span class="lang-en">Back to Portfolio</span>
+    </a>
+    <button onclick="window.print()" class="print-btn" style="padding:10px 26px;font-size:.88rem">
+      <span>🖨️</span>
+      <span class="lang-th">พิมพ์ / บันทึกเป็น PDF</span>
+      <span class="lang-en">Print / Save as PDF</span>
+    </button>
+  </div>
 
 </div>
 
