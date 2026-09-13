@@ -314,6 +314,74 @@
     }
     .ms-grid-full .ms-photo{aspect-ratio:3/2}
 
+    /* ── MOTORSPORT CURATED SERIES CARDS ── */
+    .ms-series-grid{
+      display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;margin-bottom:48px;
+    }
+    .ms-series-card{
+      background:var(--card);border:1px solid var(--border);border-radius:14px;
+      overflow:hidden;cursor:pointer;transition:transform .3s ease, border-color .3s, box-shadow .3s;
+      display:flex;flex-direction:column;position:relative;
+    }
+    .ms-series-card:hover{
+      transform:translateY(-6px);border-color:var(--yellow);
+      box-shadow:0 16px 40px rgba(0,0,0,.6), 0 0 24px rgba(255,215,0,.15);
+    }
+    .ms-series-thumb{
+      width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0d0d0d;
+    }
+    .ms-series-thumb img{
+      width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,1,.5,1);
+    }
+    .ms-series-card:hover .ms-series-thumb img{
+      transform:scale(1.06);
+    }
+    .ms-series-thumb::after{
+      content:'▶  Open Album';position:absolute;inset:0;
+      background:rgba(0,0,0,.5);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+      opacity:0;transition:opacity .25s;
+    }
+    .ms-series-card:hover .ms-series-thumb::after{opacity:1;}
+    .ms-series-badge{
+      position:absolute;top:14px;left:14px;z-index:2;
+      background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,215,0,.4);color:var(--yellow);
+      font-size:.7rem;font-weight:700;letter-spacing:1.5px;
+      padding:4px 10px;border-radius:20px;text-transform:uppercase;
+    }
+    .ms-series-count{
+      position:absolute;bottom:14px;right:14px;z-index:2;
+      background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.15);color:#fff;
+      font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:20px;
+    }
+    .ms-series-body{
+      padding:24px;display:flex;flex-direction:column;flex:1;
+    }
+    .ms-series-title{
+      font-size:1.15rem;font-weight:800;color:var(--white);margin-bottom:8px;line-height:1.35;
+    }
+    .ms-series-desc{
+      font-size:.82rem;color:var(--gray-light);margin-bottom:18px;line-height:1.6;
+    }
+    .ms-series-meta{
+      margin-top:auto;display:flex;align-items:center;justify-content:space-between;
+      border-top:1px solid rgba(255,255,255,.06);padding-top:14px;
+      font-size:.78rem;color:var(--gray);
+    }
+    .ms-series-btn{
+      color:var(--yellow);font-weight:700;display:flex;align-items:center;gap:6px;
+      font-size:.8rem;letter-spacing:1px;text-transform:uppercase;
+    }
+    @media(max-width:1024px){
+      .ms-series-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:768px){
+      .ms-series-grid{grid-template-columns:1fr;}
+    }
+
     /* ── MOTORSPORT HERO ── */
     .ms-hero{
       display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;
@@ -406,8 +474,12 @@
       display:flex;align-items:center;justify-content:center;}
     #plb-prev{left:20px;}#plb-next{right:20px;}
     #plb-prev:hover,#plb-next:hover{background:rgba(255,215,0,.22);border-color:rgba(255,215,0,.35);}
-    #plb-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
-      color:rgba(255,255,255,.45);font-size:.75rem;letter-spacing:2px;white-space:nowrap;}
+    #plb-meta{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      text-align:center;pointer-events:none;width:90%;max-width:700px;}
+    #plb-title{color:#fff;font-size:.9rem;font-weight:700;letter-spacing:1px;
+      text-shadow:0 2px 10px rgba(0,0,0,.9);}
+    #plb-counter{color:var(--yellow);font-size:.76rem;letter-spacing:2px;font-weight:600;}
     .card-clickable{cursor:pointer;position:relative;}
     .card-clickable .card-thumb::after{
       content:'▶  View Gallery';position:absolute;inset:0;
@@ -957,6 +1029,19 @@
       </div>
     </div>
 
+    <!-- ── Phuket Track Speed Series ── -->
+    <div class="card card-clickable" data-cat="Candid" onclick="openPhuketLB(0)">
+      <div class="card-thumb">
+        <img src="img/phuket_01.jpg" alt="Phuket Circuit Speed Series" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="ctags"><span class="ctag">Motorsport</span><span class="ctag">Circuit</span><span class="ctag">Phuket</span></div>
+        <h3 class="ctitle">Phuket Circuit Speed & Apex Dynamics</h3>
+        <p class="cmeta">@ Phuket Racing Circuit</p>
+        <div class="croles"><span class="crole crole-key">Lead Photographer</span><span class="crole">Apex Focus & Speed Physics</span><span class="crole" style="color:var(--yellow)">7 Selected Photos</span></div>
+      </div>
+    </div>
+
     <div class="card" data-cat="Concert">
       <div class="card-thumb"><img src="img/page24.jpg" alt="photo work" loading="lazy"></div>
       <div class="card-body">
@@ -1213,12 +1298,84 @@
     </div>
   </div>
 
-  <!-- Motorsport Photo Gallery -->
+  <!-- ════ CURATED MOTORSPORT SERIES ALBUMS ════ -->
+  <div style="margin-bottom:28px">
+    <p class="sec-label">Curated Series Albums</p>
+    <h3 style="font-size:1.4rem;font-weight:800;color:var(--white);margin-top:4px">ชุดผลงานมอเตอร์สปอร์ตคัดสรร (Click to Explore)</h3>
+  </div>
+
+  <div class="ms-series-grid">
+
+    <!-- Series 1: D1GP -->
+    <div class="ms-series-card" onclick="openGallery('d1gp',0)">
+      <div class="ms-series-thumb">
+        <img src="img/d1gp_06.jpg" alt="D1 Grand Prix Thailand" loading="lazy">
+        <span class="ms-series-badge">D1GP Thailand</span>
+        <span class="ms-series-count">📸 6 Photos</span>
+      </div>
+      <div class="ms-series-body">
+        <h4 class="ms-series-title">D1GP Pro Drift Series — Motul P'Pubz #87</h4>
+        <p class="ms-series-desc">
+          การแข่งขันดริฟต์ระดับโปร ช็อตแพนจับความเร็ว สโม้คควันยางตลบแทร็ก งานพิทเลน และช็อตกลางคืนระดับ Masterpiece
+        </p>
+        <div class="ms-series-meta">
+          <span>Impact Speed Park · 2024</span>
+          <span class="ms-series-btn">เปิดดูทั้งชุด →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series 2: Phuket -->
+    <div class="ms-series-card" onclick="openGallery('phuket',0)">
+      <div class="ms-series-thumb">
+        <img src="img/phuket_01.jpg" alt="Phuket Circuit Speed Series" loading="lazy">
+        <span class="ms-series-badge">Phuket Track</span>
+        <span class="ms-series-count">📸 7 Photos</span>
+      </div>
+      <div class="ms-series-body">
+        <h4 class="ms-series-title">Phuket Circuit Speed & Apex Dynamics</h4>
+        <p class="ms-series-desc">
+          บันทึกจังหวะเข้าโค้ง Apex ความเร็วสูง การเคลื่อนที่ตามหลักฟิสิกส์ของรถแข่ง และบรรยากาศแพดด็อกริมแทร็กภูเก็ต
+        </p>
+        <div class="ms-series-meta">
+          <span>Phuket Racing Circuit</span>
+          <span class="ms-series-btn">เปิดดูทั้งชุด →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series 3: Chang & Sepang -->
+    <div class="ms-series-card" onclick="openGallery('circuit',0)">
+      <div class="ms-series-thumb">
+        <img src="img/MA900052_fullres.jpg" alt="Chang & Sepang Supercars" loading="lazy">
+        <span class="ms-series-badge">FIA Circuits</span>
+        <span class="ms-series-count">📸 12 Photos</span>
+      </div>
+      <div class="ms-series-body">
+        <h4 class="ms-series-title">Chang & Sepang International Supercars</h4>
+        <p class="ms-series-desc">
+          การแข่งขันความเร็วในสนามระดับโลก Chang International Circuit บุรีรัมย์ และ Sepang International Circuit มาเลเซีย
+        </p>
+        <div class="ms-series-meta">
+          <span>Buriram & Malaysia</span>
+          <span class="ms-series-btn">เปิดดูทั้งชุด →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Motorsport Photo Gallery Highlights -->
   <div class="ms-gallery-wrap">
-    <p class="sec-label" style="margin-bottom:24px">Selected Shots</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <p class="sec-label">Selected Track Apex Moments</p>
+        <h4 style="font-size:1.15rem;font-weight:700;color:var(--white);margin-top:2px">ไฮไลท์ช็อตเด่นบนแทร็ก (คลิกรูปเพื่อเปิดสไลด์ดูทั้งชุด)</h4>
+      </div>
+    </div>
     <div class="ms-grid-full">
       <!-- ── D1 Grand Prix Thailand Series ── -->
-      <div class="ms-photo" onclick="openD1GPLB(0)" style="cursor:pointer;">
+      <div class="ms-photo" onclick="openGallery('d1gp',0)" style="cursor:pointer;">
         <img src="img/d1gp_01.jpg" alt="D1GP Drifting — Pit Garage & Camber" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag" style="background:var(--yellow);color:#000;font-weight:700;">D1GP Thailand</span>
@@ -1262,49 +1419,49 @@
       </div>
 
       <!-- ── Phuket Series ── -->
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',0)" style="cursor:pointer;">
         <img src="img/phuket_01.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">Motorsport Action & Speed</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',1)" style="cursor:pointer;">
         <img src="img/phuket_02.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">Track Action Shot</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',2)" style="cursor:pointer;">
         <img src="img/phuket_03.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">High-Speed Apex</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',3)" style="cursor:pointer;">
         <img src="img/phuket_04.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">Pitlane & Paddock Mood</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',4)" style="cursor:pointer;">
         <img src="img/phuket_05.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">Race Focus & Detail</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',5)" style="cursor:pointer;">
         <img src="img/phuket_06.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
           <span class="ms-photo-title">High Dynamic Action</span>
         </div>
       </div>
-      <div class="ms-photo">
+      <div class="ms-photo" onclick="openGallery('phuket',6)" style="cursor:pointer;">
         <img src="img/phuket_07.jpg" alt="Motorsport Racing — Phuket" loading="lazy">
         <div class="ms-photo-cap">
           <span class="ms-photo-tag">Phuket Track</span>
@@ -1492,13 +1649,16 @@
   </div>
 </section>
 
-<!-- ════ PRODUCT LIGHTBOX ════ -->
+<!-- ════ MULTI-GALLERY LIGHTBOX ════ -->
 <div id="plb" onclick="if(event.target===this)closePLB()">
   <button id="plb-close" onclick="closePLB()">✕</button>
   <button id="plb-prev" onclick="plbNav(-1)">&#8249;</button>
-  <img id="plb-img" src="" alt="Product Photo">
+  <img id="plb-img" src="" alt="Photo Gallery">
   <button id="plb-next" onclick="plbNav(1)">&#8250;</button>
-  <span id="plb-counter"></span>
+  <div id="plb-meta">
+    <div id="plb-title"></div>
+    <div id="plb-counter"></div>
+  </div>
 </div>
 
 <!-- ════ FLOATING MOBILE BAR ════ -->
@@ -1546,57 +1706,89 @@ document.querySelectorAll('.card').forEach((c,i)=>{
   io.observe(c);
 });
 
-// ── Lightbox Collections ──
+// ── Lightbox Collections / Curated Sets ──
 const galleries = {
-  product: [
-    'img/product/product_overview.jpg',
-    'img/product/product_01.jpg','img/product/product_02.jpg',
-    'img/product/product_03.jpg','img/product/product_04.jpg',
-    'img/product/product_05.jpg','img/product/product_06.jpg',
-    'img/product/product_07.jpg','img/product/product_08.jpg',
-    'img/product/product_09.jpg','img/product/product_10.jpg',
-  ],
-  scg: [
-    'img/scg_01.jpg',
-    'img/scg_02.jpg',
-    'img/scg_03.jpg',
-    'img/scg_04.jpg',
-    'img/scg_05.jpg',
-    'img/scg_06.jpg',
-  ],
-  d1gp: [
-    'img/d1gp_01.jpg',
-    'img/d1gp_02.jpg',
-    'img/d1gp_03.jpg',
-    'img/d1gp_04.jpg',
-    'img/d1gp_05.jpg',
-    'img/d1gp_06.jpg',
-  ]
+  product: {
+    title: 'CAPME Crispy Pork Rinds — Commercial Product Set',
+    images: [
+      'img/product/product_overview.jpg',
+      'img/product/product_01.jpg','img/product/product_02.jpg',
+      'img/product/product_03.jpg','img/product/product_04.jpg',
+      'img/product/product_05.jpg','img/product/product_06.jpg',
+      'img/product/product_07.jpg','img/product/product_08.jpg',
+      'img/product/product_09.jpg','img/product/product_10.jpg',
+    ]
+  },
+  scg: {
+    title: 'SCG Cowboy Night — Annual Corporate Party & Live Stage',
+    images: [
+      'img/scg_01.jpg',
+      'img/scg_02.jpg',
+      'img/scg_03.jpg',
+      'img/scg_04.jpg',
+      'img/scg_05.jpg',
+      'img/scg_06.jpg',
+    ]
+  },
+  d1gp: {
+    title: 'D1 Grand Prix Thailand — Pro Drift Series (P\'Pubz / Motul #87)',
+    images: [
+      'img/d1gp_01.jpg',
+      'img/d1gp_02.jpg',
+      'img/d1gp_03.jpg',
+      'img/d1gp_04.jpg',
+      'img/d1gp_05.jpg',
+      'img/d1gp_06.jpg',
+    ]
+  },
+  phuket: {
+    title: 'Phuket Track Speed Series — Circuit Racing & Apex Focus',
+    images: [
+      'img/phuket_01.jpg',
+      'img/phuket_02.jpg',
+      'img/phuket_03.jpg',
+      'img/phuket_04.jpg',
+      'img/phuket_05.jpg',
+      'img/phuket_06.jpg',
+      'img/phuket_07.jpg',
+    ]
+  },
+  circuit: {
+    title: 'Chang & Sepang International Supercar Challenge',
+    images: [
+      'img/MA900052_fullres.jpg',
+      'img/MA900014_2048px.jpg',
+      'img/MA900061_fullres.jpg',
+      'img/MA900085_fullres.jpg',
+      'img/MA900092_fullres.jpg',
+      'img/MA900152_fullres.jpg',
+      'img/MA900258_fullres.jpg',
+      'img/MA900377_fullres.jpg',
+      'img/MA900584_fullres.jpg',
+      'img/MAN00010_fullres.jpg',
+      'img/MAN00260_fullres.jpg',
+      'img/MAN00319_fullres.jpg',
+    ]
+  }
 };
-let curGallery = 'product';
+
+let curGallery = 'd1gp';
 let plbIdx = 0;
 
-function openPLB(i){
-  curGallery = 'product';
-  openGallery(curGallery, i||0);
-}
-
-function openSCGLB(i){
-  curGallery = 'scg';
-  openGallery(curGallery, i||0);
-}
-
-function openD1GPLB(i){
-  curGallery = 'd1gp';
-  openGallery(curGallery, i||0);
-}
+function openPLB(i){ openGallery('product', i||0); }
+function openSCGLB(i){ openGallery('scg', i||0); }
+function openD1GPLB(i){ openGallery('d1gp', i||0); }
+function openPhuketLB(i){ openGallery('phuket', i||0); }
+function openCircuitLB(i){ openGallery('circuit', i||0); }
 
 function openGallery(galName, i){
   curGallery = galName;
-  const list = galleries[galName] || galleries.product;
+  const gal = galleries[galName] || galleries.d1gp;
+  const list = gal.images || [];
   plbIdx = Math.max(0, Math.min(i||0, list.length - 1));
   const lb = document.getElementById('plb');
   document.getElementById('plb-img').src = list[plbIdx];
+  document.getElementById('plb-title').textContent = gal.title || '';
   document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+list.length;
   lb.classList.add('open');
   document.body.style.overflow='hidden';
@@ -1608,9 +1800,12 @@ function closePLB(){
 }
 
 function plbNav(dir){
-  const list = galleries[curGallery] || galleries.product;
+  const gal = galleries[curGallery] || galleries.d1gp;
+  const list = gal.images || [];
+  if(!list.length) return;
   plbIdx = (plbIdx + dir + list.length) % list.length;
   document.getElementById('plb-img').src = list[plbIdx];
+  document.getElementById('plb-title').textContent = gal.title || '';
   document.getElementById('plb-counter').textContent = (plbIdx+1)+' / '+list.length;
 }
 
